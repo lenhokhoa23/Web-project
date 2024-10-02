@@ -2,10 +2,17 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Máy chủ: localhost:3307
 -- Thời gian đã tạo: Th10 02, 2024 lúc 04:59 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
+=======
+-- Host: 127.0.0.1:3307
+-- Generation Time: Oct 02, 2024 at 04:38 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+>>>>>>> 5f6371a (Create table customer, employeecontact and insert info)
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +25,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `company_sample`
+-- Database: `test`
 --
 
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Cấu trúc bảng cho bảng `customer`
+=======
+-- Table structure for table `customer`
+>>>>>>> 5f6371a (Create table customer, employeecontact and insert info)
 --
 
 CREATE TABLE `customer` (
@@ -35,7 +46,11 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+<<<<<<< HEAD
 -- Đang đổ dữ liệu cho bảng `customer`
+=======
+-- Dumping data for table `customer`
+>>>>>>> 5f6371a (Create table customer, employeecontact and insert info)
 --
 
 INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Order`) VALUES
@@ -123,7 +138,11 @@ INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Ord
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Cấu trúc bảng cho bảng `department`
+=======
+-- Table structure for table `department`
+>>>>>>> 5f6371a (Create table customer, employeecontact and insert info)
 --
 
 CREATE TABLE `department` (
@@ -133,7 +152,7 @@ CREATE TABLE `department` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `department`
+-- Dumping data for table `department`
 --
 
 INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUES
@@ -146,7 +165,7 @@ INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUE
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `employee`
+-- Table structure for table `employee`
 --
 
 CREATE TABLE `employee` (
@@ -158,7 +177,7 @@ CREATE TABLE `employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `employee`
+-- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, `Department_ID`) VALUES
@@ -217,7 +236,11 @@ INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, 
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Cấu trúc bảng cho bảng `employeecontact`
+=======
+-- Table structure for table `employeecontact`
+>>>>>>> 5f6371a (Create table customer, employeecontact and insert info)
 --
 
 CREATE TABLE `employeecontact` (
@@ -225,10 +248,17 @@ CREATE TABLE `employeecontact` (
   `PhoneNumber` char(10) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `EmployeeAddress` varchar(100) DEFAULT NULL
+<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `employeecontact`
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employeecontact`
+>>>>>>> 5f6371a (Create table customer, employeecontact and insert info)
 --
 
 INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeAddress`) VALUES
@@ -287,7 +317,11 @@ INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeA
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Cấu trúc bảng cho bảng `employeehealth`
+=======
+-- Table structure for table `employeehealth`
+>>>>>>> 5f6371a (Create table customer, employeecontact and insert info)
 --
 
 CREATE TABLE `employeehealth` (
@@ -300,7 +334,7 @@ CREATE TABLE `employeehealth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `employeehealth`
+-- Dumping data for table `employeehealth`
 --
 
 INSERT INTO `employeehealth` (`Employee_ID`, `EmployeeName`, `Gender`, `Height`, `Weight`, `Status`) VALUES
@@ -359,7 +393,7 @@ INSERT INTO `employeehealth` (`Employee_ID`, `EmployeeName`, `Gender`, `Height`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `training`
+-- Table structure for table `training`
 --
 
 CREATE TABLE `training` (
@@ -371,6 +405,7 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+<<<<<<< HEAD
 -- Đang đổ dữ liệu cho bảng `training`
 --
 
@@ -385,16 +420,25 @@ INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `
 
 --
 -- Chỉ mục cho các bảng đã đổ
+=======
+-- Indexes for dumped tables
+>>>>>>> 5f6371a (Create table customer, employeecontact and insert info)
 --
 
 --
--- Chỉ mục cho bảng `department`
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`Customer_ID`);
+
+--
+-- Indexes for table `department`
 --
 ALTER TABLE `department`
   ADD PRIMARY KEY (`Department_ID`);
 
 --
--- Chỉ mục cho bảng `employee`
+-- Indexes for table `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`Employee_ID`),
@@ -402,59 +446,71 @@ ALTER TABLE `employee`
   ADD KEY `Department_ID` (`Department_ID`);
 
 --
--- Chỉ mục cho bảng `employeehealth`
+-- Indexes for table `employeecontact`
+--
+ALTER TABLE `employeecontact`
+  ADD PRIMARY KEY (`Employee_ID`);
+
+--
+-- Indexes for table `employeehealth`
 --
 ALTER TABLE `employeehealth`
   ADD PRIMARY KEY (`Employee_ID`);
 
 --
--- Chỉ mục cho bảng `training`
+-- Indexes for table `training`
 --
 ALTER TABLE `training`
   ADD PRIMARY KEY (`Training_ID`),
   ADD KEY `Employee_ID` (`Employee_ID`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `department`
+-- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
   MODIFY `Department_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `employee`
+-- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
   MODIFY `Employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT cho bảng `training`
+-- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
   MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `employee`
+-- Constraints for table `employee`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`ReportTo`) REFERENCES `employee` (`Employee_ID`),
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`Department_ID`) REFERENCES `department` (`Department_ID`);
 
 --
--- Các ràng buộc cho bảng `employeehealth`
+-- Constraints for table `employeecontact`
+--
+ALTER TABLE `employeecontact`
+  ADD CONSTRAINT `employeecontact_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
+
+--
+-- Constraints for table `employeehealth`
 --
 ALTER TABLE `employeehealth`
   ADD CONSTRAINT `employeehealth_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
 
 --
--- Các ràng buộc cho bảng `training`
+-- Constraints for table `training`
 --
 ALTER TABLE `training`
   ADD CONSTRAINT `training_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
