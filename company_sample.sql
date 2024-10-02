@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th10 02, 2024 lúc 06:46 AM
+-- Thời gian đã tạo: Th10 02, 2024 lúc 11:41 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -112,7 +112,37 @@ INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, 
 (47, 'Vũ Thị Kim Anh', 15, '2001-09-25', 2),
 (48, 'Trần Văn Tuấn', 40, '2020-05-22', 1),
 (49, 'Nguyễn Thị Yến', 22, '2003-10-16', 1),
-(50, 'Phạm Văn Kiên', 30, '2019-03-02', 3);
+(50, 'Phạm Văn Kiên', 30, '2019-03-02', 3),
+(51, 'Âu Dương Hiệp Hào', 1, '2005-10-02', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `employeehealth`
+--
+
+CREATE TABLE `employeehealth` (
+  `Employee_ID` int(11) NOT NULL,
+  `EmployeeName` varchar(50) NOT NULL,
+  `Gender` varchar(10) DEFAULT NULL,
+  `Height` decimal(5,2) NOT NULL,
+  `Weight` decimal(5,2) NOT NULL,
+  `Status` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `training`
+--
+
+CREATE TABLE `training` (
+  `Training_ID` int(11) NOT NULL,
+  `TrainingName` varchar(50) DEFAULT NULL,
+  `StartDate` date NOT NULL,
+  `EndDate` date NOT NULL,
+  `Employee_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -133,6 +163,19 @@ ALTER TABLE `employee`
   ADD KEY `Department_ID` (`Department_ID`);
 
 --
+-- Chỉ mục cho bảng `employeehealth`
+--
+ALTER TABLE `employeehealth`
+  ADD PRIMARY KEY (`Employee_ID`);
+
+--
+-- Chỉ mục cho bảng `training`
+--
+ALTER TABLE `training`
+  ADD PRIMARY KEY (`Training_ID`),
+  ADD KEY `Employee_ID` (`Employee_ID`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -146,7 +189,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT cho bảng `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `Employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `Employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT cho bảng `training`
+--
+ALTER TABLE `training`
+  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -158,6 +207,18 @@ ALTER TABLE `employee`
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`ReportTo`) REFERENCES `employee` (`Employee_ID`),
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`Department_ID`) REFERENCES `department` (`Department_ID`);
+
+--
+-- Các ràng buộc cho bảng `employeehealth`
+--
+ALTER TABLE `employeehealth`
+  ADD CONSTRAINT `employeehealth_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
+
+--
+-- Các ràng buộc cho bảng `training`
+--
+ALTER TABLE `training`
+  ADD CONSTRAINT `training_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
