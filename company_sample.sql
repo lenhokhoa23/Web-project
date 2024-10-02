@@ -457,20 +457,7 @@ INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `
 --
 -- Chỉ mục cho bảng `contract`
 --
-ALTER TABLE `contract`
-  ADD PRIMARY KEY (`Contract_ID`),
-  ADD KEY `Customer_ID` (`Customer_ID`),
-  ADD KEY `Project_ID` (`Project_ID`);
 
---
--- Chỉ mục cho bảng `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`Customer_ID`);
-
---
--- Chỉ mục cho bảng `contract`
---
 ALTER TABLE `contract`
   ADD PRIMARY KEY (`Contract_ID`),
   ADD KEY `Customer_ID` (`Customer_ID`),
