@@ -2,12 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
-
--- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th10 02, 2024 lúc 04:59 PM
+-- Máy chủ: 127.0.0.1:3307
+-- Thời gian đã tạo: Th10 02, 2024 lúc 05:48 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.0.30
-
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,15 +18,42 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `test`
+-- Cơ sở dữ liệu: `test!!!`
 --
 
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `contract`
+--
 
+CREATE TABLE `contract` (
+  `Contract_ID` int(11) NOT NULL,
+  `Customer_ID` int(11) NOT NULL,
+  `Project_ID` int(11) NOT NULL,
+  `ContractDate` date NOT NULL,
+  `ContractDue` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `contract`
+--
+
+INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDate`, `ContractDue`) VALUES
+(1, 3, 5, '2024-01-15', '2024-06-15'),
+(2, 10, 2, '2024-02-20', '2024-07-20'),
+(3, 25, 1, '2024-03-05', '2024-08-05'),
+(4, 12, 4, '2024-04-10', '2024-09-10'),
+(5, 30, 6, '2024-05-15', '2024-10-15'),
+(6, 8, 7, '2024-06-20', '2024-11-20'),
+(7, 42, 3, '2024-07-25', '2024-12-25'),
+(8, 18, 8, '2024-08-30', '2025-01-30');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `customer`
-
+--
 
 CREATE TABLE `customer` (
   `Customer_ID` int(11) NOT NULL,
@@ -38,9 +63,8 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
-
 -- Đang đổ dữ liệu cho bảng `customer`
-
+--
 
 INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Order`) VALUES
 (1, 'Trần Văn Minh', 'minh.tran@gmail.com', 3),
@@ -127,9 +151,8 @@ INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Ord
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `department`
-
+--
 
 CREATE TABLE `department` (
   `Department_ID` int(11) NOT NULL,
@@ -138,7 +161,7 @@ CREATE TABLE `department` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `department`
+-- Đang đổ dữ liệu cho bảng `department`
 --
 
 INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUES
@@ -151,7 +174,7 @@ INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee`
+-- Cấu trúc bảng cho bảng `employee`
 --
 
 CREATE TABLE `employee` (
@@ -163,7 +186,7 @@ CREATE TABLE `employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `employee`
+-- Đang đổ dữ liệu cho bảng `employee`
 --
 
 INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, `Department_ID`) VALUES
@@ -222,21 +245,19 @@ INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, 
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `employeecontact`
-
+--
 
 CREATE TABLE `employeecontact` (
   `Employee_ID` int(11) NOT NULL,
   `PhoneNumber` char(10) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `EmployeeAddress` varchar(100) DEFAULT NULL
-
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `employeecontact`
-
+--
 
 INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeAddress`) VALUES
 (1, '0912345678', 'minh@gmail.com', 'Hà Nội, Việt Nam'),
@@ -294,9 +315,8 @@ INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeA
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `employeehealth`
-
+--
 
 CREATE TABLE `employeehealth` (
   `Employee_ID` int(11) NOT NULL,
@@ -308,7 +328,7 @@ CREATE TABLE `employeehealth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `employeehealth`
+-- Đang đổ dữ liệu cho bảng `employeehealth`
 --
 
 INSERT INTO `employeehealth` (`Employee_ID`, `EmployeeName`, `Gender`, `Height`, `Weight`, `Status`) VALUES
@@ -367,7 +387,33 @@ INSERT INTO `employeehealth` (`Employee_ID`, `EmployeeName`, `Gender`, `Height`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `training`
+-- Cấu trúc bảng cho bảng `project`
+--
+
+CREATE TABLE `project` (
+  `Project_ID` int(11) NOT NULL,
+  `ProjectName` varchar(50) DEFAULT NULL,
+  `Address` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `project`
+--
+
+INSERT INTO `project` (`Project_ID`, `ProjectName`, `Address`) VALUES
+(1, 'Siêu Thị Hoa Quả Tươi', 'Số 1, Đường Lê Lợi, Hà Nội'),
+(2, 'Cửa Hàng Trái Cây Ngọc Sơn', 'Số 12, Đường Trần Hưng Đạo, Hồ Chí Minh'),
+(3, 'Cửa Hàng Trái Cây Sạch', 'Số 34, Đường Nguyễn Văn Cừ, Đà Nẵng'),
+(4, 'Hệ Thống Siêu Thị Fruits', 'Số 56, Đường Nguyễn Thái Học, Hải Phòng'),
+(5, 'Công ty Cung Cấp Hoa Quả Sạch', 'Số 78, Đường Lê Văn Lương, Cần Thơ'),
+(6, 'Dịch vụ Giao Hàng Trái Cây Fresh', 'Số 90, Đường Hoàng Văn Thụ, Nha Trang'),
+(7, 'Cửa Hàng Trái Cây An Toàn', 'Số 11, Đường Phan Đình Phùng, Huế'),
+(8, 'Chợ Hoa Quả Tươi Mới', 'Số 22, Đường Nguyễn Đình Chiểu, Phú Quốc');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `training`
 --
 
 CREATE TABLE `training` (
@@ -379,7 +425,6 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
-
 -- Đang đổ dữ liệu cho bảng `training`
 --
 
@@ -394,22 +439,30 @@ INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `
 
 --
 -- Chỉ mục cho các bảng đã đổ
-
+--
 
 --
--- Indexes for table `customer`
+-- Chỉ mục cho bảng `contract`
+--
+ALTER TABLE `contract`
+  ADD PRIMARY KEY (`Contract_ID`),
+  ADD KEY `Customer_ID` (`Customer_ID`),
+  ADD KEY `Project_ID` (`Project_ID`);
+
+--
+-- Chỉ mục cho bảng `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`Customer_ID`);
 
 --
--- Indexes for table `department`
+-- Chỉ mục cho bảng `department`
 --
 ALTER TABLE `department`
   ADD PRIMARY KEY (`Department_ID`);
 
 --
--- Indexes for table `employee`
+-- Chỉ mục cho bảng `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`Employee_ID`),
@@ -417,71 +470,96 @@ ALTER TABLE `employee`
   ADD KEY `Department_ID` (`Department_ID`);
 
 --
--- Indexes for table `employeecontact`
+-- Chỉ mục cho bảng `employeecontact`
 --
 ALTER TABLE `employeecontact`
   ADD PRIMARY KEY (`Employee_ID`);
 
 --
--- Indexes for table `employeehealth`
+-- Chỉ mục cho bảng `employeehealth`
 --
 ALTER TABLE `employeehealth`
   ADD PRIMARY KEY (`Employee_ID`);
 
 --
--- Indexes for table `training`
+-- Chỉ mục cho bảng `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`Project_ID`);
+
+--
+-- Chỉ mục cho bảng `training`
 --
 ALTER TABLE `training`
   ADD PRIMARY KEY (`Training_ID`),
   ADD KEY `Employee_ID` (`Employee_ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `department`
+-- AUTO_INCREMENT cho bảng `contract`
+--
+ALTER TABLE `contract`
+  MODIFY `Contract_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `department`
 --
 ALTER TABLE `department`
   MODIFY `Department_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `employee`
+-- AUTO_INCREMENT cho bảng `employee`
 --
 ALTER TABLE `employee`
   MODIFY `Employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT for table `training`
+-- AUTO_INCREMENT cho bảng `project`
+--
+ALTER TABLE `project`
+  MODIFY `Project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `training`
 --
 ALTER TABLE `training`
   MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `employee`
+-- Các ràng buộc cho bảng `contract`
+--
+ALTER TABLE `contract`
+  ADD CONSTRAINT `contract_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`),
+  ADD CONSTRAINT `contract_ibfk_2` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`);
+
+--
+-- Các ràng buộc cho bảng `employee`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`ReportTo`) REFERENCES `employee` (`Employee_ID`),
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`Department_ID`) REFERENCES `department` (`Department_ID`);
 
 --
--- Constraints for table `employeecontact`
+-- Các ràng buộc cho bảng `employeecontact`
 --
 ALTER TABLE `employeecontact`
   ADD CONSTRAINT `employeecontact_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
 
 --
--- Constraints for table `employeehealth`
+-- Các ràng buộc cho bảng `employeehealth`
 --
 ALTER TABLE `employeehealth`
   ADD CONSTRAINT `employeehealth_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
 
 --
--- Constraints for table `training`
+-- Các ràng buộc cho bảng `training`
 --
 ALTER TABLE `training`
   ADD CONSTRAINT `training_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
