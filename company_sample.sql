@@ -3,10 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 
+
 -- Máy chủ: localhost:3307
 -- Thời gian đã tạo: Th10 02, 2024 lúc 04:59 PM
+
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.0.30
+-- Phiên bản PHP: 8.2.12
 
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -21,6 +23,7 @@ SET time_zone = "+00:00";
 
 --
 -- Cơ sở dữ liệu: `test!!!`
+
 --
 
 -- --------------------------------------------------------
@@ -28,6 +31,34 @@ SET time_zone = "+00:00";
 --
 
 -- Cấu trúc bảng cho bảng `customer`
+
+CREATE TABLE `contract` (
+  `Contract_ID` int(11) NOT NULL,
+  `Customer_ID` int(11) NOT NULL,
+  `Project_ID` int(11) NOT NULL,
+  `ContractDate` date NOT NULL,
+  `ContractDue` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `contract`
+
+
+INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDate`, `ContractDue`) VALUES
+(1, 3, 5, '2024-01-15', '2024-06-15'),
+(2, 10, 2, '2024-02-20', '2024-07-20'),
+(3, 25, 1, '2024-03-05', '2024-08-05'),
+(4, 12, 4, '2024-04-10', '2024-09-10'),
+(5, 30, 6, '2024-05-15', '2024-10-15'),
+(6, 8, 7, '2024-06-20', '2024-11-20'),
+(7, 42, 3, '2024-07-25', '2024-12-25'),
+(8, 18, 8, '2024-08-30', '2025-01-30');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `contract`
+--
 
 CREATE TABLE `contract` (
   `Contract_ID` int(11) NOT NULL,
@@ -449,6 +480,20 @@ INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `
 --
 -- Chỉ mục cho các bảng đã đổ
 
+
+--
+-- Chỉ mục cho bảng `contract`
+--
+ALTER TABLE `contract`
+  ADD PRIMARY KEY (`Contract_ID`),
+  ADD KEY `Customer_ID` (`Customer_ID`),
+  ADD KEY `Project_ID` (`Project_ID`);
+
+--
+-- Chỉ mục cho bảng `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`Customer_ID`);
 
 --
 -- Chỉ mục cho bảng `contract`
