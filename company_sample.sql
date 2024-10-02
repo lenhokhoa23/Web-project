@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th10 02, 2024 lúc 03:55 PM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.0.30
+-- Host: 127.0.0.1:3307
+-- Generation Time: Oct 02, 2024 at 04:38 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,112 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `company_sample`
+-- Database: `test`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `department`
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `Customer_ID` int(11) NOT NULL,
+  `CustomerName` varchar(50) DEFAULT NULL,
+  `CustomerEmail` varchar(50) DEFAULT NULL,
+  `Num_Order` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Order`) VALUES
+(1, 'Trần Văn Minh', 'minh.tran@gmail.com', 3),
+(2, 'Nguyễn Thị Lan', 'lan.nguyen@gmail.com', 2),
+(3, 'Phạm Văn Hùng', 'hung.pham@gmail.com', 1),
+(4, 'Lê Thị Hương', 'huong.le@gmail.com', 5),
+(5, 'Đỗ Văn An', 'an.do@gmail.com', 2),
+(6, 'Nguyễn Văn Dũng', 'dung.nguyen@gmail.com', 4),
+(7, 'Trần Thị Mai', 'mai.tran@gmail.com', 3),
+(8, 'Lê Văn Hải', 'hai.le@gmail.com', 4),
+(9, 'Phạm Thị Nhung', 'nhung.pham@gmail.com', 1),
+(10, 'Nguyễn Văn Tài', 'tai.nguyen@gmail.com', 2),
+(11, 'Trần Thị Bích', 'bich.tran@gmail.com', 4),
+(12, 'Lê Văn Phúc', 'phuc.le@gmail.com', 3),
+(13, 'Đỗ Thị Kiều', 'kieul.do@gmail.com', 1),
+(14, 'Nguyễn Văn Hòa', 'hoa.nguyen@gmail.com', 2),
+(15, 'Phạm Văn Tâm', 'tam.pham@gmail.com', 3),
+(16, 'Lê Thị Ngọc', 'ngoc.le@gmail.com', 3),
+(17, 'Trần Văn Sơn', 'son.tran@gmail.com', 5),
+(18, 'Nguyễn Văn Quyết', 'quyet.nguyen@gmail.com', 1),
+(19, 'Đỗ Văn Bình', 'binh.do@gmail.com', 4),
+(20, 'Lê Thị Nhàn', 'nhan.le@gmail.com', 3),
+(21, 'Phạm Văn Thắng', 'thang.pham@gmail.com', 4),
+(22, 'Nguyễn Thị Thanh', 'thanh.nguyen@gmail.com', 5),
+(23, 'Trần Văn Đạt', 'dat.tran@gmail.com', 2),
+(24, 'Lê Thị Phượng', 'phuong.le@gmail.com', 3),
+(25, 'Đỗ Văn Khải', 'khai.do@gmail.com', 5),
+(26, 'Nguyễn Văn Quang', 'quang.nguyen@gmail.com', 4),
+(27, 'Phạm Thị Thúy', 'thuy.pham@gmail.com', 3),
+(28, 'Trần Văn Hoàng', 'hoang.tran@gmail.com', 2),
+(29, 'Lê Thị Tuyết', 'tuyet.le@gmail.com', 3),
+(30, 'Nguyễn Văn Tùng', 'tung.nguyen@gmail.com', 1),
+(31, 'Đỗ Văn Khánh', 'khanh.do@gmail.com', 3),
+(32, 'Trần Thị Bảo', 'bao.tran@gmail.com', 4),
+(33, 'Lê Văn Sơn', 'son.le@gmail.com', 2),
+(34, 'Nguyễn Thị Lệ', 'le.nguyen@gmail.com', 3),
+(35, 'Phạm Văn Vũ', 'vu.pham@gmail.com', 1),
+(36, 'Trần Văn Cường', 'cuong.tran@gmail.com', 4),
+(37, 'Lê Thị Tâm', 'tam.le@gmail.com', 5),
+(38, 'Đỗ Văn Linh', 'linh.do@gmail.com', 2),
+(39, 'Nguyễn Văn Đức', 'duc.nguyen@gmail.com', 1),
+(40, 'Trần Thị Mai', 'mai.tran@gmail.com', 3),
+(41, 'Phạm Văn Duy', 'duy.pham@gmail.com', 4),
+(42, 'Lê Thị Hòa', 'hoa.le@gmail.com', 3),
+(43, 'Nguyễn Thị Hà', 'ha.nguyen@gmail.com', 4),
+(44, 'Đỗ Văn Thành', 'thanh.do@gmail.com', 5),
+(45, 'Trần Văn Nghĩa', 'nghia.tran@gmail.com', 1),
+(46, 'Phạm Văn Thế', 'the.pham@gmail.com', 2),
+(47, 'Lê Thị Nguyệt', 'nguyet.le@gmail.com', 3),
+(48, 'Nguyễn Văn Nhẫn', 'nhan.nguyen@gmail.com', 4),
+(49, 'Đỗ Thị Huyền', 'huyen.do@gmail.com', 1),
+(50, 'Trần Văn Đăng', 'dang.tran@gmail.com', 3),
+(51, 'Phạm Thị Lý', 'ly.pham@gmail.com', 4),
+(52, 'Lê Văn Quý', 'quy.le@gmail.com', 2),
+(53, 'Nguyễn Thị Hoa', 'hoa.nguyen@gmail.com', 4),
+(54, 'Đỗ Văn Sĩ', 'si.do@gmail.com', 1),
+(55, 'Trần Văn Thành', 'thanh.tran@gmail.com', 3),
+(56, 'Phạm Văn Cường', 'cuong.pham@gmail.com', 5),
+(57, 'Lê Thị Lan', 'lan.le@gmail.com', 3),
+(58, 'Nguyễn Văn Thịnh', 'thinh.nguyen@gmail.com', 4),
+(59, 'Đỗ Thị Duyên', 'duyen.do@gmail.com', 2),
+(60, 'Trần Văn Tín', 'tin.tran@gmail.com', 1),
+(61, 'Phạm Thị Sương', 'suong.pham@gmail.com', 3),
+(62, 'Lê Văn Bình', 'binh.le@gmail.com', 2),
+(63, 'Nguyễn Thị Phượng', 'phuong.nguyen@gmail.com', 4),
+(64, 'Đỗ Văn Tài', 'tai.do@gmail.com', 3),
+(65, 'Trần Văn Kiên', 'kien.tran@gmail.com', 2),
+(66, 'Phạm Văn Hiếu', 'hieu.pham@gmail.com', 4),
+(67, 'Lê Thị Ngọc', 'ngoc.le@gmail.com', 3),
+(68, 'Nguyễn Văn Tuấn', 'tuan.nguyen@gmail.com', 5),
+(69, 'Đỗ Thị Thảo', 'thao.do@gmail.com', 1),
+(70, 'Trần Văn Quang', 'quang.tran@gmail.com', 4),
+(71, 'Phạm Thị Lệ', 'le.pham@gmail.com', 3),
+(72, 'Lê Văn Khải', 'khai.le@gmail.com', 5),
+(73, 'Nguyễn Thị Vân', 'van.nguyen@gmail.com', 2),
+(74, 'Đỗ Văn Sáng', 'sang.do@gmail.com', 3),
+(75, 'Trần Văn Tân', 'tan.tran@gmail.com', 4),
+(76, 'Phạm Thị Thủy', 'thuy.pham@gmail.com', 2),
+(77, 'Lê Văn Bảo', 'bao.le@gmail.com', 5),
+(78, 'Nguyễn Văn Tín', 'tin.nguyen@gmail.com', 3),
+(79, 'Đỗ Thị Ngân', 'ngan.do@gmail.com', 4),
+(80, 'Trần Văn Khoa', 'khoa.tran@gmail.com', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
 --
 
 CREATE TABLE `department` (
@@ -34,7 +133,7 @@ CREATE TABLE `department` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `department`
+-- Dumping data for table `department`
 --
 
 INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUES
@@ -47,7 +146,7 @@ INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUE
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `employee`
+-- Table structure for table `employee`
 --
 
 CREATE TABLE `employee` (
@@ -59,7 +158,7 @@ CREATE TABLE `employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `employee`
+-- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, `Department_ID`) VALUES
@@ -118,7 +217,77 @@ INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `employeehealth`
+-- Table structure for table `employeecontact`
+--
+
+CREATE TABLE `employeecontact` (
+  `Employee_ID` int(11) NOT NULL,
+  `PhoneNumber` char(10) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `EmployeeAddress` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employeecontact`
+--
+
+INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeAddress`) VALUES
+(1, '0912345678', 'minh@gmail.com', 'Hà Nội, Việt Nam'),
+(2, '0934567890', 'thu@gmail.com', 'Hải Phòng, Việt Nam'),
+(3, '0945678901', 'bao@gmail.com', 'Quảng Ninh, Việt Nam'),
+(4, '0966789012', 'lan@gmail.com', 'Nam Định, Việt Nam'),
+(5, '0977890123', 'huy@gmail.com', 'Thái Bình, Việt Nam'),
+(6, '0988901234', 'tuan@gmail.com', 'Ninh Bình, Việt Nam'),
+(7, '0909012345', 'an@gmail.com', 'Hà Giang, Việt Nam'),
+(8, '0910123456', 'nhat@gmail.com', 'Lào Cai, Việt Nam'),
+(9, '0921234567', 'nhan@gmail.com', 'Vĩnh Phúc, Việt Nam'),
+(10, '0932345678', 'phuc@gmail.com', 'Bắc Ninh, Việt Nam'),
+(11, '0943456789', 'van@gmail.com', 'Bắc Giang, Việt Nam'),
+(12, '0954567890', 'ha@gmail.com', 'Hưng Yên, Việt Nam'),
+(13, '0965678901', 'tu@gmail.com', 'Thái Nguyên, Việt Nam'),
+(14, '0976789012', 'duong@gmail.com', 'Nghệ An, Việt Nam'),
+(15, '0987890123', 'khoa@gmail.com', 'Hà Tĩnh, Việt Nam'),
+(16, '0918901234', 'duc@gmail.com', 'Hòa Bình, Việt Nam'),
+(17, '0929012345', 'my@gmail.com', 'Điện Biên, Việt Nam'),
+(18, '0930123456', 'trang@gmail.com', 'Sơn La, Việt Nam'),
+(19, '0941234567', 'linh@gmail.com', 'Lạng Sơn, Việt Nam'),
+(20, '0952345678', 'quang@gmail.com', 'Hải Dương, Việt Nam'),
+(21, '0963456789', 'hao@gmail.com', 'Vĩnh Long, Việt Nam'),
+(22, '0974567890', 'son@gmail.com', 'Hưng Yên, Việt Nam'),
+(23, '0985678901', 'tam@gmail.com', 'Nam Định, Việt Nam'),
+(24, '0916789012', 'chinh@gmail.com', 'Quảng Ngãi, Việt Nam'),
+(25, '0927890123', 'binh@gmail.com', 'Kon Tum, Việt Nam'),
+(26, '0938901234', 'mai@gmail.com', 'Ninh Thuận, Việt Nam'),
+(27, '0949012345', 'nhung@gmail.com', 'Lâm Đồng, Việt Nam'),
+(28, '0950123456', 'quyet@gmail.com', 'Đắk Lắk, Việt Nam'),
+(29, '0961234567', 'thao@gmail.com', 'Đắk Nông, Việt Nam'),
+(30, '0972345678', 'hien@gmail.com', 'Hà Giang, Việt Nam'),
+(31, '0983456789', 'ly@gmail.com', 'Tuyên Quang, Việt Nam'),
+(32, '0914567890', 'trieu@gmail.com', 'Hòa Bình, Việt Nam'),
+(33, '0925678901', 'phuong@gmail.com', 'Thái Bình, Việt Nam'),
+(34, '0936789012', 'tinh@gmail.com', 'Nam Định, Việt Nam'),
+(35, '0947890123', 'duy@gmail.com', 'Hà Tĩnh, Việt Nam'),
+(36, '0958901234', 'nhat@gmail.com', 'Hải Dương, Việt Nam'),
+(37, '0969012345', 'trung@gmail.com', 'Quảng Trị, Việt Nam'),
+(38, '0970123456', 'thuy@gmail.com', 'Quảng Ninh, Việt Nam'),
+(39, '0981234567', 'khai@gmail.com', 'Bắc Ninh, Việt Nam'),
+(40, '0912345671', 'phuc@gmail.com', 'Thái Nguyên, Việt Nam'),
+(41, '0923456782', 'van@gmail.com', 'Hà Nội, Việt Nam'),
+(42, '0934567893', 'ha@gmail.com', 'Hải Phòng, Việt Nam'),
+(43, '0945678904', 'tu@gmail.com', 'Nam Định, Việt Nam'),
+(44, '0956789015', 'duong@gmail.com', 'Thái Bình, Việt Nam'),
+(45, '0967890126', 'khoa@gmail.com', 'Ninh Bình, Việt Nam'),
+(46, '0978901237', 'duc@gmail.com', 'Hà Giang, Việt Nam'),
+(47, '0989012348', 'my@gmail.com', 'Lào Cai, Việt Nam'),
+(48, '0910123459', 'trang@gmail.com', 'Vĩnh Phúc, Việt Nam'),
+(49, '0921234560', 'linh@gmail.com', 'Bắc Giang, Việt Nam'),
+(50, '0932345671', 'quang@gmail.com', 'Hưng Yên, Việt Nam'),
+(51, '0943456782', 'hao@gmail.com', 'Thái Nguyên, Việt Nam');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employeehealth`
 --
 
 CREATE TABLE `employeehealth` (
@@ -131,7 +300,7 @@ CREATE TABLE `employeehealth` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `employeehealth`
+-- Dumping data for table `employeehealth`
 --
 
 INSERT INTO `employeehealth` (`Employee_ID`, `EmployeeName`, `Gender`, `Height`, `Weight`, `Status`) VALUES
@@ -190,7 +359,7 @@ INSERT INTO `employeehealth` (`Employee_ID`, `EmployeeName`, `Gender`, `Height`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `training`
+-- Table structure for table `training`
 --
 
 CREATE TABLE `training` (
@@ -202,17 +371,23 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `department`
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`Customer_ID`);
+
+--
+-- Indexes for table `department`
 --
 ALTER TABLE `department`
   ADD PRIMARY KEY (`Department_ID`);
 
 --
--- Chỉ mục cho bảng `employee`
+-- Indexes for table `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`Employee_ID`),
@@ -220,59 +395,71 @@ ALTER TABLE `employee`
   ADD KEY `Department_ID` (`Department_ID`);
 
 --
--- Chỉ mục cho bảng `employeehealth`
+-- Indexes for table `employeecontact`
+--
+ALTER TABLE `employeecontact`
+  ADD PRIMARY KEY (`Employee_ID`);
+
+--
+-- Indexes for table `employeehealth`
 --
 ALTER TABLE `employeehealth`
   ADD PRIMARY KEY (`Employee_ID`);
 
 --
--- Chỉ mục cho bảng `training`
+-- Indexes for table `training`
 --
 ALTER TABLE `training`
   ADD PRIMARY KEY (`Training_ID`),
   ADD KEY `Employee_ID` (`Employee_ID`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `department`
+-- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
   MODIFY `Department_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `employee`
+-- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
   MODIFY `Employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT cho bảng `training`
+-- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
   MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `employee`
+-- Constraints for table `employee`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`ReportTo`) REFERENCES `employee` (`Employee_ID`),
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`Department_ID`) REFERENCES `department` (`Department_ID`);
 
 --
--- Các ràng buộc cho bảng `employeehealth`
+-- Constraints for table `employeecontact`
+--
+ALTER TABLE `employeecontact`
+  ADD CONSTRAINT `employeecontact_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
+
+--
+-- Constraints for table `employeehealth`
 --
 ALTER TABLE `employeehealth`
   ADD CONSTRAINT `employeehealth_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
 
 --
--- Các ràng buộc cho bảng `training`
+-- Constraints for table `training`
 --
 ALTER TABLE `training`
   ADD CONSTRAINT `training_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
