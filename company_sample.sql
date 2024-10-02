@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th10 02, 2024 lúc 03:55 PM
+-- Thời gian đã tạo: Th10 02, 2024 lúc 04:20 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -38,11 +38,11 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUES
-(1, 'Human Resources', 15),
-(2, 'Finance', 40),
-(3, 'IT', 22),
-(4, 'Sales', 9),
-(5, 'Marketing', 30);
+(1, 'Phòng Nhân sự', 15),
+(2, 'Phòng Tài chính', 40),
+(3, 'Phòng IT', 22),
+(4, 'Phòng Kinh doanh', 9),
+(5, 'Phòng Marketing', 30);
 
 -- --------------------------------------------------------
 
