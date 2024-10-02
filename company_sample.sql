@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th10 02, 2024 lúc 04:20 PM
+-- Thời gian đã tạo: Th10 02, 2024 lúc 04:59 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -20,6 +20,105 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `company_sample`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `customer`
+--
+
+CREATE TABLE `customer` (
+  `Customer_ID` int(11) NOT NULL,
+  `CustomerName` varchar(50) DEFAULT NULL,
+  `CustomerEmail` varchar(50) DEFAULT NULL,
+  `Num_Order` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `customer`
+--
+
+INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Order`) VALUES
+(1, 'Trần Văn Minh', 'minh.tran@gmail.com', 3),
+(2, 'Nguyễn Thị Lan', 'lan.nguyen@gmail.com', 2),
+(3, 'Phạm Văn Hùng', 'hung.pham@gmail.com', 1),
+(4, 'Lê Thị Hương', 'huong.le@gmail.com', 5),
+(5, 'Đỗ Văn An', 'an.do@gmail.com', 2),
+(6, 'Nguyễn Văn Dũng', 'dung.nguyen@gmail.com', 4),
+(7, 'Trần Thị Mai', 'mai.tran@gmail.com', 3),
+(8, 'Lê Văn Hải', 'hai.le@gmail.com', 4),
+(9, 'Phạm Thị Nhung', 'nhung.pham@gmail.com', 1),
+(10, 'Nguyễn Văn Tài', 'tai.nguyen@gmail.com', 2),
+(11, 'Trần Thị Bích', 'bich.tran@gmail.com', 4),
+(12, 'Lê Văn Phúc', 'phuc.le@gmail.com', 3),
+(13, 'Đỗ Thị Kiều', 'kieul.do@gmail.com', 1),
+(14, 'Nguyễn Văn Hòa', 'hoa.nguyen@gmail.com', 2),
+(15, 'Phạm Văn Tâm', 'tam.pham@gmail.com', 3),
+(16, 'Lê Thị Ngọc', 'ngoc.le@gmail.com', 3),
+(17, 'Trần Văn Sơn', 'son.tran@gmail.com', 5),
+(18, 'Nguyễn Văn Quyết', 'quyet.nguyen@gmail.com', 1),
+(19, 'Đỗ Văn Bình', 'binh.do@gmail.com', 4),
+(20, 'Lê Thị Nhàn', 'nhan.le@gmail.com', 3),
+(21, 'Phạm Văn Thắng', 'thang.pham@gmail.com', 4),
+(22, 'Nguyễn Thị Thanh', 'thanh.nguyen@gmail.com', 5),
+(23, 'Trần Văn Đạt', 'dat.tran@gmail.com', 2),
+(24, 'Lê Thị Phượng', 'phuong.le@gmail.com', 3),
+(25, 'Đỗ Văn Khải', 'khai.do@gmail.com', 5),
+(26, 'Nguyễn Văn Quang', 'quang.nguyen@gmail.com', 4),
+(27, 'Phạm Thị Thúy', 'thuy.pham@gmail.com', 3),
+(28, 'Trần Văn Hoàng', 'hoang.tran@gmail.com', 2),
+(29, 'Lê Thị Tuyết', 'tuyet.le@gmail.com', 3),
+(30, 'Nguyễn Văn Tùng', 'tung.nguyen@gmail.com', 1),
+(31, 'Đỗ Văn Khánh', 'khanh.do@gmail.com', 3),
+(32, 'Trần Thị Bảo', 'bao.tran@gmail.com', 4),
+(33, 'Lê Văn Sơn', 'son.le@gmail.com', 2),
+(34, 'Nguyễn Thị Lệ', 'le.nguyen@gmail.com', 3),
+(35, 'Phạm Văn Vũ', 'vu.pham@gmail.com', 1),
+(36, 'Trần Văn Cường', 'cuong.tran@gmail.com', 4),
+(37, 'Lê Thị Tâm', 'tam.le@gmail.com', 5),
+(38, 'Đỗ Văn Linh', 'linh.do@gmail.com', 2),
+(39, 'Nguyễn Văn Đức', 'duc.nguyen@gmail.com', 1),
+(40, 'Trần Thị Mai', 'mai.tran@gmail.com', 3),
+(41, 'Phạm Văn Duy', 'duy.pham@gmail.com', 4),
+(42, 'Lê Thị Hòa', 'hoa.le@gmail.com', 3),
+(43, 'Nguyễn Thị Hà', 'ha.nguyen@gmail.com', 4),
+(44, 'Đỗ Văn Thành', 'thanh.do@gmail.com', 5),
+(45, 'Trần Văn Nghĩa', 'nghia.tran@gmail.com', 1),
+(46, 'Phạm Văn Thế', 'the.pham@gmail.com', 2),
+(47, 'Lê Thị Nguyệt', 'nguyet.le@gmail.com', 3),
+(48, 'Nguyễn Văn Nhẫn', 'nhan.nguyen@gmail.com', 4),
+(49, 'Đỗ Thị Huyền', 'huyen.do@gmail.com', 1),
+(50, 'Trần Văn Đăng', 'dang.tran@gmail.com', 3),
+(51, 'Phạm Thị Lý', 'ly.pham@gmail.com', 4),
+(52, 'Lê Văn Quý', 'quy.le@gmail.com', 2),
+(53, 'Nguyễn Thị Hoa', 'hoa.nguyen@gmail.com', 4),
+(54, 'Đỗ Văn Sĩ', 'si.do@gmail.com', 1),
+(55, 'Trần Văn Thành', 'thanh.tran@gmail.com', 3),
+(56, 'Phạm Văn Cường', 'cuong.pham@gmail.com', 5),
+(57, 'Lê Thị Lan', 'lan.le@gmail.com', 3),
+(58, 'Nguyễn Văn Thịnh', 'thinh.nguyen@gmail.com', 4),
+(59, 'Đỗ Thị Duyên', 'duyen.do@gmail.com', 2),
+(60, 'Trần Văn Tín', 'tin.tran@gmail.com', 1),
+(61, 'Phạm Thị Sương', 'suong.pham@gmail.com', 3),
+(62, 'Lê Văn Bình', 'binh.le@gmail.com', 2),
+(63, 'Nguyễn Thị Phượng', 'phuong.nguyen@gmail.com', 4),
+(64, 'Đỗ Văn Tài', 'tai.do@gmail.com', 3),
+(65, 'Trần Văn Kiên', 'kien.tran@gmail.com', 2),
+(66, 'Phạm Văn Hiếu', 'hieu.pham@gmail.com', 4),
+(67, 'Lê Thị Ngọc', 'ngoc.le@gmail.com', 3),
+(68, 'Nguyễn Văn Tuấn', 'tuan.nguyen@gmail.com', 5),
+(69, 'Đỗ Thị Thảo', 'thao.do@gmail.com', 1),
+(70, 'Trần Văn Quang', 'quang.tran@gmail.com', 4),
+(71, 'Phạm Thị Lệ', 'le.pham@gmail.com', 3),
+(72, 'Lê Văn Khải', 'khai.le@gmail.com', 5),
+(73, 'Nguyễn Thị Vân', 'van.nguyen@gmail.com', 2),
+(74, 'Đỗ Văn Sáng', 'sang.do@gmail.com', 3),
+(75, 'Trần Văn Tân', 'tan.tran@gmail.com', 4),
+(76, 'Phạm Thị Thủy', 'thuy.pham@gmail.com', 2),
+(77, 'Lê Văn Bảo', 'bao.le@gmail.com', 5),
+(78, 'Nguyễn Văn Tín', 'tin.nguyen@gmail.com', 3),
+(79, 'Đỗ Thị Ngân', 'ngan.do@gmail.com', 4),
+(80, 'Trần Văn Khoa', 'khoa.tran@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -118,6 +217,76 @@ INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, 
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `employeecontact`
+--
+
+CREATE TABLE `employeecontact` (
+  `Employee_ID` int(11) NOT NULL,
+  `PhoneNumber` char(10) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `EmployeeAddress` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `employeecontact`
+--
+
+INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeAddress`) VALUES
+(1, '0912345678', 'minh@gmail.com', 'Hà Nội, Việt Nam'),
+(2, '0934567890', 'thu@gmail.com', 'Hải Phòng, Việt Nam'),
+(3, '0945678901', 'bao@gmail.com', 'Quảng Ninh, Việt Nam'),
+(4, '0966789012', 'lan@gmail.com', 'Nam Định, Việt Nam'),
+(5, '0977890123', 'huy@gmail.com', 'Thái Bình, Việt Nam'),
+(6, '0988901234', 'tuan@gmail.com', 'Ninh Bình, Việt Nam'),
+(7, '0909012345', 'an@gmail.com', 'Hà Giang, Việt Nam'),
+(8, '0910123456', 'nhat@gmail.com', 'Lào Cai, Việt Nam'),
+(9, '0921234567', 'nhan@gmail.com', 'Vĩnh Phúc, Việt Nam'),
+(10, '0932345678', 'phuc@gmail.com', 'Bắc Ninh, Việt Nam'),
+(11, '0943456789', 'van@gmail.com', 'Bắc Giang, Việt Nam'),
+(12, '0954567890', 'ha@gmail.com', 'Hưng Yên, Việt Nam'),
+(13, '0965678901', 'tu@gmail.com', 'Thái Nguyên, Việt Nam'),
+(14, '0976789012', 'duong@gmail.com', 'Nghệ An, Việt Nam'),
+(15, '0987890123', 'khoa@gmail.com', 'Hà Tĩnh, Việt Nam'),
+(16, '0918901234', 'duc@gmail.com', 'Hòa Bình, Việt Nam'),
+(17, '0929012345', 'my@gmail.com', 'Điện Biên, Việt Nam'),
+(18, '0930123456', 'trang@gmail.com', 'Sơn La, Việt Nam'),
+(19, '0941234567', 'linh@gmail.com', 'Lạng Sơn, Việt Nam'),
+(20, '0952345678', 'quang@gmail.com', 'Hải Dương, Việt Nam'),
+(21, '0963456789', 'hao@gmail.com', 'Vĩnh Long, Việt Nam'),
+(22, '0974567890', 'son@gmail.com', 'Hưng Yên, Việt Nam'),
+(23, '0985678901', 'tam@gmail.com', 'Nam Định, Việt Nam'),
+(24, '0916789012', 'chinh@gmail.com', 'Quảng Ngãi, Việt Nam'),
+(25, '0927890123', 'binh@gmail.com', 'Kon Tum, Việt Nam'),
+(26, '0938901234', 'mai@gmail.com', 'Ninh Thuận, Việt Nam'),
+(27, '0949012345', 'nhung@gmail.com', 'Lâm Đồng, Việt Nam'),
+(28, '0950123456', 'quyet@gmail.com', 'Đắk Lắk, Việt Nam'),
+(29, '0961234567', 'thao@gmail.com', 'Đắk Nông, Việt Nam'),
+(30, '0972345678', 'hien@gmail.com', 'Hà Giang, Việt Nam'),
+(31, '0983456789', 'ly@gmail.com', 'Tuyên Quang, Việt Nam'),
+(32, '0914567890', 'trieu@gmail.com', 'Hòa Bình, Việt Nam'),
+(33, '0925678901', 'phuong@gmail.com', 'Thái Bình, Việt Nam'),
+(34, '0936789012', 'tinh@gmail.com', 'Nam Định, Việt Nam'),
+(35, '0947890123', 'duy@gmail.com', 'Hà Tĩnh, Việt Nam'),
+(36, '0958901234', 'nhat@gmail.com', 'Hải Dương, Việt Nam'),
+(37, '0969012345', 'trung@gmail.com', 'Quảng Trị, Việt Nam'),
+(38, '0970123456', 'thuy@gmail.com', 'Quảng Ninh, Việt Nam'),
+(39, '0981234567', 'khai@gmail.com', 'Bắc Ninh, Việt Nam'),
+(40, '0912345671', 'phuc@gmail.com', 'Thái Nguyên, Việt Nam'),
+(41, '0923456782', 'van@gmail.com', 'Hà Nội, Việt Nam'),
+(42, '0934567893', 'ha@gmail.com', 'Hải Phòng, Việt Nam'),
+(43, '0945678904', 'tu@gmail.com', 'Nam Định, Việt Nam'),
+(44, '0956789015', 'duong@gmail.com', 'Thái Bình, Việt Nam'),
+(45, '0967890126', 'khoa@gmail.com', 'Ninh Bình, Việt Nam'),
+(46, '0978901237', 'duc@gmail.com', 'Hà Giang, Việt Nam'),
+(47, '0989012348', 'my@gmail.com', 'Lào Cai, Việt Nam'),
+(48, '0910123459', 'trang@gmail.com', 'Vĩnh Phúc, Việt Nam'),
+(49, '0921234560', 'linh@gmail.com', 'Bắc Giang, Việt Nam'),
+(50, '0932345671', 'quang@gmail.com', 'Hưng Yên, Việt Nam'),
+(51, '0943456782', 'hao@gmail.com', 'Thái Nguyên, Việt Nam');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `employeehealth`
 --
 
@@ -202,6 +371,19 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Đang đổ dữ liệu cho bảng `training`
+--
+
+INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `Employee_ID`) VALUES
+(1, 'Tiếp thị kỹ thuật số', '2024-01-10', '2024-01-15', 10),
+(2, 'Quản lý nhân sự', '2024-02-20', '2024-02-22', 15),
+(3, 'Tiếp thị thương hiệu', '2024-03-01', '2024-03-11', 17),
+(4, 'Chiến lược nhân sự', '2024-03-15', '2024-03-20', 29),
+(5, 'Phân tích dữ liệu', '2024-04-05', '2024-04-07', 37),
+(6, 'Quản lý tài chính', '2024-04-18', '2024-04-20', 47),
+(7, 'Quản trị nhân sự nền tảng', '2024-05-01', '2024-05-07', 49);
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -252,7 +434,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT cho bảng `training`
 --
 ALTER TABLE `training`
-  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
