@@ -2,10 +2,12 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Oct 02, 2024 at 04:38 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+
+-- Máy chủ: localhost:3307
+-- Thời gian đã tạo: Th10 02, 2024 lúc 04:59 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.0.30
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,8 +26,9 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
---
+
+-- Cấu trúc bảng cho bảng `customer`
+
 
 CREATE TABLE `customer` (
   `Customer_ID` int(11) NOT NULL,
@@ -35,8 +38,9 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `customer`
---
+
+-- Đang đổ dữ liệu cho bảng `customer`
+
 
 INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Order`) VALUES
 (1, 'Trần Văn Minh', 'minh.tran@gmail.com', 3),
@@ -123,8 +127,9 @@ INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Ord
 -- --------------------------------------------------------
 
 --
--- Table structure for table `department`
---
+
+-- Cấu trúc bảng cho bảng `department`
+
 
 CREATE TABLE `department` (
   `Department_ID` int(11) NOT NULL,
@@ -137,11 +142,11 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUES
-(1, 'Human Resources', 15),
-(2, 'Finance', 40),
-(3, 'IT', 22),
-(4, 'Sales', 9),
-(5, 'Marketing', 30);
+(1, 'Phòng Nhân sự', 15),
+(2, 'Phòng Tài chính', 40),
+(3, 'Phòng IT', 22),
+(4, 'Phòng Kinh doanh', 9),
+(5, 'Phòng Marketing', 30);
 
 -- --------------------------------------------------------
 
@@ -217,19 +222,21 @@ INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employeecontact`
---
+
+-- Cấu trúc bảng cho bảng `employeecontact`
+
 
 CREATE TABLE `employeecontact` (
   `Employee_ID` int(11) NOT NULL,
   `PhoneNumber` char(10) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `EmployeeAddress` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `employeecontact`
---
+-- Đang đổ dữ liệu cho bảng `employeecontact`
+
 
 INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeAddress`) VALUES
 (1, '0912345678', 'minh@gmail.com', 'Hà Nội, Việt Nam'),
@@ -287,8 +294,9 @@ INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employeehealth`
---
+
+-- Cấu trúc bảng cho bảng `employeehealth`
+
 
 CREATE TABLE `employeehealth` (
   `Employee_ID` int(11) NOT NULL,
@@ -371,8 +379,22 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+
+-- Đang đổ dữ liệu cho bảng `training`
 --
+
+INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `Employee_ID`) VALUES
+(1, 'Tiếp thị kỹ thuật số', '2024-01-10', '2024-01-15', 10),
+(2, 'Quản lý nhân sự', '2024-02-20', '2024-02-22', 15),
+(3, 'Tiếp thị thương hiệu', '2024-03-01', '2024-03-11', 17),
+(4, 'Chiến lược nhân sự', '2024-03-15', '2024-03-20', 29),
+(5, 'Phân tích dữ liệu', '2024-04-05', '2024-04-07', 37),
+(6, 'Quản lý tài chính', '2024-04-18', '2024-04-20', 47),
+(7, 'Quản trị nhân sự nền tảng', '2024-05-01', '2024-05-07', 49);
+
+--
+-- Chỉ mục cho các bảng đã đổ
+
 
 --
 -- Indexes for table `customer`
@@ -433,7 +455,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `training`
 --
 ALTER TABLE `training`
-  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
