@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 
 --
 
--- Cấu trúc bảng cho bảng `customer`
 
 CREATE TABLE `contract` (
   `Contract_ID` int(11) NOT NULL,
@@ -55,32 +54,6 @@ INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDat
 (8, 18, 8, '2024-08-30', '2025-01-30');
 
 -- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `contract`
---
-
-CREATE TABLE `contract` (
-  `Contract_ID` int(11) NOT NULL,
-  `Customer_ID` int(11) NOT NULL,
-  `Project_ID` int(11) NOT NULL,
-  `ContractDate` date NOT NULL,
-  `ContractDue` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `contract`
---
-
-INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDate`, `ContractDue`) VALUES
-(1, 3, 5, '2024-01-15', '2024-06-15'),
-(2, 10, 2, '2024-02-20', '2024-07-20'),
-(3, 25, 1, '2024-03-05', '2024-08-05'),
-(4, 12, 4, '2024-04-10', '2024-09-10'),
-(5, 30, 6, '2024-05-15', '2024-10-15'),
-(6, 8, 7, '2024-06-20', '2024-11-20'),
-(7, 42, 3, '2024-07-25', '2024-12-25'),
-(8, 18, 8, '2024-08-30', '2025-01-30');
 
 -- --------------------------------------------------------
 
