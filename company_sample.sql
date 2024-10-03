@@ -2,8 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
+
 -- Máy chủ: localhost:3307
 -- Thời gian đã tạo: Th10 03, 2024 lúc 08:15 AM
+
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -18,7 +20,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+
 -- Cơ sở dữ liệu: `sample_company`
+
 --
 
 -- --------------------------------------------------------
@@ -491,13 +495,61 @@ INSERT INTO `employeeperformance` (`Employee_ID`, `EmployeeName`, `Score`, `Comm
 (48, 'Trần Văn Tuấn', 10, 'Xuất sắc'),
 (49, 'Nguyễn Thị Yến', 9, 'Tốt'),
 (50, 'Phạm Văn Kiên', 9.5, 'Tốt'),
+(51, 'Âu Dương Hiệp Hào', 10, 'Xuất sắc'),
+(1, 'Nguyễn Văn Minh', 10, 'Xuất sắc'),
+(2, 'Lê Doãn Khế', 9.5, 'Tốt'),
+(3, 'Trần Thị Mai', 10, 'Xuất sắc'),
+(4, 'Phạm Ngọc Huy', 10, 'Xuất sắc'),
+(5, 'Ngô Văn An', 10, 'Xuất sắc'),
+(6, 'Bùi Thị Bích', 9, 'Tốt'),
+(7, 'Đặng Văn Hòa', 9.5, 'Tốt'),
+(8, 'Vũ Thị Huệ', 10, 'Xuất sắc'),
+(9, 'Lê Hoàng', 10, 'Xuất sắc'),
+(10, 'Nguyễn Tuấn', 10, 'Xuất sắc'),
+(11, 'Phan Thị Thảo', 9, 'Tốt'),
+(12, 'Nguyễn Văn Tâm', 8.5, 'Cần cải thiện'),
+(13, 'Lê Hoàng Hải', 10, 'Xuất sắc'),
+(14, 'Trần Minh Tâm', 10, 'Xuất sắc'),
+(15, 'Nguyễn Ngọc Sơn', 10, 'Xuất sắc'),
+(16, 'Ngô Thị Phương', 9, 'Tốt'),
+(17, 'Bùi Văn Khoa', 9.5, 'Tốt'),
+(18, 'Trần Thị Hương', 10, 'Xuất sắc'),
+(19, 'Nguyễn Văn Lợi', 10, 'Xuất sắc'),
+(20, 'Phạm Văn Long', 10, 'Xuất sắc'),
+(21, 'Lê Văn Hậu', 10, 'Xuất sắc'),
+(22, 'Trần Minh Quân', 10, 'Xuất sắc'),
+(23, 'Nguyễn Thị Thúy', 8.5, 'Cần cải thiện'),
+(24, 'Ngô Văn Bảo', 10, 'Xuất sắc'),
+(25, 'Bùi Thị Kim', 8.5, 'Cần cải thiện'),
+(26, 'Đặng Văn Phúc', 10, 'Xuất sắc'),
+(27, 'Vũ Thị Nga', 10, 'Xuất sắc'),
+(28, 'Trần Văn Hùng', 10, 'Xuất sắc'),
+(29, 'Nguyễn Văn Quốc', 9, 'Tốt'),
+(30, 'Phạm Thị Yến', 9.5, 'Tốt'),
+(31, 'Lê Văn Thắng', 10, 'Xuất sắc'),
+(32, 'Trần Thị Kim', 10, 'Xuất sắc'),
+(33, 'Nguyễn Văn Phúc', 9, 'Tốt'),
+(34, 'Ngô Thị Thanh', 10, 'Xuất sắc'),
+(35, 'Bùi Văn Tài', 8.5, 'Cần cải thiện'),
+(36, 'Đặng Văn Bằng', 10, 'Xuất sắc'),
+(37, 'Vũ Thị Tuyết', 10, 'Xuất sắc'),
+(38, 'Trần Văn Lâm', 10, 'Xuất sắc'),
+(39, 'Nguyễn Thị Thanh', 9, 'Tốt'),
+(40, 'Phạm Văn Nam', 10, 'Xuất sắc'),
+(41, 'Lê Doãn Minh', 10, 'Xuất sắc'),
+(42, 'Trần Thị Hằng', 8.5, 'Cần cải thiện'),
+(43, 'Nguyễn Văn Vinh', 10, 'Xuất sắc'),
+(44, 'Ngô Thị Hạnh', 10, 'Xuất sắc'),
+(45, 'Bùi Văn Khải', 8.5, 'Cần cải thiện'),
+(46, 'Đặng Văn Chương', 10, 'Xuất sắc'),
+(47, 'Vũ Thị Kim Anh', 10, 'Xuất sắc'),
+(48, 'Trần Văn Tuấn', 10, 'Xuất sắc'),
+(49, 'Nguyễn Thị Yến', 9, 'Tốt'),
+(50, 'Phạm Văn Kiên', 9.5, 'Tốt'),
 (51, 'Âu Dương Hiệp Hào', 10, 'Xuất sắc');
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `product`
---
 
 CREATE TABLE `product` (
   `Product_ID` int(11) NOT NULL,
@@ -533,6 +585,265 @@ INSERT INTO `product` (`Product_ID`, `Product_Code`, `Supplier_ID`, `BuyPrice`, 
 (19, 'Quýt', 1, 26.00, 10),
 (20, 'Dừa', 1, 23.00, 10);
 
+-- Cấu trúc bảng cho bảng `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `Feedback_ID` int(11) NOT NULL,
+  `Customer_ID` int(11) NOT NULL,
+  `Order_ID` int(11) NOT NULL,
+  `Rating` int(11) DEFAULT NULL,
+  `Comments` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `feedback`
+--
+
+INSERT INTO `feedback` (`Feedback_ID`, `Customer_ID`, `Order_ID`, `Rating`, `Comments`) VALUES
+(1, 45, 12, 5, 'Dịch vụ rất tuyệt vời, tôi sẽ quay lại lần sau!'),
+(2, 17, 23, 4, 'Sản phẩm tốt, giao hàng nhanh chóng. Tuy nhiên, đóng gói chưa kỹ.'),
+(3, 52, 35, 3, 'Chất lượng sản phẩm khá ổn, nhưng thời gian giao hàng hơi chậm.'),
+(4, 11, 48, 5, 'Tôi rất hài lòng với dịch vụ, mọi thứ đều hoàn hảo.'),
+(5, 33, 50, 2, 'Sản phẩm không như mong đợi, cần cải thiện.'),
+(6, 25, 56, 4, 'Hàng đẹp, chất lượng tốt, giao hàng đúng hạn.'),
+(7, 8, 61, 5, 'Sản phẩm tốt, nhân viên hỗ trợ nhiệt tình, rất hài lòng.'),
+(8, 63, 72, 3, 'Mức giá hợp lý nhưng giao hàng chậm hơn dự kiến.'),
+(9, 70, 85, 5, 'Rất hài lòng với dịch vụ chăm sóc khách hàng và chất lượng sản phẩm.'),
+(10, 27, 90, 4, 'Sản phẩm tốt, nhưng đóng gói không chắc chắn.'),
+(11, 10, 98, 4, 'Hàng tốt, giao hàng đúng giờ, cảm ơn shop.'),
+(12, 53, 110, 2, 'Sản phẩm không giống hình ảnh, cần xem lại chất lượng.'),
+(13, 19, 120, 3, 'Dịch vụ tốt, nhưng sản phẩm không được như kỳ vọng.'),
+(14, 38, 125, 5, 'Tôi rất hài lòng với chất lượng sản phẩm và thời gian giao hàng.'),
+(15, 66, 135, 4, 'Sản phẩm đẹp, đúng như mô tả, nhưng đóng gói hơi sơ sài.'),
+(16, 13, 141, 3, 'Giá hơi cao so với chất lượng sản phẩm.'),
+(17, 41, 149, 5, 'Rất hài lòng, sản phẩm chất lượng, giao hàng nhanh.'),
+(18, 56, 3, 5, 'Sản phẩm tốt, nhân viên tư vấn nhiệt tình.'),
+(19, 5, 6, 4, 'Giao hàng nhanh, chất lượng sản phẩm ổn.'),
+(20, 18, 9, 3, 'Dịch vụ không được tốt lắm, mong shop cải thiện.'),
+(21, 77, 16, 4, 'Sản phẩm đẹp, giá cả hợp lý, nhân viên hỗ trợ tốt.'),
+(22, 20, 22, 5, 'Rất hài lòng với dịch vụ và chất lượng sản phẩm.'),
+(23, 68, 25, 3, 'Giao hàng chậm, sản phẩm không như mong đợi.'),
+(24, 15, 28, 4, 'Hàng đẹp, giá tốt, nhưng thời gian giao hàng cần cải thiện.'),
+(25, 50, 33, 5, 'Tôi rất hài lòng với trải nghiệm mua sắm này.'),
+(26, 29, 42, 2, 'Chất lượng sản phẩm không ổn, không giống hình.'),
+(27, 75, 46, 5, 'Giao hàng nhanh, chất lượng sản phẩm tuyệt vời.'),
+(28, 12, 52, 4, 'Sản phẩm ổn, nhân viên hỗ trợ tốt.'),
+(29, 39, 59, 3, 'Hàng không đúng mô tả, cần cải thiện dịch vụ.'),
+(30, 34, 63, 4, 'Mua nhiều lần và luôn hài lòng với dịch vụ.'),
+(31, 40, 71, 2, 'Sản phẩm kém chất lượng, sẽ không quay lại.'),
+(32, 9, 77, 5, 'Rất hài lòng với sản phẩm và dịch vụ.'),
+(33, 36, 84, 3, 'Chất lượng bình thường, không có gì đặc biệt.'),
+(34, 47, 88, 4, 'Dịch vụ tốt, giá hợp lý, sản phẩm ổn.'),
+(35, 64, 95, 5, 'Hàng đẹp, đúng mô tả, rất hài lòng.'),
+(36, 16, 100, 4, 'Hàng ổn, nhưng giao hàng hơi chậm.'),
+(37, 26, 105, 2, 'Sản phẩm không tốt, dịch vụ cần cải thiện.'),
+(38, 3, 115, 5, 'Mọi thứ đều hoàn hảo, sẽ quay lại mua lần nữa.'),
+(39, 57, 121, 4, 'Sản phẩm tốt, giao hàng nhanh.'),
+(40, 22, 128, 3, 'Sản phẩm tạm được, không có gì nổi bật.'),
+(41, 65, 136, 5, 'Tôi rất hài lòng với dịch vụ, hàng chất lượng.'),
+(42, 32, 145, 4, 'Sản phẩm tốt, giá hợp lý, giao hàng nhanh.'),
+(43, 43, 147, 3, 'Giao hàng chậm, nhưng sản phẩm ổn.'),
+(44, 14, 149, 2, 'Không hài lòng với sản phẩm, cần cải thiện.'),
+(45, 71, 2, 4, 'Dịch vụ tốt, sản phẩm ổn.'),
+(46, 58, 4, 5, 'Rất hài lòng, mọi thứ đều như mong đợi.'),
+(47, 24, 8, 3, 'Chất lượng sản phẩm không cao, giao hàng chậm.'),
+(48, 37, 14, 4, 'Dịch vụ tốt, nhân viên nhiệt tình.'),
+(49, 72, 19, 5, 'Sản phẩm chất lượng, dịch vụ rất chuyên nghiệp.'),
+(50, 6, 27, 4, 'Sản phẩm ổn, giao hàng nhanh chóng.'),
+(51, 35, 31, 3, 'Không quá ấn tượng, sản phẩm bình thường.'),
+(52, 67, 38, 2, 'Sản phẩm kém chất lượng, dịch vụ tệ.'),
+(53, 42, 41, 5, 'Sản phẩm tốt, giá cả hợp lý, tôi rất hài lòng.'),
+(54, 62, 49, 4, 'Giao hàng nhanh, sản phẩm chất lượng.'),
+(55, 31, 53, 3, 'Chất lượng sản phẩm không ổn, đóng gói sơ sài.'),
+(56, 74, 57, 5, 'Rất hài lòng với chất lượng sản phẩm.'),
+(57, 49, 64, 4, 'Sản phẩm tốt, dịch vụ tốt, tôi sẽ giới thiệu cho bạn bè.'),
+(58, 21, 69, 5, 'Rất ấn tượng với dịch vụ, sẽ quay lại.'),
+(59, 7, 75, 3, 'Sản phẩm tạm được, dịch vụ cần cải thiện.'),
+(60, 30, 82, 4, 'Hàng tốt, nhưng cần cải thiện thời gian giao hàng.'),
+(61, 55, 89, 2, 'Chất lượng không đạt yêu cầu, dịch vụ cần cải thiện.'),
+(62, 48, 94, 5, 'Tôi rất hài lòng, mọi thứ đều ổn.'),
+(63, 4, 101, 3, 'Giao hàng chậm, nhưng sản phẩm ổn.'),
+(64, 73, 106, 4, 'Sản phẩm đẹp, dịch vụ tốt.'),
+(65, 28, 112, 5, 'Dịch vụ rất tuyệt vời, nhân viên hỗ trợ tốt.'),
+(66, 46, 118, 4, 'Hàng đúng như mô tả, giao hàng nhanh.'),
+(67, 69, 123, 2, 'Không hài lòng với dịch vụ, sản phẩm không tốt.'),
+(68, 54, 126, 3, 'Sản phẩm trung bình, nhưng dịch vụ khá ổn.'),
+(69, 61, 131, 5, 'Rất hài lòng, sẽ quay lại mua hàng.'),
+(70, 60, 138, 4, 'Chất lượng tốt, giá hợp lý, giao hàng nhanh.');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `orders`
+--
+
+CREATE TABLE `orders` (
+  `Order_ID` int(11) NOT NULL,
+  `Customer_ID` int(11) DEFAULT NULL,
+  `OrderDate` date DEFAULT NULL,
+  `Status` varchar(20) DEFAULT NULL,
+  `OrderRequired` date DEFAULT NULL,
+  `ShipAddress` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`Order_ID`, `Customer_ID`, `OrderDate`, `Status`, `OrderRequired`, `ShipAddress`) VALUES
+(1, 32, '2024-09-01', 'Shipped', '2024-09-05', '123 Đường Nguyễn Trãi, Hà Nội'),
+(2, 12, '2024-09-02', 'Pending', '2024-09-07', '45 Đường Lê Lợi, Hải Phòng'),
+(3, 7, '2024-09-03', 'Shipped', '2024-09-08', '234 Đường Láng Hạ, Hà Nội'),
+(4, 45, '2024-09-03', 'Processing', '2024-09-10', '56 Đường Điện Biên Phủ, Hà Nội'),
+(5, 18, '2024-09-04', 'Cancelled', '2024-09-12', '78 Đường Tô Hiệu, Hải Dương'),
+(6, 9, '2024-09-05', 'Pending', '2024-09-15', '89 Đường Hùng Vương, Bắc Ninh'),
+(7, 22, '2024-09-06', 'Shipped', '2024-09-16', '100 Đường Hoàng Quốc Việt, Hà Nội'),
+(8, 5, '2024-09-07', 'Cancelled', '2024-09-18', '101 Đường Lý Thường Kiệt, Hà Nội'),
+(9, 39, '2024-09-08', 'Processing', '2024-09-19', '200 Đường Quang Trung, Hải Phòng'),
+(10, 64, '2024-09-09', 'Shipped', '2024-09-20', '250 Đường Trần Hưng Đạo, Hà Nội'),
+(11, 29, '2024-09-10', 'Cancelled', '2024-09-22', '120 Đường Phạm Văn Đồng, Hải Dương'),
+(12, 11, '2024-09-11', 'Pending', '2024-09-23', '90 Đường Hoàng Diệu, Hà Nội'),
+(13, 55, '2024-09-12', 'Shipped', '2024-09-24', '135 Đường Nguyễn Văn Cừ, Hải Phòng'),
+(14, 67, '2024-09-13', 'Processing', '2024-09-26', '140 Đường Trường Chinh, Bắc Ninh'),
+(15, 3, '2024-09-14', 'Cancelled', '2024-09-27', '45 Đường Thanh Xuân, Hà Nội'),
+(16, 40, '2024-09-15', 'Shipped', '2024-09-28', '76 Đường Lê Hồng Phong, Hà Nội'),
+(17, 61, '2024-09-16', 'Pending', '2024-09-29', '90 Đường Bạch Mai, Hà Nội'),
+(18, 6, '2024-09-17', 'Processing', '2024-09-30', '56 Đường Nguyễn Văn Huyên, Hà Nội'),
+(19, 33, '2024-09-18', 'Cancelled', '2024-10-01', '123 Đường Đại La, Hà Nội'),
+(20, 13, '2024-09-19', 'Pending', '2024-10-02', '45 Đường Võ Chí Công, Hà Nội'),
+(21, 30, '2024-09-20', 'Shipped', '2024-10-03', '88 Đường Định Công, Hà Nội'),
+(22, 71, '2024-09-21', 'Cancelled', '2024-10-04', '123 Đường Cổ Nhuế, Hà Nội'),
+(23, 50, '2024-09-22', 'Processing', '2024-10-05', '95 Đường Cầu Giấy, Hà Nội'),
+(24, 62, '2024-09-23', 'Shipped', '2024-10-06', '190 Đường Tôn Đức Thắng, Hải Phòng'),
+(25, 43, '2024-09-24', 'Pending', '2024-10-07', '111 Đường Nguyễn Chí Thanh, Hà Nội'),
+(26, 80, '2024-09-25', 'Shipped', '2024-10-08', '300 Đường Cầu Giấy, Hà Nội'),
+(27, 15, '2024-09-26', 'Cancelled', '2024-10-09', '89 Đường Tây Hồ, Hà Nội'),
+(28, 58, '2024-09-27', 'Pending', '2024-10-10', '45 Đường Kim Mã, Hà Nội'),
+(29, 70, '2024-09-28', 'Shipped', '2024-10-11', '132 Đường Hoàng Cầu, Hà Nội'),
+(30, 37, '2024-09-29', 'Processing', '2024-10-12', '165 Đường Nguyễn Khánh Toàn, Hà Nội'),
+(31, 24, '2024-09-30', 'Shipped', '2024-10-13', '22 Đường Hoàng Hoa Thám, Hà Nội'),
+(32, 17, '2024-10-01', 'Cancelled', '2024-10-14', '67 Đường Văn Cao, Hải Phòng'),
+(33, 52, '2024-10-02', 'Pending', '2024-10-15', '12 Đường Xuân Thủy, Hà Nội'),
+(34, 36, '2024-10-03', 'Processing', '2024-10-16', '200 Đường Giải Phóng, Hà Nội'),
+(35, 49, '2024-10-04', 'Shipped', '2024-10-17', '98 Đường Lạc Long Quân, Hà Nội'),
+(36, 10, '2024-10-05', 'Cancelled', '2024-10-18', '45 Đường Đống Đa, Hải Phòng'),
+(37, 6, '2024-10-06', 'Shipped', '2024-10-19', '150 Đường Phạm Ngũ Lão, Bắc Ninh'),
+(38, 64, '2024-10-07', 'Pending', '2024-10-20', '33 Đường Lê Thánh Tông, Hà Nội'),
+(39, 78, '2024-10-08', 'Processing', '2024-10-21', '79 Đường Trần Nhật Duật, Hà Nội'),
+(40, 23, '2024-10-09', 'Shipped', '2024-10-22', '112 Đường Kim Liên, Hà Nội'),
+(41, 48, '2024-10-10', 'Cancelled', '2024-10-23', '125 Đường Hoàn Kiếm, Hà Nội'),
+(42, 19, '2024-10-11', 'Pending', '2024-10-24', '56 Đường Nguyễn Thái Học, Hải Dương'),
+(43, 42, '2024-10-12', 'Shipped', '2024-10-25', '33 Đường Đại La, Hà Nội'),
+(44, 58, '2024-10-13', 'Processing', '2024-10-26', '145 Đường Hàng Bạc, Hà Nội'),
+(45, 13, '2024-10-14', 'Cancelled', '2024-10-27', '90 Đường Bạch Mai, Hải Phòng'),
+(46, 51, '2024-10-15', 'Shipped', '2024-10-28', '234 Đường Nguyễn Văn Cừ, Hà Nội'),
+(47, 31, '2024-10-16', 'Processing', '2024-10-29', '111 Đường Bưởi, Hà Nội'),
+(48, 70, '2024-10-17', 'Shipped', '2024-10-30', '87 Đường Thanh Niên, Hà Nội'),
+(49, 33, '2024-10-18', 'Cancelled', '2024-10-31', '67 Đường Tây Sơn, Bắc Ninh'),
+(50, 21, '2024-10-19', 'Pending', '2024-11-01', '90 Đường Cổ Linh, Hà Nội'),
+(51, 76, '2024-10-20', 'Processing', '2024-11-02', '123 Đường Đinh Tiên Hoàng, Hà Nội'),
+(52, 44, '2024-10-21', 'Shipped', '2024-11-03', '34 Đường Lê Lợi, Hải Phòng'),
+(53, 12, '2024-10-22', 'Pending', '2024-11-04', '200 Đường Nguyễn Văn Huyên, Hà Nội'),
+(54, 8, '2024-10-23', 'Processing', '2024-11-05', '78 Đường Ngô Quyền, Hà Nội'),
+(55, 41, '2024-10-24', 'Cancelled', '2024-11-06', '189 Đường Vạn Phúc, Hà Nội'),
+(56, 67, '2024-10-25', 'Shipped', '2024-11-07', '99 Đường Trần Quang Khải, Hà Nội'),
+(57, 25, '2024-10-26', 'Processing', '2024-11-08', '11 Đường Phan Đình Phùng, Hà Nội'),
+(58, 53, '2024-10-27', 'Shipped', '2024-11-09', '44 Đường Nguyễn Du, Hải Phòng'),
+(59, 74, '2024-10-28', 'Pending', '2024-11-10', '67 Đường Tràng Tiền, Hà Nội'),
+(60, 9, '2024-10-29', 'Cancelled', '2024-11-11', '101 Đường Thái Hà, Hà Nội'),
+(61, 35, '2024-10-30', 'Shipped', '2024-11-12', '56 Đường Trần Nhân Tông, Hà Nội'),
+(62, 79, '2024-10-31', 'Pending', '2024-11-13', '78 Đường Nguyễn Trãi, Hải Phòng'),
+(63, 47, '2024-11-01', 'Cancelled', '2024-11-14', '12 Đường Trần Hưng Đạo, Hà Nội'),
+(64, 38, '2024-11-02', 'Shipped', '2024-11-15', '34 Đường Nguyễn Thị Minh Khai, Hà Nội'),
+(65, 14, '2024-11-03', 'Processing', '2024-11-16', '80 Đường Nguyễn Công Trứ, Bắc Ninh'),
+(66, 1, '2024-11-04', 'Cancelled', '2024-11-17', '90 Đường Hàng Bài, Hà Nội'),
+(67, 2, '2024-11-05', 'Shipped', '2024-11-18', '25 Đường Cát Linh, Hà Nội'),
+(68, 63, '2024-11-06', 'Pending', '2024-11-19', '12 Đường Đê La Thành, Hà Nội'),
+(69, 65, '2024-11-07', 'Processing', '2024-11-20', '90 Đường Hàng Bông, Hà Nội'),
+(70, 20, '2024-11-08', 'Cancelled', '2024-11-21', '45 Đường Nguyễn Khuyến, Hải Dương'),
+(71, 57, '2024-11-09', 'Shipped', '2024-11-22', '123 Đường Nguyễn Đình Chiểu, Hà Nội'),
+(72, 68, '2024-11-10', 'Pending', '2024-11-23', '88 Đường Lê Duẩn, Hà Nội'),
+(73, 10, '2024-11-11', 'Cancelled', '2024-11-24', '101 Đường Phố Huế, Hà Nội'),
+(74, 55, '2024-11-12', 'Shipped', '2024-11-25', '234 Đường Trần Thái Tông, Hà Nội'),
+(75, 72, '2024-11-13', 'Processing', '2024-11-26', '87 Đường Lê Văn Lương, Hà Nội'),
+(76, 75, '2024-11-14', 'Cancelled', '2024-11-27', '156 Đường Ngọc Khánh, Hà Nội'),
+(77, 46, '2024-11-15', 'Shipped', '2024-11-28', '45 Đường Đỗ Xuân Hợp, Hải Phòng'),
+(78, 8, '2024-11-16', 'Pending', '2024-11-29', '132 Đường Chùa Bộc, Hà Nội'),
+(79, 11, '2024-11-17', 'Cancelled', '2024-11-30', '45 Đường Nguyên Hồng, Hà Nội'),
+(80, 15, '2024-11-18', 'Shipped', '2024-12-01', '200 Đường Phan Đình Phùng, Hà Nội'),
+(81, 26, '2024-11-19', 'Processing', '2024-12-02', '56 Đường Lê Hồng Phong, Hải Dương'),
+(82, 23, '2024-11-20', 'Cancelled', '2024-12-03', '95 Đường Bến Thành, Hà Nội'),
+(83, 29, '2024-11-21', 'Shipped', '2024-12-04', '100 Đường Phố Tôn Đức Thắng, Hải Phòng'),
+(84, 60, '2024-11-22', 'Pending', '2024-12-05', '123 Đường Bạch Đằng, Hà Nội'),
+(85, 65, '2024-11-23', 'Processing', '2024-12-06', '56 Đường Kim Liên, Hà Nội'),
+(86, 4, '2024-11-24', 'Cancelled', '2024-12-07', '78 Đường Đinh Tiên Hoàng, Hải Dương'),
+(87, 19, '2024-11-25', 'Shipped', '2024-12-08', '25 Đường Lê Văn Thiêm, Hà Nội'),
+(88, 45, '2024-11-26', 'Pending', '2024-12-09', '99 Đường Trường Chinh, Bắc Ninh'),
+(89, 6, '2024-11-27', 'Shipped', '2024-12-10', '22 Đường Cầu Giấy, Hà Nội'),
+(90, 73, '2024-11-28', 'Cancelled', '2024-12-11', '180 Đường Phạm Văn Đồng, Hà Nội'),
+(91, 25, '2024-11-29', 'Shipped', '2024-12-12', '34 Đường Phố Huế, Hà Nội'),
+(92, 37, '2024-11-30', 'Pending', '2024-12-13', '67 Đường Đê La Thành, Hà Nội'),
+(93, 8, '2024-12-01', 'Cancelled', '2024-12-14', '23 Đường Lê Thanh Nghị, Hải Dương'),
+(94, 44, '2024-12-02', 'Shipped', '2024-12-15', '90 Đường Nguyễn Văn Cừ, Hà Nội'),
+(95, 64, '2024-12-03', 'Processing', '2024-12-16', '45 Đường Tây Sơn, Hà Nội'),
+(96, 34, '2024-12-04', 'Cancelled', '2024-12-17', '78 Đường Tôn Đức Thắng, Bắc Ninh'),
+(97, 41, '2024-12-05', 'Shipped', '2024-12-18', '12 Đường Thanh Niên, Hà Nội'),
+(98, 53, '2024-12-06', 'Pending', '2024-12-19', '34 Đường Đinh Tiên Hoàng, Hải Phòng'),
+(99, 59, '2024-12-07', 'Processing', '2024-12-20', '90 Đường Hàng Bông, Hà Nội'),
+(100, 66, '2024-12-08', 'Cancelled', '2024-12-21', '101 Đường Bà Triệu, Hà Nội'),
+(101, 27, '2024-12-09', 'Shipped', '2024-12-22', '78 Đường Kim Mã, Hà Nội'),
+(102, 70, '2024-12-10', 'Pending', '2024-12-23', '56 Đường Lê Duẩn, Hải Phòng'),
+(103, 22, '2024-12-11', 'Cancelled', '2024-12-24', '12 Đường Trường Chinh, Bắc Ninh'),
+(104, 13, '2024-12-12', 'Shipped', '2024-12-25', '45 Đường Lê Văn Sỹ, Hà Nội'),
+(105, 20, '2024-12-13', 'Processing', '2024-12-26', '200 Đường Tôn Thất Tùng, Hà Nội'),
+(106, 35, '2024-12-14', 'Cancelled', '2024-12-27', '134 Đường Thái Hà, Hà Nội'),
+(107, 15, '2024-12-15', 'Shipped', '2024-12-28', '25 Đường Vũ Trọng Phụng, Hải Phòng'),
+(108, 4, '2024-12-16', 'Pending', '2024-12-29', '78 Đường Cát Linh, Hà Nội'),
+(109, 6, '2024-12-17', 'Cancelled', '2024-12-30', '22 Đường Nguyễn Thái Học, Bắc Ninh'),
+(110, 31, '2024-12-18', 'Shipped', '2024-12-31', '99 Đường Bạch Mai, Hà Nội'),
+(111, 78, '2024-12-19', 'Processing', '2025-01-01', '150 Đường Nguyễn Khuyến, Hải Phòng'),
+(112, 5, '2024-12-20', 'Cancelled', '2025-01-02', '45 Đường Hoàng Hoa Thám, Hà Nội'),
+(113, 3, '2024-12-21', 'Shipped', '2025-01-03', '34 Đường Hoàn Kiếm, Hà Nội'),
+(114, 66, '2024-12-22', 'Pending', '2025-01-04', '123 Đường Vạn Phúc, Bắc Ninh'),
+(115, 74, '2024-12-23', 'Cancelled', '2025-01-05', '98 Đường Nguyễn Trãi, Hải Dương'),
+(116, 8, '2024-12-24', 'Shipped', '2025-01-06', '90 Đường Nguyễn Văn Huyên, Hà Nội'),
+(117, 71, '2024-12-25', 'Processing', '2025-01-07', '145 Đường Hàng Bạc, Hải Phòng'),
+(118, 9, '2024-12-26', 'Cancelled', '2025-01-08', '101 Đường Trần Quang Khải, Hà Nội'),
+(119, 42, '2024-12-27', 'Shipped', '2025-01-09', '87 Đường Cổ Linh, Hà Nội'),
+(120, 18, '2024-12-28', 'Pending', '2025-01-10', '99 Đường Bến Thành, Hải Dương'),
+(121, 69, '2024-12-29', 'Processing', '2025-01-11', '34 Đường Phan Đình Phùng, Hà Nội'),
+(122, 39, '2024-12-30', 'Cancelled', '2025-01-12', '12 Đường Ngô Quyền, Hải Phòng'),
+(123, 30, '2025-01-01', 'Shipped', '2025-01-13', '56 Đường Lê Thánh Tông, Hà Nội'),
+(124, 12, '2025-01-02', 'Pending', '2025-01-14', '78 Đường Thanh Niên, Bắc Ninh'),
+(125, 50, '2025-01-03', 'Processing', '2025-01-15', '123 Đường Tô Hiến Thành, Hải Dương'),
+(126, 61, '2025-01-04', 'Cancelled', '2025-01-16', '90 Đường Phố Huế, Hà Nội'),
+(127, 76, '2025-01-05', 'Shipped', '2025-01-17', '45 Đường Giải Phóng, Hải Phòng'),
+(128, 10, '2025-01-06', 'Pending', '2025-01-18', '22 Đường Hàng Da, Hà Nội'),
+(129, 79, '2025-01-07', 'Processing', '2025-01-19', '34 Đường Bà Triệu, Hà Nội'),
+(130, 33, '2025-01-08', 'Cancelled', '2025-01-20', '56 Đường Trần Đăng Ninh, Hải Dương'),
+(131, 48, '2025-01-09', 'Shipped', '2025-01-21', '90 Đường Nguyễn Khánh Toàn, Hà Nội'),
+(132, 55, '2025-01-10', 'Pending', '2025-01-22', '12 Đường Nguyễn Thái Học, Bắc Ninh'),
+(133, 14, '2025-01-11', 'Processing', '2025-01-23', '34 Đường Xuân Thủy, Hà Nội'),
+(134, 60, '2025-01-12', 'Cancelled', '2025-01-24', '78 Đường Lê Lợi, Hải Phòng'),
+(135, 27, '2025-01-13', 'Shipped', '2025-01-25', '56 Đường Trường Chinh, Hà Nội'),
+(136, 77, '2025-01-14', 'Pending', '2025-01-26', '90 Đường Kim Mã, Hải Dương'),
+(137, 25, '2025-01-15', 'Processing', '2025-01-27', '12 Đường Vũ Trọng Phụng, Hà Nội'),
+(138, 16, '2025-01-16', 'Cancelled', '2025-01-28', '34 Đường Ngọc Lâm, Hải Phòng'),
+(139, 49, '2025-01-17', 'Shipped', '2025-01-29', '78 Đường Hoàng Cầu, Bắc Ninh'),
+(140, 23, '2025-01-18', 'Pending', '2025-01-30', '90 Đường Bạch Đằng, Hà Nội'),
+(141, 80, '2025-01-19', 'Processing', '2025-01-31', '12 Đường Đội Cấn, Hải Dương'),
+(142, 19, '2025-01-20', 'Cancelled', '2025-02-01', '34 Đường Phú Thượng, Hà Nội'),
+(143, 72, '2025-01-21', 'Shipped', '2025-02-02', '90 Đường Thái Thịnh, Hải Phòng'),
+(144, 45, '2025-01-22', 'Pending', '2025-02-03', '123 Đường Văn Cao, Bắc Ninh'),
+(145, 15, '2025-01-23', 'Processing', '2025-02-04', '67 Đường Hàng Bông, Hà Nội'),
+(146, 24, '2025-01-24', 'Cancelled', '2025-02-05', '99 Đường Nguyễn Hữu Huân, Hải Dương'),
+(147, 70, '2025-01-25', 'Shipped', '2025-02-06', '45 Đường Lê Hồng Phong, Hà Nội'),
+(148, 43, '2025-01-26', 'Pending', '2025-02-07', '90 Đường Đinh Tiên Hoàng, Bắc Ninh'),
+(149, 67, '2025-01-27', 'Processing', '2025-02-08', '123 Đường Phan Chu Trinh, Hải Phòng'),
+(150, 20, '2025-01-28', 'Cancelled', '2025-02-09', '56 Đường Trần Quý Cáp, Hà Nội');
+
+
 -- --------------------------------------------------------
 
 --
@@ -550,6 +861,14 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`Project_ID`, `ProjectName`, `Address`) VALUES
+(1, 'Siêu Thị Hoa Quả Tươi', 'Số 1, Đường Lê Lợi, Hà Nội'),
+(2, 'Cửa Hàng Trái Cây Ngọc Sơn', 'Số 12, Đường Trần Hưng Đạo, Hồ Chí Minh'),
+(3, 'Cửa Hàng Trái Cây Sạch', 'Số 34, Đường Nguyễn Văn Cừ, Đà Nẵng'),
+(4, 'Hệ Thống Siêu Thị Fruits', 'Số 56, Đường Nguyễn Thái Học, Hải Phòng'),
+(5, 'Công ty Cung Cấp Hoa Quả Sạch', 'Số 78, Đường Lê Văn Lương, Cần Thơ'),
+(6, 'Dịch vụ Giao Hàng Trái Cây Fresh', 'Số 90, Đường Hoàng Văn Thụ, Nha Trang'),
+(7, 'Cửa Hàng Trái Cây An Toàn', 'Số 11, Đường Phan Đình Phùng, Huế'),
+(8, 'Chợ Hoa Quả Tươi Mới', 'Số 22, Đường Nguyễn Đình Chiểu, Phú Quốc'),
 (1, 'Siêu Thị Hoa Quả Tươi', 'Số 1, Đường Lê Lợi, Hà Nội'),
 (2, 'Cửa Hàng Trái Cây Ngọc Sơn', 'Số 12, Đường Trần Hưng Đạo, Hồ Chí Minh'),
 (3, 'Cửa Hàng Trái Cây Sạch', 'Số 34, Đường Nguyễn Văn Cừ, Đà Nẵng'),
@@ -809,11 +1128,27 @@ ALTER TABLE `employeeperformance`
   ADD KEY `Employee_ID` (`Employee_ID`);
 
 --
+
 -- Chỉ mục cho bảng `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`Product_ID`),
   ADD KEY `Supplier_ID` (`Supplier_ID`);
+
+-- Chỉ mục cho bảng `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`Feedback_ID`),
+  ADD KEY `Customer_ID` (`Customer_ID`),
+  ADD KEY `Order_ID` (`Order_ID`);
+
+--
+-- Chỉ mục cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`Order_ID`),
+  ADD KEY `Customer_ID` (`Customer_ID`);
+
 
 --
 -- Chỉ mục cho bảng `salary`
@@ -856,6 +1191,12 @@ ALTER TABLE `department`
 --
 ALTER TABLE `employee`
   MODIFY `Employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT cho bảng `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT cho bảng `timesheet`
@@ -905,10 +1246,24 @@ ALTER TABLE `employeeperformance`
   ADD CONSTRAINT `employeeperformance_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
 
 --
+
 -- Các ràng buộc cho bảng `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`Supplier_ID`) REFERENCES `supplier` (`Supplier_ID`);
+
+-- Các ràng buộc cho bảng `feedback`
+--
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`),
+  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`Order_ID`) REFERENCES `orders` (`Order_ID`);
+
+--
+-- Các ràng buộc cho bảng `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`);
+
 
 --
 -- Các ràng buộc cho bảng `salary`
