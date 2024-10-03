@@ -2,12 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
-
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th10 02, 2024 lúc 05:48 PM
+-- Thời gian đã tạo: Th10 03, 2024 lúc 07:05 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,40 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
-
---
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `contract`
---
-
-CREATE TABLE `contract` (
-  `Contract_ID` int(11) NOT NULL,
-  `Customer_ID` int(11) NOT NULL,
-  `Project_ID` int(11) NOT NULL,
-  `ContractDate` date NOT NULL,
-  `ContractDue` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `contract`
---
-
-INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDate`, `ContractDue`) VALUES
-(1, 3, 5, '2024-01-15', '2024-06-15'),
-(2, 10, 2, '2024-02-20', '2024-07-20'),
-(3, 25, 1, '2024-03-05', '2024-08-05'),
-(4, 12, 4, '2024-04-10', '2024-09-10'),
-(5, 30, 6, '2024-05-15', '2024-10-15'),
-(6, 8, 7, '2024-06-20', '2024-11-20'),
-(7, 42, 3, '2024-07-25', '2024-12-25'),
-(8, 18, 8, '2024-08-30', '2025-01-30');
-
--- --------------------------------------------------------
-
--- Cơ sở dữ liệu: `company_sample`
+-- Cơ sở dữ liệu: `fsdfasdf`
 --
 
 -- --------------------------------------------------------
@@ -94,6 +59,36 @@ INSERT INTO `children` (`Employee_ID`, `EmployeeName`, `ChildrenName`, `Gender`)
 (18, 'Trần Thị Hương', 'Trần Hương Giang', 'Nữ'),
 (19, 'Nguyễn Văn Lợi', 'Nguyễn Lợi Huy', 'Nam'),
 (20, 'Phạm Văn Long', 'Phạm Long An', 'Nam');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `contract`
+--
+
+CREATE TABLE `contract` (
+  `Contract_ID` int(11) NOT NULL,
+  `Customer_ID` int(11) NOT NULL,
+  `Project_ID` int(11) NOT NULL,
+  `ContractDate` date NOT NULL,
+  `ContractDue` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `contract`
+--
+
+INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDate`, `ContractDue`) VALUES
+(1, 3, 5, '2024-01-15', '2024-06-15'),
+(2, 10, 2, '2024-02-20', '2024-07-20'),
+(3, 25, 1, '2024-03-05', '2024-08-05'),
+(4, 12, 4, '2024-04-10', '2024-09-10'),
+(5, 30, 6, '2024-05-15', '2024-10-15'),
+(6, 8, 7, '2024-06-20', '2024-11-20'),
+(7, 42, 3, '2024-07-25', '2024-12-25'),
+(8, 18, 8, '2024-08-30', '2025-01-30');
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `customer`
@@ -501,6 +496,32 @@ INSERT INTO `employeeperformance` (`Employee_ID`, `EmployeeName`, `Score`, `Comm
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `project`
+--
+
+CREATE TABLE `project` (
+  `Project_ID` int(11) NOT NULL,
+  `ProjectName` varchar(50) DEFAULT NULL,
+  `Address` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `project`
+--
+
+INSERT INTO `project` (`Project_ID`, `ProjectName`, `Address`) VALUES
+(1, 'Siêu Thị Hoa Quả Tươi', 'Số 1, Đường Lê Lợi, Hà Nội'),
+(2, 'Cửa Hàng Trái Cây Ngọc Sơn', 'Số 12, Đường Trần Hưng Đạo, Hồ Chí Minh'),
+(3, 'Cửa Hàng Trái Cây Sạch', 'Số 34, Đường Nguyễn Văn Cừ, Đà Nẵng'),
+(4, 'Hệ Thống Siêu Thị Fruits', 'Số 56, Đường Nguyễn Thái Học, Hải Phòng'),
+(5, 'Công ty Cung Cấp Hoa Quả Sạch', 'Số 78, Đường Lê Văn Lương, Cần Thơ'),
+(6, 'Dịch vụ Giao Hàng Trái Cây Fresh', 'Số 90, Đường Hoàng Văn Thụ, Nha Trang'),
+(7, 'Cửa Hàng Trái Cây An Toàn', 'Số 11, Đường Phan Đình Phùng, Huế'),
+(8, 'Chợ Hoa Quả Tươi Mới', 'Số 22, Đường Nguyễn Đình Chiểu, Phú Quốc');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `salary`
 --
 
@@ -668,22 +689,22 @@ INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `
 (7, 'Quản trị nhân sự nền tảng', '2024-05-01', '2024-05-07', 49);
 
 --
-
 -- Chỉ mục cho các bảng đã đổ
 --
 
 --
 -- Chỉ mục cho bảng `children`
 --
+ALTER TABLE `children`
+  ADD PRIMARY KEY (`Employee_ID`,`ChildrenName`);
 
+--
+-- Chỉ mục cho bảng `contract`
+--
 ALTER TABLE `contract`
   ADD PRIMARY KEY (`Contract_ID`),
   ADD KEY `Customer_ID` (`Customer_ID`),
   ADD KEY `Project_ID` (`Project_ID`);
-
-ALTER TABLE `children`
-  ADD PRIMARY KEY (`Employee_ID`,`ChildrenName`);
-
 
 --
 -- Chỉ mục cho bảng `customer`
@@ -769,7 +790,7 @@ ALTER TABLE `timesheet`
 -- AUTO_INCREMENT cho bảng `training`
 --
 ALTER TABLE `training`
-  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
