@@ -613,7 +613,7 @@ INSERT INTO `timesheet` (`Timesheet_ID`, `Employee_ID`, `EmployeeName`, `WorkedH
 --
 -- Cấu trúc bảng cho bảng `training`
 --
-
+---
 CREATE TABLE `training` (
   `Training_ID` int(11) NOT NULL,
   `TrainingName` varchar(50) DEFAULT NULL,
