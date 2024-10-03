@@ -427,7 +427,7 @@ INSERT INTO `project` (`Project_ID`, `ProjectName`, `Address`) VALUES
 --
 -- Cấu trúc bảng cho bảng `training`
 --
-
+---
 CREATE TABLE `training` (
   `Training_ID` int(11) NOT NULL,
   `TrainingName` varchar(50) DEFAULT NULL,
