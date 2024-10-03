@@ -2,6 +2,7 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
+
 -- Máy chủ: localhost:3307
 -- Thời gian đã tạo: Th10 02, 2024 lúc 05:46 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
