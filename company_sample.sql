@@ -2,14 +2,11 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
---
 
 -- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th10 02, 2024 lúc 04:59 PM
-
+-- Thời gian đã tạo: Th10 02, 2024 lúc 05:46 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
-
+-- Phiên bản PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,38 +19,47 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `test!!!`
-
+-- Cơ sở dữ liệu: `company_sample`
 --
 
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `children`
+--
 
-
-CREATE TABLE `contract` (
-  `Contract_ID` int(11) NOT NULL,
-  `Customer_ID` int(11) NOT NULL,
-  `Project_ID` int(11) NOT NULL,
-  `ContractDate` date NOT NULL,
-  `ContractDue` date NOT NULL
+CREATE TABLE `children` (
+  `Employee_ID` int(11) NOT NULL,
+  `EmployeeName` varchar(50) NOT NULL,
+  `ChildrenName` varchar(50) NOT NULL,
+  `Gender` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `contract`
+-- Đang đổ dữ liệu cho bảng `children`
+--
 
-
-INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDate`, `ContractDue`) VALUES
-(1, 3, 5, '2024-01-15', '2024-06-15'),
-(2, 10, 2, '2024-02-20', '2024-07-20'),
-(3, 25, 1, '2024-03-05', '2024-08-05'),
-(4, 12, 4, '2024-04-10', '2024-09-10'),
-(5, 30, 6, '2024-05-15', '2024-10-15'),
-(6, 8, 7, '2024-06-20', '2024-11-20'),
-(7, 42, 3, '2024-07-25', '2024-12-25'),
-(8, 18, 8, '2024-08-30', '2025-01-30');
-
--- --------------------------------------------------------
+INSERT INTO `children` (`Employee_ID`, `EmployeeName`, `ChildrenName`, `Gender`) VALUES
+(1, 'Nguyễn Văn Minh', 'Nguyễn Minh Hoàng', 'Nam'),
+(2, 'Lê Doãn Khế', 'Lê Khải Minh', 'Nam'),
+(3, 'Trần Thị Mai', 'Trần Mai Lan', 'Nữ'),
+(4, 'Phạm Ngọc Huy', 'Phạm Huy Hoàng', 'Nam'),
+(5, 'Ngô Văn An', 'Ngô An Thảo', 'Nữ'),
+(6, 'Bùi Thị Bích', 'Bùi Bích Thủy', 'Nữ'),
+(7, 'Đặng Văn Hòa', 'Đặng Hòa Phát', 'Nam'),
+(8, 'Vũ Thị Huệ', 'Vũ Huệ An', 'Nữ'),
+(9, 'Lê Hoàng', 'Lê Hoàng Anh', 'Nam'),
+(10, 'Nguyễn Tuấn', 'Nguyễn Tuấn Minh', 'Nam'),
+(11, 'Phan Thị Thảo', 'Phan Thảo Vy', 'Nữ'),
+(12, 'Nguyễn Văn Tâm', 'Nguyễn Tâm Đan', 'Nữ'),
+(13, 'Lê Hoàng Hải', 'Lê Hải Nam', 'Nam'),
+(14, 'Trần Minh Tâm', 'Trần Tâm Nhi', 'Nữ'),
+(15, 'Nguyễn Ngọc Sơn', 'Nguyễn Sơn Tùng', 'Nam'),
+(16, 'Ngô Thị Phương', 'Ngô Phương Anh', 'Nữ'),
+(17, 'Bùi Văn Khoa', 'Bùi Khoa Nam', 'Nam'),
+(18, 'Trần Thị Hương', 'Trần Hương Giang', 'Nữ'),
+(19, 'Nguyễn Văn Lợi', 'Nguyễn Lợi Huy', 'Nam'),
+(20, 'Phạm Văn Long', 'Phạm Long An', 'Nam');
 
 -- --------------------------------------------------------
 
@@ -69,9 +75,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
-
 -- Đang đổ dữ liệu cho bảng `customer`
-
 --
 
 INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Order`) VALUES
@@ -159,9 +163,8 @@ INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Ord
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `department`
-
+--
 
 CREATE TABLE `department` (
   `Department_ID` int(11) NOT NULL,
@@ -174,11 +177,11 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`Department_ID`, `DepartmentName`, `Manager_ID`) VALUES
-(1, 'Phòng Nhân sự', 15),
-(2, 'Phòng Tài chính', 40),
-(3, 'Phòng IT', 22),
-(4, 'Phòng Kinh doanh', 9),
-(5, 'Phòng Marketing', 30);
+(1, 'Human Resources', 15),
+(2, 'Finance', 40),
+(3, 'IT', 22),
+(4, 'Sales', 9),
+(5, 'Marketing', 30);
 
 -- --------------------------------------------------------
 
@@ -254,20 +257,19 @@ INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, 
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `employeecontact`
-
+--
 
 CREATE TABLE `employeecontact` (
   `Employee_ID` int(11) NOT NULL,
   `PhoneNumber` char(10) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `EmployeeAddress` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `employeecontact`
-
+--
 
 INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeAddress`) VALUES
 (1, '0912345678', 'minh@gmail.com', 'Hà Nội, Việt Nam'),
@@ -325,9 +327,7 @@ INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeA
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `employeehealth`
-
 --
 
 CREATE TABLE `employeehealth` (
@@ -399,28 +399,214 @@ INSERT INTO `employeehealth` (`Employee_ID`, `EmployeeName`, `Gender`, `Height`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `project`
+-- Cấu trúc bảng cho bảng `employeeperformance`
 --
 
-CREATE TABLE `project` (
-  `Project_ID` int(11) NOT NULL,
-  `ProjectName` varchar(50) DEFAULT NULL,
-  `Address` varchar(100) DEFAULT NULL
+CREATE TABLE `employeeperformance` (
+  `Employee_ID` int(11) NOT NULL,
+  `EmployeeName` varchar(50) NOT NULL,
+  `Score` double NOT NULL,
+  `Comment` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `project`
+-- Đang đổ dữ liệu cho bảng `employeeperformance`
 --
 
-INSERT INTO `project` (`Project_ID`, `ProjectName`, `Address`) VALUES
-(1, 'Siêu Thị Hoa Quả Tươi', 'Số 1, Đường Lê Lợi, Hà Nội'),
-(2, 'Cửa Hàng Trái Cây Ngọc Sơn', 'Số 12, Đường Trần Hưng Đạo, Hồ Chí Minh'),
-(3, 'Cửa Hàng Trái Cây Sạch', 'Số 34, Đường Nguyễn Văn Cừ, Đà Nẵng'),
-(4, 'Hệ Thống Siêu Thị Fruits', 'Số 56, Đường Nguyễn Thái Học, Hải Phòng'),
-(5, 'Công ty Cung Cấp Hoa Quả Sạch', 'Số 78, Đường Lê Văn Lương, Cần Thơ'),
-(6, 'Dịch vụ Giao Hàng Trái Cây Fresh', 'Số 90, Đường Hoàng Văn Thụ, Nha Trang'),
-(7, 'Cửa Hàng Trái Cây An Toàn', 'Số 11, Đường Phan Đình Phùng, Huế'),
-(8, 'Chợ Hoa Quả Tươi Mới', 'Số 22, Đường Nguyễn Đình Chiểu, Phú Quốc');
+INSERT INTO `employeeperformance` (`Employee_ID`, `EmployeeName`, `Score`, `Comment`) VALUES
+(1, 'Nguyễn Văn Minh', 10, 'Xuất sắc'),
+(2, 'Lê Doãn Khế', 9.5, 'Tốt'),
+(3, 'Trần Thị Mai', 10, 'Xuất sắc'),
+(4, 'Phạm Ngọc Huy', 10, 'Xuất sắc'),
+(5, 'Ngô Văn An', 10, 'Xuất sắc'),
+(6, 'Bùi Thị Bích', 9, 'Tốt'),
+(7, 'Đặng Văn Hòa', 9.5, 'Tốt'),
+(8, 'Vũ Thị Huệ', 10, 'Xuất sắc'),
+(9, 'Lê Hoàng', 10, 'Xuất sắc'),
+(10, 'Nguyễn Tuấn', 10, 'Xuất sắc'),
+(11, 'Phan Thị Thảo', 9, 'Tốt'),
+(12, 'Nguyễn Văn Tâm', 8.5, 'Cần cải thiện'),
+(13, 'Lê Hoàng Hải', 10, 'Xuất sắc'),
+(14, 'Trần Minh Tâm', 10, 'Xuất sắc'),
+(15, 'Nguyễn Ngọc Sơn', 10, 'Xuất sắc'),
+(16, 'Ngô Thị Phương', 9, 'Tốt'),
+(17, 'Bùi Văn Khoa', 9.5, 'Tốt'),
+(18, 'Trần Thị Hương', 10, 'Xuất sắc'),
+(19, 'Nguyễn Văn Lợi', 10, 'Xuất sắc'),
+(20, 'Phạm Văn Long', 10, 'Xuất sắc'),
+(21, 'Lê Văn Hậu', 10, 'Xuất sắc'),
+(22, 'Trần Minh Quân', 10, 'Xuất sắc'),
+(23, 'Nguyễn Thị Thúy', 8.5, 'Cần cải thiện'),
+(24, 'Ngô Văn Bảo', 10, 'Xuất sắc'),
+(25, 'Bùi Thị Kim', 8.5, 'Cần cải thiện'),
+(26, 'Đặng Văn Phúc', 10, 'Xuất sắc'),
+(27, 'Vũ Thị Nga', 10, 'Xuất sắc'),
+(28, 'Trần Văn Hùng', 10, 'Xuất sắc'),
+(29, 'Nguyễn Văn Quốc', 9, 'Tốt'),
+(30, 'Phạm Thị Yến', 9.5, 'Tốt'),
+(31, 'Lê Văn Thắng', 10, 'Xuất sắc'),
+(32, 'Trần Thị Kim', 10, 'Xuất sắc'),
+(33, 'Nguyễn Văn Phúc', 9, 'Tốt'),
+(34, 'Ngô Thị Thanh', 10, 'Xuất sắc'),
+(35, 'Bùi Văn Tài', 8.5, 'Cần cải thiện'),
+(36, 'Đặng Văn Bằng', 10, 'Xuất sắc'),
+(37, 'Vũ Thị Tuyết', 10, 'Xuất sắc'),
+(38, 'Trần Văn Lâm', 10, 'Xuất sắc'),
+(39, 'Nguyễn Thị Thanh', 9, 'Tốt'),
+(40, 'Phạm Văn Nam', 10, 'Xuất sắc'),
+(41, 'Lê Doãn Minh', 10, 'Xuất sắc'),
+(42, 'Trần Thị Hằng', 8.5, 'Cần cải thiện'),
+(43, 'Nguyễn Văn Vinh', 10, 'Xuất sắc'),
+(44, 'Ngô Thị Hạnh', 10, 'Xuất sắc'),
+(45, 'Bùi Văn Khải', 8.5, 'Cần cải thiện'),
+(46, 'Đặng Văn Chương', 10, 'Xuất sắc'),
+(47, 'Vũ Thị Kim Anh', 10, 'Xuất sắc'),
+(48, 'Trần Văn Tuấn', 10, 'Xuất sắc'),
+(49, 'Nguyễn Thị Yến', 9, 'Tốt'),
+(50, 'Phạm Văn Kiên', 9.5, 'Tốt'),
+(51, 'Âu Dương Hiệp Hào', 10, 'Xuất sắc');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `salary`
+--
+
+CREATE TABLE `salary` (
+  `Employee_ID` int(11) NOT NULL,
+  `EmployeeName` varchar(50) NOT NULL,
+  `Salary` decimal(10,2) DEFAULT NULL,
+  `DaysOff` int(11) DEFAULT NULL,
+  `Bonus` decimal(10,2) DEFAULT NULL,
+  `LateDays` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `salary`
+--
+
+INSERT INTO `salary` (`Employee_ID`, `EmployeeName`, `Salary`, `DaysOff`, `Bonus`, `LateDays`) VALUES
+(1, 'Nguyễn Văn Minh', 65000000.00, 1, 3250000.00, 0),
+(2, 'Lê Doãn Khế', 36000000.00, 1, 1800000.00, 0),
+(3, 'Trần Thị Mai', 30000000.00, 0, 3000000.00, 0),
+(4, 'Phạm Ngọc Huy', 30000000.00, 0, 1500000.00, 0),
+(5, 'Ngô Văn An', 29000000.00, 0, 1450000.00, 0),
+(6, 'Bùi Thị Bích', 32000000.00, 0, 1600000.00, 0),
+(7, 'Đặng Văn Hòa', 28000000.00, 0, 1400000.00, 0),
+(8, 'Vũ Thị Huệ', 27000000.00, 0, 1350000.00, 0),
+(9, 'Lê Hoàng', 45000000.00, 0, 2250000.00, 0),
+(10, 'Nguyễn Tuấn', 33000000.00, 0, 1650000.00, 0),
+(11, 'Phan Thị Thảo', 25000000.00, 0, 2500000.00, 0),
+(12, 'Nguyễn Văn Tâm', 31000000.00, 1, 0.00, 1),
+(13, 'Lê Hoàng Hải', 30000000.00, 0, 1500000.00, 0),
+(14, 'Trần Minh Tâm', 29000000.00, 0, 1450000.00, 0),
+(15, 'Nguyễn Ngọc Sơn', 45000000.00, 0, 2250000.00, 0),
+(16, 'Ngô Thị Phương', 31000000.00, 0, 3100000.00, 0),
+(17, 'Bùi Văn Khoa', 29000000.00, 0, 1450000.00, 0),
+(18, 'Trần Thị Hương', 26000000.00, 0, 1300000.00, 0),
+(19, 'Nguyễn Văn Lợi', 28000000.00, 0, 2800000.00, 0),
+(20, 'Phạm Văn Long', 32000000.00, 0, 1600000.00, 0),
+(21, 'Lê Văn Hậu', 27000000.00, 0, 1350000.00, 0),
+(22, 'Trần Minh Quân', 45000000.00, 0, 0.00, 1),
+(23, 'Nguyễn Thị Thúy', 24000000.00, 0, 0.00, 2),
+(24, 'Ngô Văn Bảo', 25000000.00, 0, 1250000.00, 0),
+(25, 'Bùi Thị Kim', 23000000.00, 0, 0.00, 1),
+(26, 'Đặng Văn Phúc', 26000000.00, 0, 1300000.00, 0),
+(27, 'Vũ Thị Nga', 24000000.00, 0, 1200000.00, 0),
+(28, 'Trần Văn Hùng', 27000000.00, 1, 1350000.00, 0),
+(29, 'Nguyễn Văn Quốc', 28000000.00, 0, 1400000.00, 0),
+(30, 'Phạm Thị Yến', 45000000.00, 0, 2250000.00, 0),
+(31, 'Lê Văn Thắng', 26000000.00, 0, 1300000.00, 0),
+(32, 'Trần Thị Kim', 23000000.00, 0, 1150000.00, 0),
+(33, 'Nguyễn Văn Phúc', 29000000.00, 1, 1450000.00, 0),
+(34, 'Ngô Thị Thanh', 25000000.00, 0, 1250000.00, 0),
+(35, 'Bùi Văn Tài', 24000000.00, 1, 1200000.00, 0),
+(36, 'Đặng Văn Bằng', 22000000.00, 0, 1100000.00, 0),
+(37, 'Vũ Thị Tuyết', 23000000.00, 0, 1150000.00, 0),
+(38, 'Trần Văn Lâm', 25000000.00, 0, 2500000.00, 0),
+(39, 'Nguyễn Thị Thanh', 24000000.00, 0, 1200000.00, 0),
+(40, 'Phạm Văn Nam', 45000000.00, 0, 2250000.00, 0),
+(41, 'Lê Doãn Minh', 22000000.00, 0, 0.00, 1),
+(42, 'Trần Thị Hằng', 21000000.00, 0, 1050000.00, 0),
+(43, 'Nguyễn Văn Vinh', 23000000.00, 0, 0.00, 1),
+(44, 'Ngô Thị Hạnh', 25000000.00, 0, 2500000.00, 1),
+(45, 'Bùi Văn Khải', 22000000.00, 0, 2200000.00, 0),
+(46, 'Đặng Văn Chương', 23000000.00, 0, 0.00, 1),
+(47, 'Vũ Thị Kim Anh', 24000000.00, 1, 1200000.00, 1),
+(48, 'Trần Văn Tuấn', 22000000.00, 0, 0.00, 1),
+(49, 'Nguyễn Thị Yến', 24000000.00, 0, 0.00, 1),
+(50, 'Phạm Văn Kiên', 21000000.00, 0, 1050000.00, 0),
+(51, 'Âu Dương Hiệp Hào', 22000000.00, 0, 0.00, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `timesheet`
+--
+
+CREATE TABLE `timesheet` (
+  `Timesheet_ID` int(11) NOT NULL,
+  `Employee_ID` int(11) NOT NULL,
+  `EmployeeName` varchar(50) NOT NULL,
+  `WorkedHours` decimal(5,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `timesheet`
+--
+
+INSERT INTO `timesheet` (`Timesheet_ID`, `Employee_ID`, `EmployeeName`, `WorkedHours`) VALUES
+(1, 1, 'Nguyễn Văn Minh', 192.00),
+(2, 2, 'Lê Doãn Khế', 240.00),
+(3, 3, 'Trần Thị Mai', 250.00),
+(4, 4, 'Phạm Ngọc Huy', 225.00),
+(5, 5, 'Ngô Văn An', 250.00),
+(6, 6, 'Bùi Thị Bích', 200.00),
+(7, 7, 'Đặng Văn Hòa', 240.00),
+(8, 8, 'Vũ Thị Huệ', 250.00),
+(9, 9, 'Lê Hoàng', 250.00),
+(10, 10, 'Nguyễn Tuấn', 250.00),
+(11, 11, 'Phan Thị Thảo', 200.00),
+(12, 12, 'Nguyễn Văn Tâm', 184.00),
+(13, 13, 'Lê Hoàng Hải', 250.00),
+(14, 14, 'Trần Minh Tâm', 250.00),
+(15, 15, 'Nguyễn Ngọc Sơn', 250.00),
+(16, 16, 'Ngô Thị Phương', 200.00),
+(17, 17, 'Bùi Văn Khoa', 240.00),
+(18, 18, 'Trần Thị Hương', 225.00),
+(19, 19, 'Nguyễn Văn Lợi', 250.00),
+(20, 20, 'Phạm Văn Long', 250.00),
+(21, 21, 'Lê Văn Hậu', 240.00),
+(22, 22, 'Trần Minh Quân', 250.00),
+(23, 23, 'Nguyễn Thị Thúy', 184.00),
+(24, 24, 'Ngô Văn Bảo', 250.00),
+(25, 25, 'Bùi Thị Kim', 192.00),
+(26, 26, 'Đặng Văn Phúc', 250.00),
+(27, 27, 'Vũ Thị Nga', 250.00),
+(28, 28, 'Trần Văn Hùng', 250.00),
+(29, 29, 'Nguyễn Văn Quốc', 200.00),
+(30, 30, 'Phạm Thị Yến', 240.00),
+(31, 31, 'Lê Văn Thắng', 250.00),
+(32, 32, 'Trần Thị Kim', 250.00),
+(33, 33, 'Nguyễn Văn Phúc', 200.00),
+(34, 34, 'Ngô Thị Thanh', 250.00),
+(35, 35, 'Bùi Văn Tài', 192.00),
+(36, 36, 'Đặng Văn Bằng', 250.00),
+(37, 37, 'Vũ Thị Tuyết', 250.00),
+(38, 38, 'Trần Văn Lâm', 250.00),
+(39, 39, 'Nguyễn Thị Thanh', 200.00),
+(40, 40, 'Phạm Văn Nam', 250.00),
+(41, 41, 'Lê Doãn Minh', 240.00),
+(42, 42, 'Trần Thị Hằng', 192.00),
+(43, 43, 'Nguyễn Văn Vinh', 250.00),
+(44, 44, 'Ngô Thị Hạnh', 250.00),
+(45, 45, 'Bùi Văn Khải', 192.00),
+(46, 46, 'Đặng Văn Chương', 250.00),
+(47, 47, 'Vũ Thị Kim Anh', 240.00),
+(48, 48, 'Trần Văn Tuấn', 250.00),
+(49, 49, 'Nguyễn Thị Yến', 250.00),
+(50, 50, 'Phạm Văn Kiên', 250.00),
+(51, 51, 'Âu Dương Hiệp Hào', 250.00);
 
 -- --------------------------------------------------------
 
@@ -437,31 +623,14 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
-
--- Đang đổ dữ liệu cho bảng `training`
---
-
-INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `Employee_ID`) VALUES
-(1, 'Tiếp thị kỹ thuật số', '2024-01-10', '2024-01-15', 10),
-(2, 'Quản lý nhân sự', '2024-02-20', '2024-02-22', 15),
-(3, 'Tiếp thị thương hiệu', '2024-03-01', '2024-03-11', 17),
-(4, 'Chiến lược nhân sự', '2024-03-15', '2024-03-20', 29),
-(5, 'Phân tích dữ liệu', '2024-04-05', '2024-04-07', 37),
-(6, 'Quản lý tài chính', '2024-04-18', '2024-04-20', 47),
-(7, 'Quản trị nhân sự nền tảng', '2024-05-01', '2024-05-07', 49);
-
---
 -- Chỉ mục cho các bảng đã đổ
-
-
---
--- Chỉ mục cho bảng `contract`
 --
 
-ALTER TABLE `contract`
-  ADD PRIMARY KEY (`Contract_ID`),
-  ADD KEY `Customer_ID` (`Customer_ID`),
-  ADD KEY `Project_ID` (`Project_ID`);
+--
+-- Chỉ mục cho bảng `children`
+--
+ALTER TABLE `children`
+  ADD PRIMARY KEY (`Employee_ID`,`ChildrenName`);
 
 --
 -- Chỉ mục cho bảng `customer`
@@ -496,10 +665,23 @@ ALTER TABLE `employeehealth`
   ADD PRIMARY KEY (`Employee_ID`);
 
 --
--- Chỉ mục cho bảng `project`
+-- Chỉ mục cho bảng `employeeperformance`
 --
-ALTER TABLE `project`
-  ADD PRIMARY KEY (`Project_ID`);
+ALTER TABLE `employeeperformance`
+  ADD KEY `Employee_ID` (`Employee_ID`);
+
+--
+-- Chỉ mục cho bảng `salary`
+--
+ALTER TABLE `salary`
+  ADD PRIMARY KEY (`Employee_ID`);
+
+--
+-- Chỉ mục cho bảng `timesheet`
+--
+ALTER TABLE `timesheet`
+  ADD PRIMARY KEY (`Timesheet_ID`),
+  ADD KEY `Employee_ID` (`Employee_ID`);
 
 --
 -- Chỉ mục cho bảng `training`
@@ -511,12 +693,6 @@ ALTER TABLE `training`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
-
---
--- AUTO_INCREMENT cho bảng `contract`
---
-ALTER TABLE `contract`
-  MODIFY `Contract_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `department`
@@ -531,27 +707,26 @@ ALTER TABLE `employee`
   MODIFY `Employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT cho bảng `project`
+-- AUTO_INCREMENT cho bảng `timesheet`
 --
-ALTER TABLE `project`
-  MODIFY `Project_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `timesheet`
+  MODIFY `Timesheet_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT cho bảng `training`
 --
 ALTER TABLE `training`
-  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Training_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Các ràng buộc cho bảng `contract`
+-- Các ràng buộc cho bảng `children`
 --
-ALTER TABLE `contract`
-  ADD CONSTRAINT `contract_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`),
-  ADD CONSTRAINT `contract_ibfk_2` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`);
+ALTER TABLE `children`
+  ADD CONSTRAINT `children_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
 
 --
 -- Các ràng buộc cho bảng `employee`
@@ -571,6 +746,24 @@ ALTER TABLE `employeecontact`
 --
 ALTER TABLE `employeehealth`
   ADD CONSTRAINT `employeehealth_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
+
+--
+-- Các ràng buộc cho bảng `employeeperformance`
+--
+ALTER TABLE `employeeperformance`
+  ADD CONSTRAINT `employeeperformance_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
+
+--
+-- Các ràng buộc cho bảng `salary`
+--
+ALTER TABLE `salary`
+  ADD CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
+
+--
+-- Các ràng buộc cho bảng `timesheet`
+--
+ALTER TABLE `timesheet`
+  ADD CONSTRAINT `timesheet_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
 
 --
 -- Các ràng buộc cho bảng `training`
