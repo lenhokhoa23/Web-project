@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th10 03, 2024 lúc 07:05 AM
+-- Máy chủ: localhost:3307
+-- Thời gian đã tạo: Th10 03, 2024 lúc 08:15 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Phiên bản PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `fsdfasdf`
+-- Cơ sở dữ liệu: `sample_company`
 --
 
 -- --------------------------------------------------------
@@ -496,6 +496,46 @@ INSERT INTO `employeeperformance` (`Employee_ID`, `EmployeeName`, `Score`, `Comm
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `product`
+--
+
+CREATE TABLE `product` (
+  `Product_ID` int(11) NOT NULL,
+  `Product_Code` char(10) DEFAULT NULL,
+  `Supplier_ID` int(11) DEFAULT NULL,
+  `BuyPrice` decimal(10,2) DEFAULT NULL,
+  `ProductRating` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
+INSERT INTO `product` (`Product_ID`, `Product_Code`, `Supplier_ID`, `BuyPrice`, `ProductRating`) VALUES
+(1, 'Táo', 1, 10.00, 9),
+(2, 'Chuối', 1, 15.00, 10),
+(3, 'Cam', 1, 12.50, 9),
+(4, 'Nho', 1, 11.00, 9),
+(5, 'Dưa hấu', 1, 25.00, 10),
+(6, 'Kiwi', 1, 18.00, 10),
+(7, 'Dứa', 1, 22.00, 9),
+(8, 'Lê', 1, 14.00, 9),
+(9, 'Mận', 1, 16.00, 10),
+(10, 'Bưởi', 1, 11.50, 9),
+(11, 'Xoài', 1, 30.00, 10),
+(12, 'Chanh', 1, 10.00, 9),
+(13, 'Dưa lê', 1, 19.00, 9),
+(14, 'Lựu', 1, 17.50, 10),
+(15, 'Nhãn', 1, 21.00, 9),
+(16, 'Ổi', 1, 20.00, 9),
+(17, 'Dưa leo', 1, 29.00, 10),
+(18, 'Bơ', 1, 24.00, 9),
+(19, 'Quýt', 1, 26.00, 10),
+(20, 'Dừa', 1, 23.00, 10);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `project`
 --
 
@@ -590,6 +630,30 @@ INSERT INTO `salary` (`Employee_ID`, `EmployeeName`, `Salary`, `DaysOff`, `Bonus
 (49, 'Nguyễn Thị Yến', 24000000.00, 0, 0.00, 1),
 (50, 'Phạm Văn Kiên', 21000000.00, 0, 1050000.00, 0),
 (51, 'Âu Dương Hiệp Hào', 22000000.00, 0, 0.00, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `Supplier_ID` int(11) NOT NULL,
+  `SupplierName` varchar(50) DEFAULT NULL,
+  `SupplierEmail` varchar(50) DEFAULT NULL,
+  `SupplierAddress` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `supplier`
+--
+
+INSERT INTO `supplier` (`Supplier_ID`, `SupplierName`, `SupplierEmail`, `SupplierAddress`) VALUES
+(1, 'Clever Fruits', 'cvfruits@gmail.com', 'Hà Nội'),
+(2, 'Sức Sống Xanh', 'sucsongxanh@gmail.com', 'Nam Định'),
+(3, 'KFruitsC', 'kfcfruits@gmail.com', 'Ninh Thuận'),
+(4, 'JoliGreen', 'joligreen@gmail.com', 'Thanh Hóa'),
+(5, 'Đặc sản 10 miền', '10mien@gmail.com', 'Đà Nẵng');
 
 -- --------------------------------------------------------
 
@@ -745,10 +809,23 @@ ALTER TABLE `employeeperformance`
   ADD KEY `Employee_ID` (`Employee_ID`);
 
 --
+-- Chỉ mục cho bảng `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`Product_ID`),
+  ADD KEY `Supplier_ID` (`Supplier_ID`);
+
+--
 -- Chỉ mục cho bảng `salary`
 --
 ALTER TABLE `salary`
   ADD PRIMARY KEY (`Employee_ID`);
+
+--
+-- Chỉ mục cho bảng `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`Supplier_ID`);
 
 --
 -- Chỉ mục cho bảng `timesheet`
@@ -826,6 +903,12 @@ ALTER TABLE `employeehealth`
 --
 ALTER TABLE `employeeperformance`
   ADD CONSTRAINT `employeeperformance_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`);
+
+--
+-- Các ràng buộc cho bảng `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`Supplier_ID`) REFERENCES `supplier` (`Supplier_ID`);
 
 --
 -- Các ràng buộc cho bảng `salary`
