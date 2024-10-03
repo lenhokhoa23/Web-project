@@ -2,14 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
-
-
--- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th10 02, 2024 lúc 04:59 PM
-
+-- Máy chủ: 127.0.0.1:3307
+-- Thời gian đã tạo: Th10 02, 2024 lúc 05:48 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -23,13 +19,13 @@ SET time_zone = "+00:00";
 
 --
 -- Cơ sở dữ liệu: `test!!!`
-
 --
 
 -- --------------------------------------------------------
 
 --
-
+-- Cấu trúc bảng cho bảng `contract`
+--
 
 CREATE TABLE `contract` (
   `Contract_ID` int(11) NOT NULL,
@@ -41,7 +37,7 @@ CREATE TABLE `contract` (
 
 --
 -- Đang đổ dữ liệu cho bảng `contract`
-
+--
 
 INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDate`, `ContractDue`) VALUES
 (1, 3, 5, '2024-01-15', '2024-06-15'),
@@ -52,8 +48,6 @@ INSERT INTO `contract` (`Contract_ID`, `Customer_ID`, `Project_ID`, `ContractDat
 (6, 8, 7, '2024-06-20', '2024-11-20'),
 (7, 42, 3, '2024-07-25', '2024-12-25'),
 (8, 18, 8, '2024-08-30', '2025-01-30');
-
--- --------------------------------------------------------
 
 -- --------------------------------------------------------
 
@@ -69,9 +63,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
-
 -- Đang đổ dữ liệu cho bảng `customer`
-
 --
 
 INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Order`) VALUES
@@ -159,9 +151,8 @@ INSERT INTO `customer` (`Customer_ID`, `CustomerName`, `CustomerEmail`, `Num_Ord
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `department`
-
+--
 
 CREATE TABLE `department` (
   `Department_ID` int(11) NOT NULL,
@@ -254,9 +245,8 @@ INSERT INTO `employee` (`Employee_ID`, `EmployeeName`, `ReportTo`, `StartDate`, 
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `employeecontact`
-
+--
 
 CREATE TABLE `employeecontact` (
   `Employee_ID` int(11) NOT NULL,
@@ -267,7 +257,7 @@ CREATE TABLE `employeecontact` (
 
 --
 -- Đang đổ dữ liệu cho bảng `employeecontact`
-
+--
 
 INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeAddress`) VALUES
 (1, '0912345678', 'minh@gmail.com', 'Hà Nội, Việt Nam'),
@@ -325,9 +315,7 @@ INSERT INTO `employeecontact` (`Employee_ID`, `PhoneNumber`, `Email`, `EmployeeA
 -- --------------------------------------------------------
 
 --
-
 -- Cấu trúc bảng cho bảng `employeehealth`
-
 --
 
 CREATE TABLE `employeehealth` (
@@ -427,7 +415,7 @@ INSERT INTO `project` (`Project_ID`, `ProjectName`, `Address`) VALUES
 --
 -- Cấu trúc bảng cho bảng `training`
 --
----
+
 CREATE TABLE `training` (
   `Training_ID` int(11) NOT NULL,
   `TrainingName` varchar(50) DEFAULT NULL,
@@ -437,7 +425,6 @@ CREATE TABLE `training` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
-
 -- Đang đổ dữ liệu cho bảng `training`
 --
 
@@ -452,12 +439,11 @@ INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `
 
 --
 -- Chỉ mục cho các bảng đã đổ
-
+--
 
 --
 -- Chỉ mục cho bảng `contract`
 --
-
 ALTER TABLE `contract`
   ADD PRIMARY KEY (`Contract_ID`),
   ADD KEY `Customer_ID` (`Customer_ID`),
