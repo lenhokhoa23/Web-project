@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- Include sidebar -->
+    <%- include('partials/sidebar.ejs') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Thông tin cơ bản</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên..." onkeyup="searchEmployees()">
+        </header>
+
+        <section class="employee-table">
+            <table id="employee-table">
+                <thead>
+                    <tr>
+                        <th>Mã Nhân viên</th>
+                        <th>Tên Nhân viên</th>
+                        <th>Ngày tham gia</th>
+                        <th>Mã Phòng</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                    </tr>
+                </thead>
+                <tbody id="employee-data">
+                    <!-- Dữ liệu nhân viên sẽ được chèn vào đây -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = ("0" + date.getDate()).slice(-2); // Lấy ngày, thêm 0 nếu nhỏ hơn 10
+            const month = ("0" + (date.getMonth() + 1)).slice(-2); // Lấy tháng, thêm 0 nếu nhỏ hơn 10
+            const year = date.getFullYear(); // Lấy năm
+            return `${day}/${month}/${year}`; // Định dạng ngày/tháng/năm
+        }
+
+        function searchEmployees() {
+            const input = document.getElementById('search-bar').value.toLowerCase();
+            const table = document.getElementById('employee-table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) { // Bắt đầu từ 1 để bỏ qua header
+                let cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                // Duyệt qua tất cả các cột
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerHTML.toLowerCase().indexOf(input) > -1) {
+                        match = true; // Nếu tìm thấy giá trị khớp
+                        break;
+                    }
+                }
+
+                // Hiển thị hoặc ẩn hàng dựa trên kết quả tìm kiếm
+                if (match) {
+                    rows[i].style.display = '';
+                }   else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/api/employees')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('employee-data');
+                data.forEach(employee => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td>${employee.Employee_ID}</td>
+                    <td>${employee.EmployeeName}</td>
+                    <td>${formatDate(employee.StartDate)}</td>
+                    <td>${employee.Department_ID}</td>
+                    <td>${employee.PhoneNumber}</td>
+                    <td>${employee.Email}</td>
+                    <td>${employee.EmployeeAddress}</td>`;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching employee data:', error));
+        });
+
+    </script>
+    
+</body>
+</html>

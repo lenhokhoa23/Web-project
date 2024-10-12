@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Đào tạo</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Include sidebar -->
+    <%- include('partials/sidebar.ejs') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Thông tin Đào tạo</h2>
+        </header>
+
+        <section class="training-info" id="training-data">
+            <!-- Dữ liệu sẽ được chèn vào đây -->
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/api/training')
+                .then(response => response.json())
+                .then(data => {
+                    const trainingContainer = document.getElementById('training-data');
+                    data.forEach(training => {
+                        const trainingCard = document.createElement('div');
+                        trainingCard.classList.add('training-card');
+    
+                        // Định dạng ngày tháng
+                        const formatDate = (dateString) => {
+                            const date = new Date(dateString);
+                            const day = String(date.getDate()).padStart(2, '0'); // Thêm số 0 nếu ngày < 10
+                            const month = String(date.getMonth() + 1).padStart(2, '0'); // Thêm số 0 nếu tháng < 10
+                            const year = String(date.getFullYear()).slice(-2); // Lấy 2 chữ số cuối của năm
+                            return `${day}/${month}/${year}`;
+                        };
+    
+                        // Tạo nội dung cho card
+                        trainingCard.innerHTML = `
+                            <h3 class="training-name">${training.TrainingName}</h3>
+                            <div class="training-details" style="display: none;">
+                                <p><strong>Mã Đào tạo:</strong> ${training.Training_ID}</p>
+                                <p><strong>Ngày bắt đầu:</strong> ${formatDate(training.StartDate)}</p>
+                                <p><strong>Ngày kết thúc:</strong> ${formatDate(training.EndDate)}</p>
+                                <p><strong>Nhân viên:</strong> ${training.EmployeeName}</p>
+                            </div>
+                        `;
+    
+                        // Thêm sự kiện click cho tên khóa đào tạo
+                        trainingCard.querySelector('.training-name').addEventListener('click', () => {
+                            const details = trainingCard.querySelector('.training-details');
+                            details.style.display = details.style.display === 'none' ? 'block' : 'none';
+                        });
+    
+                        trainingContainer.appendChild(trainingCard);
+                    });
+                })
+                .catch(error => console.error('Lỗi khi lấy dữ liệu đào tạo:', error));
+        });
+    </script>
+    
+</body>
+</html>
