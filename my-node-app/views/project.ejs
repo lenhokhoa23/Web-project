@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý dự án</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Include sidebar -->
+    <%- include('partials/sidebar.ejs') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Thông tin dự án</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm dự án..." onkeyup="searchProjects()">
+        </header>
+
+        <section class="project-table">
+            <table id="project-table">
+                <thead>
+                    <tr>
+                        <th>Mã Dự án</th>
+                        <th>Tên Dự án</th>
+                        <th>Địa chỉ</th>
+                        <th>Ngày hợp đồng</th>
+                        <th>Ngày đáo hạn</th>
+                        <th>Mã Khách hàng</th>
+                        <th>Tên Khách hàng</th>
+                    </tr>
+                </thead>
+                <tbody id="project-data">
+                    <!-- Dữ liệu dự án sẽ được chèn vào đây -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = ("0" + date.getDate()).slice(-2); // Lấy ngày, thêm 0 nếu nhỏ hơn 10
+            const month = ("0" + (date.getMonth() + 1)).slice(-2); // Lấy tháng, thêm 0 nếu nhỏ hơn 10
+            const year = date.getFullYear(); // Lấy năm
+            return `${day}/${month}/${year}`; // Định dạng ngày/tháng/năm
+        }
+
+        function searchProjects() {
+            const input = document.getElementById('search-bar').value.toLowerCase();
+            const table = document.getElementById('project-table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) { // Bắt đầu từ 1 để bỏ qua header
+                let cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                // Duyệt qua tất cả các cột
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerHTML.toLowerCase().indexOf(input) > -1) {
+                        match = true; // Nếu tìm thấy giá trị khớp
+                        break;
+                    }
+                }
+
+                // Hiển thị hoặc ẩn hàng dựa trên kết quả tìm kiếm
+                if (match) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+    fetch('/api/projects')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('project-data');
+            tableBody.innerHTML = ''; // Xóa dữ liệu cũ trước khi thêm mới
+
+            data.forEach(project => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${project.Project_ID}</td>
+                    <td>${project.ProjectName}</td>
+                    <td>${project.Address}</td>
+                    <td>${formatDate(project.ContractDate)}</td>
+                    <td>${formatDate(project.ContractDue)}</td>
+                    <td>${project.Customer_ID}</td>
+                    <td>${project.CustomerName}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Lỗi khi lấy dữ liệu dự án:', error));
+});
+
+    </script>
+</body>
+</html>

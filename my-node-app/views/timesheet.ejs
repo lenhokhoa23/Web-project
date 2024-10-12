@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng chấm công</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Include sidebar -->
+    <%- include('partials/sidebar.ejs') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Bảng chấm công</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên..." onkeyup="searchTimesheet()">
+        </header>
+
+        <section class="timesheet-table">
+            <table id="timesheet-table">
+                <thead>
+                    <tr>
+                        <th>Mã Nhân viên</th>
+                        <th>Tên Nhân viên</th>
+                        <th>Giờ làm việc</th>
+                        <th>Điểm</th>
+                        <th>Bình luận</th>
+                    </tr>
+                </thead>
+                <tbody id="timesheet-data">
+                    <!-- Dữ liệu sẽ được chèn vào đây -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        function searchTimesheet() {
+            const input = document.getElementById('search-bar').value.toLowerCase();
+            const table = document.getElementById('timesheet-table');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) { // Bắt đầu từ 1 để bỏ qua header
+                let cells = rows[i].getElementsByTagName('td');
+                let match = false;
+
+                // Duyệt qua tất cả các cột
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerHTML.toLowerCase().indexOf(input) > -1) {
+                        match = true; // Nếu tìm thấy giá trị khớp
+                        break;
+                    }
+                }
+
+                // Hiển thị hoặc ẩn hàng dựa trên kết quả tìm kiếm
+                if (match) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/api/timesheet/search?q=')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('timesheet-data');
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.Employee_ID}</td>
+                        <td>${item.EmployeeName}</td>
+                        <td>${item.WorkedHours}</td>
+                        <td>${item.score}</td>
+                        <td>${item.comment}</td>`;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching timesheet data:', error));
+        });
+    </script>
+</body>
+</html>

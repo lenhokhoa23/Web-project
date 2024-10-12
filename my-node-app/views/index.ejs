@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- Include sidebar -->
+    <%- include('partials/sidebar.ejs') %>
+    
+    <div class="main-content">
+        <header>
+            <h2>Chào mừng trở lại, Đại vương!!</h2>
+            <p>Hôm nay là <span id="current-date"></span></p>
+        </header>
+
+        <section class="dashboard">
+            <div class="card">Nhân viên</div>
+            <div class="card">Giấy phép</div>
+            <div class="card">Quản lý</div>
+            <div class="card">Cài đặt</div>
+        </section>
+    </div>
+
+    <script>
+        // Hàm lấy ngày hiện tại và hiển thị trên trang
+        function displayCurrentDate() {
+            const currentDateElement = document.getElementById('current-date');
+            const today = new Date();
+            
+            const day = ("0" + today.getDate()).slice(-2); // Thêm số 0 nếu nhỏ hơn 10
+            const month = ("0" + (today.getMonth() + 1)).slice(-2); // Tháng bắt đầu từ 0
+            const year = today.getFullYear();
+
+            // Định dạng ngày/tháng/năm
+            const formattedDate = `${day}/${month}/${year}`;
+            currentDateElement.textContent = formattedDate;
+        }
+
+        // Gọi hàm khi trang được tải
+        document.addEventListener('DOMContentLoaded', displayCurrentDate);
+    </script>
+</body>
+</html>
