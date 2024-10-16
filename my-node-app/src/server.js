@@ -1,11 +1,15 @@
 const express = require('express');
+const app = express();
+const projectRoutes = require('../routes/project'); // Đường dẫn đúng tới file project.js
+const employeeRoutes = require('../routes/employee'); // Tìm đường dẫn từ src tới thư mục routes
 const mysql = require('mysql2');
 const path = require('path');
-const app = express();
 const port = 3000;
 
+// Middleware
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views')); 
+app.set('views', './views');
 
 // Connect to database
 const db = mysql.createConnection({
@@ -16,21 +20,21 @@ const db = mysql.createConnection({
     port: 3306
 });
 
-// Middleware để phục vụ các file tĩnh
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.json());
+app.use('/', employeeRoutes);  // Route trang nhân viên
+app.use('/', projectRoutes);   // Route trang dự án
 
 // Endpoint để phục vụ index.html
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-// Endpoint để phục vụ employee.html
 app.get('/employee', (req, res) => {
-    res.render('employee');
+    res.render('employee'); // Đảm bảo rằng file employee.ejs tồn tại trong folder views
 });
 
 // Endpoint để lấy dữ liệu nhân viên
-app.get('/api/employees', (req, res) => {
+app.get('/api/employee', (req, res) => {
     const query = `
         SELECT e.Employee_ID, e.EmployeeName, e.StartDate, e.Department_ID, 
                ec.PhoneNumber, ec.Email, ec.EmployeeAddress
