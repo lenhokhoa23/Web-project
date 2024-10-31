@@ -38,6 +38,10 @@
     </div>
 
     <script>
+        let employees = []; // Biến toàn cục lưu trữ dữ liệu nhân viên
+        let currentSortColumn = ''; // Theo dõi cột hiện tại đang được sắp xếp
+        let isAscending = true; // Theo dõi thứ tự sắp xếp
+
         function formatDate(dateString) {
             const date = new Date(dateString);
             const day = ("0" + date.getDate()).slice(-2); // Lấy ngày, thêm 0 nếu nhỏ hơn 10
@@ -49,17 +53,29 @@
         function searchProjects() {
             const input = document.getElementById('search-bar').value.toLowerCase();
             const table = document.getElementById('project-table');
+
             const rows = table.getElementsByTagName('tr');
+
+            // Kiểm tra nếu nhập số và dấu cách (ví dụ "7 ")
+            const isExactIdSearch = /^\d+\s$/.test(input);
 
             for (let i = 1; i < rows.length; i++) { // Bắt đầu từ 1 để bỏ qua header
                 let cells = rows[i].getElementsByTagName('td');
+                let employeeId = cells[0].innerHTML.trim(); // Lấy Mã Nhân viên
                 let match = false;
 
-                // Duyệt qua tất cả các cột
-                for (let j = 0; j < cells.length; j++) {
-                    if (cells[j].innerHTML.toLowerCase().indexOf(input) > -1) {
-                        match = true; // Nếu tìm thấy giá trị khớp
-                        break;
+                if (isExactIdSearch) {
+                    // Nếu đúng định dạng "số và dấu cách", so khớp Mã Nhân viên
+                    if (employeeId === input.trim()) {
+                        match = true;
+                    }
+                } else {
+                    // Tìm kiếm thông thường qua tất cả các cột
+                    for (let j = 0; j < cells.length; j++) {
+                        if (cells[j].innerHTML.toLowerCase().indexOf(input) > -1) {
+                            match = true;
+                            break;
+                        }
                     }
                 }
 
@@ -96,7 +112,6 @@
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu dự án:', error));
 });
-
     </script>
 </body>
 </html>
