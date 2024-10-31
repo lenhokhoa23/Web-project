@@ -14,6 +14,9 @@
         <header>
             <h2>Bảng chấm công</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên..." onkeyup="searchTimesheet()">
+            <button id="search-top-employees" onclick="searchTopEmployees()">Tìm nhân viên điểm 10</button>
+            <button id="show-all-employees" onclick="showAllEmployees()">Hiển thị tất cả</button>
+
         </header>
 
         <section class="timesheet-table">
@@ -60,9 +63,8 @@
                 }
             }
         }
-        
         document.addEventListener('DOMContentLoaded', () => {
-            fetch('/api/timesheet/search?q=')
+            fetch('/api/timesheets')
             .then(response => response.json())
             .then(data => {
                 const tableBody = document.getElementById('timesheet-data');

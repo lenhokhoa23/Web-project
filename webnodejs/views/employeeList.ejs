@@ -1,0 +1,81 @@
+<!-- views/employeeList.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách nhân viên</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/sidebar') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Thông tin nhân viên</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên..." onkeyup="searchEmployees()">
+        </header>
+
+        <section class="employee-table">
+            <table id="employee-table">
+                <thead>
+                    <tr>
+                        <th>Mã NV</th>
+                        <th>Tên nhân viên</th>
+                        <th>Ngày tham gia</th>
+                        <th>Phòng ban</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                    </tr>
+                </thead>
+                <tbody id="employee-data">
+                    <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        // Format date function
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('vi-VN');
+        }
+
+        // Search function
+        function searchEmployees() {
+            const input = document.getElementById('search-bar').value.toLowerCase();
+            const rows = document.getElementById('employee-data').getElementsByTagName('tr');
+
+            for (let row of rows) {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(input) ? '' : 'none';
+            }
+        }
+
+        // Load employees data
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/api/employees')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('employee-data');
+                    data.forEach(employee => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${employee.Employee_ID}</td>
+                            <td>${employee.EmployeeName}</td>
+                            <td>${formatDate(employee.StartDate)}</td>
+                            <td>${employee.Department_ID}</td>
+                            <td>${employee.PhoneNumber || '-'}</td>
+                            <td>${employee.Email || '-'}</td>
+                            <td>${employee.EmployeeAddress || '-'}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
