@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee List</title>
+    <title>Quản lý dự án</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-
 <body>
     <!-- Include sidebar -->
     <%- include('partials/sidebar.ejs') %>
 
     <div class="main-content">
         <header>
-            <h2>Thông tin cơ bản</h2>
-            <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên..." onkeyup="searchEmployees()">
+            <h2>Thông tin dự án</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm dự án..." onkeyup="searchProjects()">
+            
         </header>
 
-        <section class="employee-table">
-            <table id="employee-table">
+        <section class="project-table">
+            <table id="project-table">
                 <thead>
                     <tr>
-                        <th>Mã Nhân viên</th>
-                        <th>Tên Nhân viên</th>
-                        <th>Ngày tham gia</th>
-                        <th>Mã Phòng</th>
-                        <th>Số điện thoại</th>
-                        <th>Email</th>
+                        <th>Mã Dự án</th>
+                        <th>Tên Dự án</th>
                         <th>Địa chỉ</th>
+                        <th>Ngày hợp đồng</th>
+                        <th>Ngày đáo hạn</th>
+                        <th>Mã Khách hàng</th>
+                        <th>Tên Khách hàng</th>
                     </tr>
                 </thead>
-                <tbody id="employee-data">
-                    <!-- Dữ liệu nhân viên sẽ được chèn vào đây -->
+                <tbody id="project-data">
+                    <!-- Dữ liệu dự án sẽ được chèn vào đây -->
                 </tbody>
             </table>
         </section>
@@ -46,9 +46,9 @@
             return `${day}/${month}/${year}`; // Định dạng ngày/tháng/năm
         }
 
-        function searchEmployees() {
+        function searchProjects() {
             const input = document.getElementById('search-bar').value.toLowerCase();
-            const table = document.getElementById('employee-table');
+            const table = document.getElementById('project-table');
             const rows = table.getElementsByTagName('tr');
 
             for (let i = 1; i < rows.length; i++) { // Bắt đầu từ 1 để bỏ qua header
@@ -66,34 +66,37 @@
                 // Hiển thị hoặc ẩn hàng dựa trên kết quả tìm kiếm
                 if (match) {
                     rows[i].style.display = '';
-                }   else {
+                } else {
                     rows[i].style.display = 'none';
                 }
             }
         }
         
+
         document.addEventListener('DOMContentLoaded', () => {
-            fetch('/api/employees')
-            .then(response => response.json())
-            .then(data => {
-                const tableBody = document.getElementById('employee-data');
-                data.forEach(employee => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                    <td>${employee.Employee_ID}</td>
-                    <td>${employee.EmployeeName}</td>
-                    <td>${formatDate(employee.StartDate)}</td>
-                    <td>${employee.Department_ID}</td>
-                    <td>${employee.PhoneNumber}</td>
-                    <td>${employee.Email}</td>
-                    <td>${employee.EmployeeAddress}</td>`;
-                    tableBody.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Error fetching employee data:', error));
-        });
+    fetch('/api/projects')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('project-data');
+            tableBody.innerHTML = ''; // Xóa dữ liệu cũ trước khi thêm mới
+
+            data.forEach(project => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${project.Project_ID}</td>
+                    <td>${project.ProjectName}</td>
+                    <td>${project.Address}</td>
+                    <td>${formatDate(project.ContractDate)}</td>
+                    <td>${formatDate(project.ContractDue)}</td>
+                    <td>${project.Customer_ID}</td>
+                    <td>${project.CustomerName}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Lỗi khi lấy dữ liệu dự án:', error));
+});
 
     </script>
-    
 </body>
 </html>
