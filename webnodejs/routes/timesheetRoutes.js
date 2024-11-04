@@ -4,5 +4,7 @@ const timesheetController = require('../controllers/timesheetController');
 
 router.get('/timesheet', timesheetController.showTimesheet);
 router.get('/api/timesheets', timesheetController.getTimesheet);
+router.get('/api/timesheets/perfect-score', timesheetController.getPerfectScoreEmployees);
+
 
 module.exports = router;
