@@ -23,6 +23,15 @@ function filterPerfectScoreEmployees() {
         .catch(error => console.error('Lỗi khi lấy danh sách nhân viên điểm 10:', error));
 }
 
+function filterHardEmployee() {
+    fetch('/api/timesheets/hard-employee')
+        .then(response => response.json())
+        .then(employees => {
+            displayEmployees(employees);
+        })
+        .catch(error => console.error('Lỗi khi lấy danh sách nhân viên chăm chỉ:', error));
+}
+
 function displayEmployees(employees) {
     const tableBody = document.getElementById('timesheet-data');
     tableBody.innerHTML = '';
@@ -50,4 +59,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search-bar').addEventListener('keyup', searchTimesheet);
     document.getElementById('show-all-employees').addEventListener('click', showAllEmployees);
     document.getElementById('perfectScoreBtn').addEventListener('click', filterPerfectScoreEmployees);
+    document.getElementById('hardEmployee').addEventListener('click', filterHardEmployee);
 });

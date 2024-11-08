@@ -23,6 +23,16 @@ const timesheetController = {
             }
             res.json(timesheets);
         });
+    },
+
+    getHardEmployees: (req, res) => {
+        Timesheet.getHardEmployees((err, timesheets) => {
+            if (err) {
+                console.error('Lỗi khi lấy danh sách nhân viên điểm 10:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json(timesheets);
+        });
     }
 };
 
