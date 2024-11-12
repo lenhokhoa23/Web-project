@@ -5,6 +5,7 @@ const employeeRoutes = require('./routes/employeeRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const trainingRoutes = require('./routes/trainingRoutes');
 const timesheetRoutes = require('./routes/timesheetRoutes');
+const childrenRoutes = require('./routes/childrenRoutes');
 
 const app = express();
 const port = 3000;
@@ -21,6 +22,7 @@ app.use('/', employeeRoutes);
 app.use('/', projectRoutes);
 app.use('/', trainingRoutes);
 app.use('/', timesheetRoutes);
+app.use('/', childrenRoutes);
 
 // Trang chủ
 app.get('/', (req, res) => {
