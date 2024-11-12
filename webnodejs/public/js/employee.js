@@ -1,16 +1,23 @@
+let allEmployees = []; // Store all employees
+
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
 }
 
-function searchEmployees() {
-    const input = document.getElementById('search-bar').value.toLowerCase();
-    const rows = document.getElementById('employee-data').getElementsByTagName('tr');
+function filterEmployees() {
+    const searchInput = document.getElementById('search-bar').value.toLowerCase();
+    const departmentFilter = document.getElementById('department-filter').value;
 
-    for (let row of rows) {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(input) ? '' : 'none';
-    }
+    const filteredEmployees = allEmployees.filter(employee => {
+        const matchesSearch = Object.values(employee).some(value => 
+            String(value).toLowerCase().includes(searchInput)
+        );
+        const matchesDepartment = !departmentFilter || employee.Department_ID.toString() === departmentFilter;
+        return matchesSearch && matchesDepartment;
+    });
+
+    displayEmployees(filteredEmployees);
 }
 
 function displayEmployees(employees) {
@@ -32,13 +39,28 @@ function displayEmployees(employees) {
     });
 }
 
+function populateDepartmentFilter(employees) {
+    const departments = [...new Set(employees.map(emp => emp.Department_ID))];
+    const departmentFilter = document.getElementById('department-filter');
+
+    departments.forEach(dept => {
+        const option = document.createElement('option');
+        option.value = dept;
+        option.textContent = dept;
+        departmentFilter.appendChild(option);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/employees')
         .then(response => response.json())
         .then(data => {
-            displayEmployees(data);
+            allEmployees = data;
+            displayEmployees(allEmployees);
+            populateDepartmentFilter(allEmployees);
         })
         .catch(error => console.error('Error:', error));
 
-    document.getElementById('search-bar').addEventListener('keyup', searchEmployees);
+    document.getElementById('search-bar').addEventListener('input', filterEmployees);
+    document.getElementById('department-filter').addEventListener('change', filterEmployees);
 });

@@ -34,9 +34,21 @@ function searchProjects() {
                 }
             }
         }
-
         rows[i].style.display = match ? '' : 'none';
     }
+}
+
+function showExpireProject() {
+    fetch('/api/projects/expire-project')
+        .then(response => response.json())
+        .then(projects => {
+            displayProjects(projects);
+        })
+        .catch(error => console.error('Lỗi khi lấy danh sách project expire', error))
+}
+
+function refresh() {
+    displayProjects(projects);
 }
 
 function displayProjects(projects) {
@@ -66,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             displayProjects(projects);
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu dự án:', error));
-
+    document.getElementById('refresh').addEventListener('click', refresh);
+    document.getElementById('expire-project').addEventListener('click', showExpireProject);
     document.getElementById('search-bar').addEventListener('keyup', searchProjects);
 });
