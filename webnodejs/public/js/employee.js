@@ -20,6 +20,8 @@ function filterEmployees() {
     displayEmployees(filteredEmployees);
 }
 
+
+
 function displayEmployees(employees) {
     const tableBody = document.getElementById('employee-data');
     tableBody.innerHTML = '';
@@ -50,6 +52,19 @@ function populateDepartmentFilter(employees) {
         departmentFilter.appendChild(option);
     });
 }
+function searchById() {
+    const idInput = document.getElementById('id-search').value;
+    fetch(`/api/employees/${idInput}`)
+        .then(response => response.json())
+        .then(employee => {
+            if (employee) {
+                displayEmployees([employee]);
+            } else {
+                alert('Không tìm thấy nhân viên với ID này');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/employees')
@@ -63,4 +78,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('search-bar').addEventListener('input', filterEmployees);
     document.getElementById('department-filter').addEventListener('change', filterEmployees);
+    document.getElementById('id-search-btn').addEventListener('click', searchById);
 });
