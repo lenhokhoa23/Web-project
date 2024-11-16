@@ -14,6 +14,12 @@
         <header>
             <h2>Thông tin Con cái Nhân viên</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên..." onkeyup="searchChildren()">
+
+            <select id="department-filter">
+                <option value="">Chọn Phòng ban</option>
+            </select>
+            <button onclick="filterByDepartment()">Lọc</button>
+            <button onclick="refreshTable()">Làm mới</button>
         </header>
 
         <section class="children-table">
@@ -34,49 +40,6 @@
         </section>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                const response = await fetch('/api/children');
-                const data = await response.json();
-                const tableBody = document.getElementById('children-data');
-
-                data.forEach(child => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${child.Employee_ID}</td>
-                        <td>${child.EmployeeName}</td>
-                        <td>${child.ChildrenName}</td>
-                        <td>${child.Gender}</td>
-                        <td>${child.Department_ID}</td>`;
-                    tableBody.appendChild(row);
-                });
-            } catch (error) {
-                console.error('Lỗi khi lấy dữ liệu con cái nhân viên:', error);
-            }
-        });
-
-        function searchChildren() {
-            const input = document.getElementById('search-bar').value.toLowerCase();
-            const table = document.getElementById('children-table');
-            const rows = table.getElementsByTagName('tr');
-
-            for (let i = 1; i < rows.length; i++) { // Bỏ qua hàng header
-                let cells = rows[i].getElementsByTagName('td');
-                let match = false;
-
-                // Kiểm tra tất cả các ô trong hàng
-                for (let j = 0; j < cells.length; j++) {
-                    if (cells[j].innerHTML.toLowerCase().indexOf(input) > -1) {
-                        match = true; // Nếu tìm thấy từ khóa trong bất kỳ ô nào
-                        break;
-                    }
-                }
-
-                // Hiển thị hoặc ẩn hàng dựa trên kết quả tìm kiếm
-                rows[i].style.display = match ? '' : 'none';
-            }
-        }
-    </script>
+    <script src="/js/children.js"></script>
 </body>
 </html>
