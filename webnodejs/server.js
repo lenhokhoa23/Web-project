@@ -1,15 +1,14 @@
 // server.js
 const express = require('express');
 const path = require('path');
-const employeeRoutes = require('./routes/employeeRoutes');
+const employeeRoutes = require('./routes/EmployeeRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const trainingRoutes = require('./routes/trainingRoutes');
 const timesheetRoutes = require('./routes/timesheetRoutes');
 const childrenRoutes = require('./routes/childrenRoutes');
-
 const app = express();
 const port = 3000;
-
+app.use(express.json());
 // Cấu hình view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

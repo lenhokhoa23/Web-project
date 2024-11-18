@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm nhân viên mới</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/sidebar') %>
+
+    <div class="main-content">
+        <h2>Thêm nhân viên mới</h2>
+        <form id="add-employee-form">
+            <div>
+                <label for="EmployeeName">Tên nhân viên(*):</label>
+                <input type="text" id="EmployeeName" name="EmployeeName" required>
+            </div>
+            <div>
+                <label for="StartDate">Ngày tham gia(*):</label>
+                <input type="date" id="StartDate" name="StartDate" required>
+            </div>
+            <div>
+                <label for="Department_ID">Mã phòng ban(*):</label>
+                <input type="text" id="Department_ID" name="Department_ID" required>
+            </div>
+            <div>
+                <label for="PhoneNumber">Số điện thoại(*):</label>
+                <input type="tel" id="PhoneNumber" name="PhoneNumber" required>
+            </div>
+            <div>
+                <label for="ReportTo">Báo cáo cho:</label>
+                <input type="number" id="ReportTo" name="ReportTo">
+            </div>
+            <div>
+                <label for="Email">Email(*):</label>
+                <input type="email" id="Email" name="Email" required>
+            </div>
+            <div>
+                <label for="EmployeeAddress">Địa chỉ(*):</label>
+                <input type="text" id="EmployeeAddress" name="EmployeeAddress" required>
+            </div>
+            <button type="submit">Thêm nhân viên</button>
+        </form>
+    </div>
+
+    <script src="/js/employee.js"></script>
+</body>
+</html>
