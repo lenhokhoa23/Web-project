@@ -20,10 +20,10 @@ function filterEmployees() {
     displayEmployees(filteredEmployees);
 }
 
-
-
 function displayEmployees(employees) {
     const tableBody = document.getElementById('employee-data');
+    if (!tableBody) return; // Exit if we're not on the employee list page
+
     tableBody.innerHTML = '';
 
     employees.forEach(employee => {
@@ -42,8 +42,10 @@ function displayEmployees(employees) {
 }
 
 function populateDepartmentFilter(employees) {
-    const departments = [...new Set(employees.map(emp => emp.Department_ID))];
     const departmentFilter = document.getElementById('department-filter');
+    if (!departmentFilter) return; // Exit if we're not on the employee list page
+
+    const departments = [...new Set(employees.map(emp => emp.Department_ID))];
 
     departments.forEach(dept => {
         const option = document.createElement('option');
@@ -52,6 +54,7 @@ function populateDepartmentFilter(employees) {
         departmentFilter.appendChild(option);
     });
 }
+
 function searchById() {
     const idInput = document.getElementById('id-search').value;
     fetch(`/api/employees/${idInput}`)
@@ -66,7 +69,7 @@ function searchById() {
         .catch(error => console.error('Error:', error));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function setupEmployeeListPage() {
     fetch('/api/employees')
         .then(response => response.json())
         .then(data => {
@@ -79,4 +82,53 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search-bar').addEventListener('input', filterEmployees);
     document.getElementById('department-filter').addEventListener('change', filterEmployees);
     document.getElementById('id-search-btn').addEventListener('click', searchById);
+}
+
+function setupAddEmployeePage() {
+    const form = document.getElementById('add-employee-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Get form data and convert to object
+        const formData = new FormData(form);
+        const employeeData = {};
+        formData.forEach((value, key) => {
+            employeeData[key] = value;
+        });
+
+        // Log the data being sent for debugging
+        console.log('Sending data:', employeeData);
+
+        fetch('/api/employees', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(employeeData),
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => Promise.reject(err));
+            }
+            return response.json();
+        })
+        .then(newEmployee => {
+            alert('Nhân viên mới đã được thêm thành công!');
+            window.location.href = '/employee';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra khi thêm nhân viên mới: ' + (error.error || 'Lỗi không xác định'));
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('employee-data')) {
+        setupEmployeeListPage();
+    } else if (document.getElementById('add-employee-form')) {
+        setupAddEmployeePage();
+    }
 });
