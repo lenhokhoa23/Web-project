@@ -195,7 +195,8 @@ header {
 }
 
 /* Table's size */
-.order-table table {
+
+.order-table table, .product-table table {
     width: 100%; /* Đặt chiều rộng bảng bằng 100% để vừa với màn hình */
     border-collapse: collapse; /* Hợp nhất các đường viền của bảng */
     margin-top: 20px; /* Thêm khoảng cách ở trên bảng */
@@ -203,22 +204,24 @@ header {
 
 /* Định dạng các ô trong bảng */
 .order-table th,
-.order-table td {
+.order-table td,
+.product-table th,
+.product-table td {
     padding: 10px; /* Thêm khoảng cách bên trong ô */
     text-align: left; /* Canh lề bên trái cho văn bản trong ô */
     border: 1px solid #ddd; /* Thêm đường viền cho ô */
 }
 
 /* Table's title */
-.order-table th {
+.order-table th, .product-table th {
     background-color: #f2f2f2; /* Title color */
 }
 
 /* Stripes's effects */
-.order-table tr:nth-child(even) {
+.order-table tr:nth-child(even), .product-table tr:nth-child(even) {
     background-color: #f9f9f9; /* Màu nền cho hàng chẵn */
 }
 
-.order-table tr:hover {
+.order-table tr:hover, .product-table tr:hover {
     background-color: #e0e0e0; /* Màu nền khi hover vào hàng */
 }

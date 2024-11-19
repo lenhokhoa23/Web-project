@@ -6,6 +6,7 @@ const projectRoutes = require('./routes/projectRoutes');
 const trainingRoutes = require('./routes/trainingRoutes');
 const timesheetRoutes = require('./routes/timesheetRoutes');
 const childrenRoutes = require('./routes/childrenRoutes');
+const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/OrderRoutes');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/', projectRoutes);
 app.use('/', trainingRoutes);
 app.use('/', timesheetRoutes);
 app.use('/', childrenRoutes);
+app.use('/', productRoutes);
 app.use('/', orderRoutes);
 // Trang chủ
 app.get('/', (req, res) => {
