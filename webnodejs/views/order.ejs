@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Include sidebar -->
     <%- include('partials/sidebar.ejs') %>
 
     <div class="main-content">
@@ -15,7 +14,13 @@
             <h2>Thông tin dự án</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm đơn hàng">
         </header>
-        <button id = 'refresh'> Refresh </button>
+        <div class="button-group">
+            <button id="view-all">Tất cả đơn hàng</button>
+            <button id="view-shipped">Đơn hàng đã giao</button>
+            <button id="view-not-shipped">Đơn hàng chưa giao</button>
+            <button id="toggle-view">Xem giá trị các đơn hàng</button>
+            <button id="view-product-values">Xem giá trị sản phẩm</button>
+        </div>
         <section class="order-table">
             <table id="order-table">
                 <thead>
@@ -36,6 +41,8 @@
             </table>
         </section>
     </div>
+
+    <div id="order-value-tooltip" style="display: none; position: absolute; background-color: #f9f9f9; border: 1px solid #ccc; padding: 5px; border-radius: 5px;"></div>
 
     <script src="/js/order.js"></script>
 </body>
