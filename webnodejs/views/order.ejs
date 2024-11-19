@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý dự án</title>
+    <title>Quản lý đơn hàng</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -13,24 +13,24 @@
     <div class="main-content">
         <header>
             <h2>Thông tin dự án</h2>
-            <input type="text" id="search-bar" placeholder="Tìm kiếm dự án...">
+            <input type="text" id="search-bar" placeholder="Tìm kiếm đơn hàng">
         </header>
-        <button id = 'expire-project'>Tìm những dự án đã đáo hạn.</button>
         <button id = 'refresh'> Refresh </button>
-        <section class="project-table">
-            <table id="project-table">
+        <section class="order-table">
+            <table id="order-table">
                 <thead>
                     <tr>
-                        <th>Mã Dự án</th>
-                        <th>Tên Dự án</th>
-                        <th>Địa chỉ</th>
-                        <th>Ngày hợp đồng</th>
-                        <th>Ngày đáo hạn</th>
-                        <th>Mã Khách hàng</th>
-                        <th>Tên Khách hàng</th>
+                        <th>Mã đơn hàng</th>
+                        <th>Mã khách hàng</th>
+                        <th>Tên khách hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Ngày yêu cầu</th>
+                        <th>Địa chỉ ship</th>
+                        <th>Ngày ship hàng</th>
+                        <th>Trạng thái</th>
                     </tr>
                 </thead>
-                <tbody id="project-data">
+                <tbody id="order-data">
                     <!-- Dữ liệu dự án sẽ được chèn vào đây bằng JavaScript -->
                 </tbody>
             </table>
