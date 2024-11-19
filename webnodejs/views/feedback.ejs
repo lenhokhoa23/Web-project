@@ -1,0 +1,45 @@
+<!-- feedback.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách phản hồi</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/sidebar') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Danh sách phản hồi</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm phản hồi..." oninput="searchFeedback()">
+            <select id="rating-filter">
+                <option value="">Tất cả đánh giá</option>
+            </select>
+            <input type="text" id="id-search" placeholder="Nhập Mã KH">
+            <button onclick="searchFeedbackByCustomerId()">Tìm theo Mã KH</button>
+            <button onclick="refreshFeedbackTable()">Làm mới</button>
+        </header>
+
+        <section class="feedback-table">
+            <table id="feedback-table">
+                <thead>
+                    <tr>    
+                        <th>Feedback ID</th>
+                        <th>Mã KH</th>
+                        <th>Mã Đơn Hàng</th>
+                        <th>Đánh giá</th>
+                        <th>Nội dung</th>
+                    </tr>
+                </thead>
+                <tbody id="feedback-data">
+                    <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="/js/feedback.js"></script>
+</body>
+</html>

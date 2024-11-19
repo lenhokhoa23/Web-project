@@ -5,7 +5,8 @@ const employeeRoutes = require('./routes/EmployeeRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const trainingRoutes = require('./routes/trainingRoutes');
 const timesheetRoutes = require('./routes/timesheetRoutes');
-const childrenRoutes = require('./routes/childrenRoutes');
+const childrenRoutes = require('./routes/ChildrenRoutes');
+const feedbackRoutes = require('./routes/FeedbackRoutes');
 const app = express();
 const port = 3000;
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use('/', projectRoutes);
 app.use('/', trainingRoutes);
 app.use('/', timesheetRoutes);
 app.use('/', childrenRoutes);
+app.use('/', feedbackRoutes);
 
 // Trang chủ
 app.get('/', (req, res) => {
