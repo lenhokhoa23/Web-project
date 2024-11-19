@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Sản phẩm</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Include sidebar -->
+    <%- include('partials/sidebar.ejs') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Thông tin Sản phẩm</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm sản phẩm..." onkeyup="searchProducts()">
+
+            <select id="supplier-filter">
+                <option value="">Chọn Nhà cung cấp</option>
+            </select>
+            <button onclick="filterBySupplier()">Lọc</button>
+            <button onclick="refreshTable()">Làm mới</button>
+        </header>
+
+        <section class="product-table">
+            <table id="product-table">
+                <thead>
+                    <tr>
+                        <th>Mã Sản phẩm</th>
+                        <th>Mã Code</th>
+                        <th>Số lượng Đơn hàng</th>
+                        <th>Tên Nhà cung cấp</th>
+                    </tr>
+                </thead>
+                <tbody id="product-data">
+                    <!-- Dữ liệu sẽ được chèn vào đây -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="/js/product.js"></script>
+</body>
+</html>
