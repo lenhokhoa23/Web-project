@@ -68,7 +68,9 @@ function searchById() {
         })
         .catch(error => console.error('Error:', error));
 }
-
+function refresh() {
+    displayEmployees(allEmployees)
+}
 function setupEmployeeListPage() {
     fetch('/api/employees')
         .then(response => response.json())
@@ -82,6 +84,7 @@ function setupEmployeeListPage() {
     document.getElementById('search-bar').addEventListener('input', filterEmployees);
     document.getElementById('department-filter').addEventListener('change', filterEmployees);
     document.getElementById('id-search-btn').addEventListener('click', searchById);
+    document.getElementById('refresh').addEventListener('click', refresh);
 }
 
 function setupAddEmployeePage() {
