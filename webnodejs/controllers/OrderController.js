@@ -37,19 +37,12 @@ const orderController = {
     },
 
     getOrdersNotShipped: (req, res) => {
-        Order.getOrdersByStatus('Shipped', (err, shippedOrders) => {
+        Order.getOrdersNotShippedYet((err, notShippedOrders) => {
             if (err) {
                 console.error('Lỗi khi lấy danh sách order chưa giao:', err);
                 return res.status(500).json({ error: 'Lỗi server' });
             }
-            Order.getAllOrders((err, allOrders) => {
-                if (err) {
-                    console.error('Lỗi khi lấy danh sách tất cả order:', err);
-                    return res.status(500).json({ error: 'Lỗi server' });
-                }
-                const notShippedOrders = allOrders.filter(order => !shippedOrders.some(shipped => shipped.Order_ID === order.Order_ID));
-                res.json(notShippedOrders);
-            });
+            res.json(notShippedOrders);
         });
     },
 
@@ -60,6 +53,34 @@ const orderController = {
                 return res.status(500).json({ error: 'Lỗi server' });
             }
             res.json(products);
+        });
+    },
+
+    getOrderDetails: (req, res) => {
+        const orderId = req.params.orderId;
+        Order.getOrderDetails(orderId, (err, details) => {
+            if (err) {
+                console.error('Lỗi khi lấy chi tiết đơn hàng:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json(details);
+        });
+    },
+
+    getOrdersByDateRange: (req, res) => {
+        const start = req.query.start || '';
+        const end = req.query.end || '';
+
+        if (!start || !end) {
+            return res.status(400).json({ error: 'Start and end dates are required' });
+        }
+
+        Order.getOrdersByDateRange(start, end, (err, orders) => {
+            if (err) {
+                console.error('Lỗi khi lọc đơn hàng theo ngày:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json(orders);
         });
     }
 };

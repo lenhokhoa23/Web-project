@@ -50,6 +50,22 @@ class Order {
             callback(null, results);
         });
     }
+    static getOrdersNotShippedYet(callback) {
+        const query = `
+            SELECT o.Order_ID, c.Customer_ID, c.CustomerName, o.OrderDate,
+            o.OrderRequired, o.ShipAddress, o.ShippedDate, o.Status 
+            FROM orders o 
+            JOIN customer c ON o.Customer_ID = c.Customer_ID
+            WHERE o.Status <> 'Shipped'
+        `;
+        
+        db.query(query, (err, results) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, results);
+        });
+    }
 
     static getValueOfProduct(callback) {
         const query = `
@@ -60,6 +76,37 @@ class Order {
 
         `;
         db.query(query, (err, results) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, results);
+        });
+    }
+
+    static getOrderDetails(orderId, callback) {
+        const query = `
+            SELECT Order_ID, Product_Code, PriceEach, Quantity FROM orderdetails
+            WHERE Order_ID = ?;
+        `;
+        
+        db.query(query, [orderId], (err, results) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, results);
+        });
+    }
+
+    static getOrdersByDateRange(startDate, endDate, callback) {
+        const query = `
+            SELECT o.Order_ID, c.Customer_ID, c.CustomerName, o.OrderDate,
+            o.OrderRequired, o.ShipAddress, o.ShippedDate, o.Status 
+            FROM orders o 
+            JOIN customer c ON o.Customer_ID = c.Customer_ID
+            WHERE o.OrderDate BETWEEN ? AND ?
+        `;
+        
+        db.query(query, [startDate, endDate], (err, results) => {
             if (err) {
                 return callback(err, null);
             }
