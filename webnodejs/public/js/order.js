@@ -1,13 +1,12 @@
 let allOrders = [];
 let orderValues = {};
 let showingOrderValues = false;
-let currentView = 'all'; // 'all', 'shipped', 'notShipped', 'values', 'productValues'
+let currentView = 'all';
 
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
 }
-
 
 
 function searchOrder() {
@@ -41,6 +40,7 @@ function displayOrders(orders) {
         `;
         row.addEventListener('mouseenter', showOrderValue);
         row.addEventListener('mouseleave', hideOrderValue);
+        row.addEventListener('contextmenu', showOrderDetails);
         tableBody.appendChild(row);
     });
 }
@@ -73,7 +73,6 @@ function displayProductValues(products) {
     const tableBody = document.getElementById('order-data');
     if (!tableBody) return;
 
-    // Update table headers
     const headerRow = document.querySelector('#order-table thead tr');
     headerRow.innerHTML = `
         <th>Mã sản phẩm</th>
@@ -91,8 +90,6 @@ function displayProductValues(products) {
         tableBody.appendChild(row);
     });
 }
-
-
 
 function toggleView(view) {
     currentView = view;
@@ -197,6 +194,69 @@ function hideOrderValue() {
     tooltip.style.display = 'none';
 }
 
+function showOrderDetails(event) {
+    event.preventDefault();
+    const orderId = event.currentTarget.dataset.orderId;
+    fetch(`/api/order-details/${orderId}`)
+        .then(response => response.json())
+        .then(data => {
+            displayOrderDetails(data);
+        })
+        .catch(error => {
+            console.error('Error fetching order details:', error);
+            alert('Có lỗi khi tải chi tiết đơn hàng');
+        });
+}
+
+function displayOrderDetails(details) {
+    const modal = document.getElementById('order-details-modal');
+    const modalContent = document.getElementById('order-details-content');
+    modalContent.innerHTML = `
+        <h2>Chi tiết đơn hàng ${details[0].Order_ID}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${details.map(item => `
+                    <tr>
+                        <td>${item.Product_Code}</td>
+                        <td>${item.PriceEach}</td>
+                        <td>${item.Quantity}</td>
+                        <td>${item.PriceEach * item.Quantity}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+    modal.style.display = 'block';
+}
+
+function filterOrdersByDate() {
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+    
+    if (!startDate || !endDate) {
+        alert('Vui lòng chọn cả ngày bắt đầu và ngày kết thúc');
+        return;
+    }
+
+    fetch(`/api/orders-by-date?start=${startDate}&end=${endDate}`)
+        .then(response => response.json())
+        .then(data => {
+            displayOrders(data);
+        })
+        .catch(error => {
+            console.error('Error fetching filtered orders:', error);
+            alert('Có lỗi khi lọc đơn hàng theo ngày');
+        });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/orders')
         .then(response => response.json())
@@ -222,6 +282,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('view-shipped').addEventListener('click', () => toggleView('shipped'));
     document.getElementById('view-not-shipped').addEventListener('click', () => toggleView('notShipped'));
     document.getElementById('view-product-values').addEventListener('click', () => toggleView('productValues'));
+    document.getElementById('filter-date').addEventListener('click', filterOrdersByDate);
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('order-details-modal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
     updateButtonStates();
 });
