@@ -10,5 +10,7 @@ router.get('/api/orders-not-shipped', orderController.getOrdersNotShipped);
 router.get('/api/product-values', orderController.getProductValues);
 router.get('/api/order-details/:orderId', orderController.getOrderDetails);
 router.get('/api/orders-by-date', orderController.getOrdersByDateRange);
+router.get('/api/total-revenue', orderController.getTotalRevenue);
+router.get('/api/top-customers', orderController.getTopCustomers);
 
 module.exports = router;
