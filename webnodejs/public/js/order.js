@@ -256,6 +256,61 @@ function filterOrdersByDate() {
             alert('Có lỗi khi lọc đơn hàng theo ngày');
         });
 }
+function calculateTotalRevenue() {
+    const startDate = document.getElementById('revenue-start-date').value;
+    const endDate = document.getElementById('revenue-end-date').value;
+    
+    if (!startDate || !endDate) {
+        alert('Vui lòng chọn cả ngày bắt đầu và ngày kết thúc');
+        return;
+    }
+
+    fetch(`/api/total-revenue?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('total-revenue').textContent = `Tổng doanh thu: ${data.totalRevenue}`;
+        })
+        .catch(error => {
+            console.error('Lỗi khi tính tổng doanh thu:', error);
+            alert('Có lỗi khi tính tổng doanh thu');
+        });
+}
+
+function displayTopCustomers() {
+    fetch('/api/top-customers')
+        .then(response => response.json())
+        .then(customers => {
+            const tableBody = document.getElementById('top-customers-data');
+            tableBody.innerHTML = '';
+            customers.forEach(customer => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${customer.Customer_ID}</td>
+                    <td>${customer.CustomerName}</td>
+                    <td>${customer.TotalValue}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Lỗi khi lấy danh sách khách hàng hàng đầu:', error);
+            alert('Có lỗi khi lấy danh sách khách hàng hàng đầu');
+        });
+}
+
+function toggleSection(buttonId, containerId) {
+    const button = document.getElementById(buttonId);
+    const container = document.getElementById(containerId);
+    
+    if (container.classList.contains('hidden')) {
+        container.classList.remove('hidden');
+        if (containerId === 'top-customers-container') {
+            displayTopCustomers();
+        }
+    } else {
+        container.classList.add('hidden');
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/orders')
@@ -283,7 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('view-not-shipped').addEventListener('click', () => toggleView('notShipped'));
     document.getElementById('view-product-values').addEventListener('click', () => toggleView('productValues'));
     document.getElementById('filter-date').addEventListener('click', filterOrdersByDate);
-
+    document.getElementById('toggle-revenue-calculator').addEventListener('click', () => toggleSection('toggle-revenue-calculator', 'revenue-calculator'));
+    document.getElementById('toggle-top-customers').addEventListener('click', () => toggleSection('toggle-top-customers', 'top-customers-container'));
+    document.getElementById('calculate-revenue').addEventListener('click', calculateTotalRevenue);
     // Close modal when clicking outside
     window.onclick = function(event) {
         const modal = document.getElementById('order-details-modal');

@@ -82,6 +82,30 @@ const orderController = {
             }
             res.json(orders);
         });
+    },
+    getTotalRevenue: (req, res) => {
+        const { start, end } = req.query;
+        if (!start || !end) {
+            return res.status(400).json({ error: 'Start and end dates are required' });
+        }
+
+        Order.getTotalRevenue(start, end, (err, totalRevenue) => {
+            if (err) {
+                console.error('Error calculating total revenue:', err);
+                return res.status(500).json({ error: 'Server error' });
+            }
+            res.json({ totalRevenue });
+        });
+    },
+
+    getTopCustomers: (req, res) => {
+        Order.getTopCustomers((err, topCustomers) => {
+            if (err) {
+                console.error('Error fetching top customers:', err);
+                return res.status(500).json({ error: 'Server error' });
+            }
+            res.json(topCustomers);
+        });
     }
 };
 

@@ -113,6 +113,40 @@ class Order {
             callback(null, results);
         });
     }
+    static getTotalRevenue(startDate, endDate, callback) {
+        const query = `
+            SELECT SUM(od.Quantity * od.PriceEach) as TotalRevenue
+            FROM orders o
+            JOIN orderdetails od ON o.Order_ID = od.Order_ID
+            WHERE o.OrderDate BETWEEN ? AND ?
+        `;
+        
+        db.query(query, [startDate, endDate], (err, results) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, results[0].TotalRevenue);
+        });
+    }
+
+    static getTopCustomers(callback) {
+        const query = `
+            SELECT c.Customer_ID, c.CustomerName, SUM(od.Quantity * od.PriceEach) as TotalValue
+            FROM customer c
+            JOIN orders o ON c.Customer_ID = o.Customer_ID
+            JOIN orderdetails od ON o.Order_ID = od.Order_ID
+            GROUP BY c.Customer_ID
+            ORDER BY TotalValue DESC
+            LIMIT 5
+        `;
+        
+        db.query(query, (err, results) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, results);
+        });
+    }
 }
 
 module.exports = Order;
