@@ -8,11 +8,12 @@ class Product {
                 p.Product_ID, 
                 p.Product_Code, 
                 COUNT(o.Order_ID) AS OrderCount, 
-                s.SupplierName 
+                s.SupplierName,
+                p.quantityInStock
             FROM product p
             LEFT JOIN orderdetails o ON p.Product_Code = o.Product_Code
             LEFT JOIN supplier s ON p.Supplier_ID = s.Supplier_ID
-            GROUP BY p.Product_ID, p.Product_Code, s.SupplierName
+            GROUP BY p.Product_ID, p.Product_Code, s.SupplierName, p.quantityInStock
         `;
         
         db.query(query, (err, results) => {
@@ -21,7 +22,7 @@ class Product {
             }
             callback(null, results);
         });
-    }
+    }    
 
     // Lấy thông tin sản phẩm theo ID
     static getProductById(productId, callback) {
@@ -30,12 +31,13 @@ class Product {
                 p.Product_ID, 
                 p.Product_Code, 
                 COUNT(o.Order_ID) AS OrderCount, 
-                s.SupplierName 
+                s.SupplierName,
+                p.quantityInStock
             FROM product p
             LEFT JOIN orderdetails o ON p.Product_Code = o.Product_Code
             LEFT JOIN supplier s ON p.Supplier_ID = s.Supplier_ID
             WHERE p.Product_ID = ?
-            GROUP BY p.Product_ID, p.Product_Code, s.SupplierName
+            GROUP BY p.Product_ID, p.Product_Code, s.SupplierName, p.quantityInStock
         `;
         
         db.query(query, [productId], (err, results) => {
@@ -46,10 +48,29 @@ class Product {
         });
     }
 
-    // Thêm sản phẩm mới
-    static createProduct(productData, callback) {
-        const query = 'INSERT INTO product SET ?';
-        db.query(query, productData, (err, result) => {
+    static addProduct(productData, callback) {
+        const query = `
+            INSERT INTO product (Product_Code, Supplier_ID, BuyPrice, ProductRating, QuantityInStock)
+            VALUES (?, ?, ?, ?, ?)
+        `;
+        const { Product_Code, Supplier_ID, BuyPrice, ProductRating, QuantityInStock } = productData;
+
+        db.query(query, [Product_Code, Supplier_ID, BuyPrice, ProductRating, QuantityInStock], (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, result);
+        });
+    }
+   
+    static addSupplier(supplierData, callback) {
+        const query = `
+            INSERT INTO supplier (SupplierName, SupplierEmail, SupplierAddress)
+            VALUES (?, ?, ?)
+        `;
+        const { SupplierName, SupplierEmail, SupplierAddress } = supplierData;
+
+        db.query(query, [SupplierName, SupplierEmail, SupplierAddress], (err, result) => {
             if (err) {
                 return callback(err, null);
             }
