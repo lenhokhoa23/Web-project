@@ -1,3 +1,4 @@
+let trainings = [];
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
@@ -11,6 +12,9 @@ function searchTrainings() {
         const text = card.textContent.toLowerCase();
         card.style.display = text.includes(input) ? '' : 'none';
     }
+}
+function refresh() {
+    displayTrainings(trainings);
 }
 
 function displayTrainings(trainings) {
@@ -41,9 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/training')
         .then(response => response.json())
         .then(data => {
+            trainings = data; 
             displayTrainings(data);
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu đào tạo:', error));
 
     document.getElementById('search-bar').addEventListener('keyup', searchTrainings);
+    document.getElementById('refresh').addEventListener('click', refresh);
 });
