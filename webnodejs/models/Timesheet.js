@@ -51,6 +51,54 @@ class Timesheet {
             callback(null, results);
         });
     }
+    static calculateTotalSalary(callback) {
+        const query = `
+            SELECT t.Employee_ID, t.EmployeeName, s.Salary, s.Bonus,
+                   (s.Salary + COALESCE(s.Bonus, 0)) as TotalSalary
+            FROM timesheet t
+            JOIN salary s ON t.Employee_ID = s.Employee_ID
+            GROUP BY t.Employee_ID
+        `;
+        
+        db.query(query, (err, results) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, results);
+        });
+    }
+
+    static resetAllBonus(callback) {
+        const query = `
+            UPDATE salary SET Bonus = 0 WHERE Bonus IS NOT NULL
+        `;
+        
+        db.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, result);
+        });
+    }
+
+    static updateEmployeeBonus(employeeName, bonusAmount, callback) {
+        const query = `
+            UPDATE salary s
+            JOIN employee e ON s.Employee_ID = e.Employee_ID
+            SET s.Bonus = COALESCE(s.Bonus, 0) + ?
+            WHERE e.EmployeeName = ?
+        `;
+        
+        db.query(query, [bonusAmount, employeeName], (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            if (result.affectedRows === 0) {
+                return callback(new Error('Employee not found or bonus not updated'), null);
+            }
+            callback(null, result);
+        });
+    }
 }
 
 module.exports = Timesheet;

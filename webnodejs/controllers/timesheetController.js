@@ -33,6 +33,41 @@ const timesheetController = {
             }
             res.json(timesheets);
         });
+    },
+    calculateTotalSalary: (req, res) => {
+        Timesheet.calculateTotalSalary((err, salaries) => {
+            if (err) {
+                console.error('Lỗi khi tính lương:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json(salaries);
+        });
+    },
+
+    resetAllBonus: (req, res) => {
+        Timesheet.resetAllBonus((err, result) => {
+            if (err) {
+                console.error('Lỗi khi reset bonus:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json({ message: 'Đã reset tất cả bonus về 0' });
+        });
+    },
+
+    updateEmployeeBonus: (req, res) => {
+        const { employeeName, bonusAmount } = req.body;
+        
+        if (!employeeName || bonusAmount === undefined) {
+            return res.status(400).json({ error: 'Thiếu thông tin cần thiết' });
+        }
+    
+        Timesheet.updateEmployeeBonus(employeeName, parseFloat(bonusAmount), (err, result) => {
+            if (err) {
+                console.error('Lỗi khi cập nhật bonus:', err);
+                return res.status(500).json({ error: 'Lỗi server: ' + err.message });
+            }
+            res.json({ message: 'Đã cập nhật bonus thành công' });
+        });
     }
 };
 

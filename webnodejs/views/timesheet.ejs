@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng chấm công</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+        .salary-controls {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        .bonus-update {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <%- include('partials/sidebar.ejs') %>
@@ -17,7 +31,32 @@
         <button id = "hardEmployee">Tìm 10 nhân viên làm nhiều nhất</button>
         <button id="show-all-employees">Refresh</button>
         <button id="perfectScoreBtn">Tìm Nhân viên Điểm 10</button>
+        <div class="salary-controls">
+            <button id="toggle-salary-table">Ẩn/Hiện bảng lương</button>
+            <button id="reset-bonus">Reset bonus</button>
+            <div class="bonus-update">
+                <input type="text" id="bonus-employee-name" placeholder="Tên nhân viên">
+                <input type="number" id="bonus-amount" placeholder="Số tiền bonus">
+                <button id="update-bonus">Cập nhật bonus</button>
+            </div>
+        </div>
 
+        <div id="salary-table" class="hidden">
+            <h3>Bảng lương</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã NV</th>
+                        <th>Tên nhân viên</th>
+                        <th>Lương cơ bản</th>
+                        <th>Bonus</th>
+                        <th>Tổng lương</th>
+                    </tr>
+                </thead>
+                <tbody id="salary-data">
+                </tbody>
+            </table>
+        </div>
         <section class="timesheet-table">
             <table id="timesheet-table">
                 <thead>
