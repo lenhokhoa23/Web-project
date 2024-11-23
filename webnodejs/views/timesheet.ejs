@@ -15,7 +15,7 @@
             background-color: #f5f5f5;
             border-radius: 4px;
         }
-        .bonus-update {
+        .bonus-update, .department-bonus-update{
             margin-top: 10px;
         }
     </style>
@@ -33,11 +33,21 @@
         <button id="perfectScoreBtn">Tìm Nhân viên Điểm 10</button>
         <div class="salary-controls">
             <button id="toggle-salary-table">Ẩn/Hiện bảng lương</button>
+            <button id="calculate-salary">Tính lương</button>
             <button id="reset-bonus">Reset bonus</button>
+            <button id="calculate-total-payroll">Tính tổng lương phải trả</button>
+            <div id="total-payroll" class="hidden"></div>
             <div class="bonus-update">
                 <input type="text" id="bonus-employee-name" placeholder="Tên nhân viên">
                 <input type="number" id="bonus-amount" placeholder="Số tiền bonus">
                 <button id="update-bonus">Cập nhật bonus</button>
+            </div>
+            <div class="department-bonus-update">
+                <select id="department-select">
+                    <option value="">Chọn phòng ban</option>
+                </select>
+                <input type="number" id="department-bonus-amount" placeholder="Số tiền bonus">
+                <button id="update-department-bonus">Cập nhật bonus theo phòng ban</button>
             </div>
         </div>
 

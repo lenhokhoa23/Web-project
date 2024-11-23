@@ -99,6 +99,35 @@ class Timesheet {
             callback(null, result);
         });
     }
+    static calculateTotalPayroll(callback) {
+        const query = `
+            SELECT SUM(s.Salary + COALESCE(s.Bonus, 0)) as TotalPayroll
+            FROM salary s
+        `;
+        
+        db.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, result[0].TotalPayroll);
+        });
+    }
+
+    static updateBonusByDepartment(departmentId, bonusAmount, callback) {
+        const query = `
+            UPDATE salary s
+            JOIN employee e ON s.Employee_ID = e.Employee_ID
+            SET s.Bonus = COALESCE(s.Bonus, 0) + ?
+            WHERE e.Department_ID = ?
+        `;
+        
+        db.query(query, [bonusAmount, departmentId], (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, result);
+        });
+    }
 }
 
 module.exports = Timesheet;

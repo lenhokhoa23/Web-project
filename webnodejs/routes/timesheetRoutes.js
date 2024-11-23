@@ -9,5 +9,7 @@ router.get('/api/timesheets/hard-employee', timesheetController.getHardEmployees
 router.get('/api/salary/calculate', timesheetController.calculateTotalSalary);
 router.post('/api/salary/bonus/reset', timesheetController.resetAllBonus);
 router.post('/api/salary/bonus/update', timesheetController.updateEmployeeBonus);
+router.get('/api/salary/total-payroll', timesheetController.calculateTotalPayroll);
+router.post('/api/salary/bonus/department', timesheetController.updateBonusByDepartment);
 
 module.exports = router;

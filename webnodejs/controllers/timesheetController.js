@@ -68,6 +68,31 @@ const timesheetController = {
             }
             res.json({ message: 'Đã cập nhật bonus thành công' });
         });
+    },
+    calculateTotalPayroll: (req, res) => {
+        Timesheet.calculateTotalPayroll((err, totalPayroll) => {
+            if (err) {
+                console.error('Lỗi khi tính tổng lương:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json({ totalPayroll });
+        });
+    },
+
+    updateBonusByDepartment: (req, res) => {
+        const { departmentId, bonusAmount } = req.body;
+        
+        if (!departmentId || bonusAmount === undefined) {
+            return res.status(400).json({ error: 'Thiếu thông tin cần thiết' });
+        }
+
+        Timesheet.updateBonusByDepartment(departmentId, parseFloat(bonusAmount), (err, result) => {
+            if (err) {
+                console.error('Lỗi khi cập nhật bonus theo phòng ban:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json({ message: 'Đã cập nhật bonus theo phòng ban thành công' });
+        });
     }
 };
 
