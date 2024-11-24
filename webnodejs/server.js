@@ -11,6 +11,7 @@ const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/OrderRoutes');
 const app = express();
 const port = 3000;
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Cấu hình view engine
 app.set('view engine', 'ejs');
@@ -28,6 +29,8 @@ app.use('/', childrenRoutes);
 app.use('/', feedbackRoutes);
 app.use('/', productRoutes);
 app.use('/', orderRoutes);
+
+
 // Trang chủ
 app.get('/', (req, res) => {
     res.render('index');

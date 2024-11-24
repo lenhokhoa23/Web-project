@@ -262,6 +262,194 @@ header {
     background-color: #e0e0e0; /* Màu nền khi hover vào hàng */
 }
 
+.context-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.context-menu button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.context-menu button:hover {
+    background-color: #e57373;
+}
+
+
+/* Đặt kiểu dáng tổng thể cho toàn bộ section */
+.add-product {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Tiêu đề */
+.add-product h3 {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Kiểu cho form */
+#add-product-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Kiểu cho nhãn */
+#add-product-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Kiểu cho input */
+#add-product-form input {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Kiểu cho nút bấm */
+#add-product-form button {
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút bấm */
+#add-product-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 576px) {
+    .add-product {
+        max-width: 100%;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #add-product-form input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    #add-product-form button {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
+/* Đặt kiểu dáng tổng thể cho toàn bộ section */
+.add-supplier {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Tiêu đề */
+.add-supplier h3 {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Kiểu cho form */
+#add-supplier-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Kiểu cho nhãn */
+#add-supplier-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Kiểu cho input */
+#add-supplier-form input {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Kiểu cho nút bấm */
+#add-supplier-form button {
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút bấm */
+#add-supplier-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 576px) {
+    .add-supplier {
+        max-width: 100%;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #add-supplier-form input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    #add-supplier-form button {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
 .salary-controls {
     margin: 20px 0;
     padding: 15px;

@@ -17,6 +17,7 @@
         </header>
         <button id = 'expire-project'>Tìm những dự án đã đáo hạn.</button>
         <button id = 'refresh'> Refresh </button>
+        <button onclick="window.location.href='/projects/add'">Thêm Dự Án</button>  
         <section class="project-table">
             <table id="project-table">
                 <thead>
@@ -32,11 +33,20 @@
                 </thead>
                 <tbody id="project-data">
                     <!-- Dữ liệu dự án sẽ được chèn vào đây bằng JavaScript -->
+                    <tr>
+                        <td>1</td> <!-- Mã dự án -->
+                        <td>Project A</td>
+                        <td>Address A</td>
+                        <td>2024-01-01</td>
+                        <td>2024-12-31</td>
+                        <td>123</td>
+                        <td>Customer A</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
     </div>
-
+    
     <script src="/js/project.js"></script>
 </body>
 </html>

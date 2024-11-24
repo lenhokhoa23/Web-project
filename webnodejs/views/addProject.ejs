@@ -1,0 +1,40 @@
+<!-- views/addProject.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Dự Án</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Include sidebar -->
+    <%- include('partials/sidebar.ejs') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Thêm Dự Án</h2>
+        </header>
+        <section class="add-project-form">
+            <form action="/api/projects" method="POST">
+                <label for="ProjectName">Tên Dự Án(*):</label>
+                <input type="text" name="ProjectName" id="ProjectName" required>
+
+                <label for="Address">Địa Chỉ(*):</label>
+                <input type="text" name="Address" id="Address" required>
+
+                <label for="ContractDate">Ngày Hợp Đồng(*):</label>
+                <input type="date" name="ContractDate" id="ContractDate" required>
+
+                <label for="ContractDue">Ngày Đáo Hạn(*):</label>
+                <input type="date" name="ContractDue" id="ContractDue" required>
+
+                <label for="Customer_ID">Mã Khách Hàng(*):</label>
+                <input type="number" name="Customer_ID" id="Customer_ID" required>
+
+                <button type="submit">Thêm Dự Án</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
