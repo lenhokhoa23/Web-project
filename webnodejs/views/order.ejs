@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý đơn hàng</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <%- include('partials/sidebar.ejs') %>
@@ -20,6 +43,40 @@
             <button id="view-not-shipped">Đơn hàng chưa giao</button>
             <button id="toggle-view">Xem giá trị các đơn hàng</button>
             <button id="view-product-values">Xem giá trị sản phẩm</button>
+        </div>
+        <div class="date-filter">
+            <input type="date" id="start-date">
+            <input type="date" id="end-date">
+            <button id="filter-date">Lọc theo ngày</button>
+        </div>
+        <div class="revenue-section">
+            <button id="toggle-revenue-calculator">Tính tổng doanh thu</button>
+            <div id="revenue-calculator" class="hidden">
+                <h3>Tính tổng doanh thu</h3>
+                <input type="date" id="revenue-start-date">
+                <input type="date" id="revenue-end-date">
+                <button id="calculate-revenue">Tính</button>
+                <div id="total-revenue"></div>
+            </div>
+        </div>
+
+        <div class="top-customers-section">
+            <button id="toggle-top-customers">Xem khách hàng hàng đầu</button>
+            <div id="top-customers-container" class="hidden">
+                <h3>5 khách hàng hàng đầu</h3>
+                <table id="top-customers-table">
+                    <thead>
+                        <tr>
+                            <th>Mã khách hàng</th>
+                            <th>Tên khách hàng</th>
+                            <th>Tổng giá trị</th>
+                        </tr>
+                    </thead>
+                    <tbody id="top-customers-data">
+                        <!-- Top customers data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
         <section class="order-table">
             <table id="order-table">
@@ -43,6 +100,12 @@
     </div>
 
     <div id="order-value-tooltip" style="display: none; position: absolute; background-color: #f9f9f9; border: 1px solid #ccc; padding: 5px; border-radius: 5px;"></div>
+
+    <div id="order-details-modal" class="modal">
+        <div id="order-details-content" class="modal-content">
+            <!-- Order details will be inserted here -->
+        </div>
+    </div>
 
     <script src="/js/order.js"></script>
 </body>

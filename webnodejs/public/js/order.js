@@ -1,13 +1,12 @@
 let allOrders = [];
 let orderValues = {};
 let showingOrderValues = false;
-let currentView = 'all'; // 'all', 'shipped', 'notShipped', 'values', 'productValues'
+let currentView = 'all';
 
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
 }
-
 
 
 function searchOrder() {
@@ -41,6 +40,7 @@ function displayOrders(orders) {
         `;
         row.addEventListener('mouseenter', showOrderValue);
         row.addEventListener('mouseleave', hideOrderValue);
+        row.addEventListener('contextmenu', showOrderDetails);
         tableBody.appendChild(row);
     });
 }
@@ -73,7 +73,6 @@ function displayProductValues(products) {
     const tableBody = document.getElementById('order-data');
     if (!tableBody) return;
 
-    // Update table headers
     const headerRow = document.querySelector('#order-table thead tr');
     headerRow.innerHTML = `
         <th>Mã sản phẩm</th>
@@ -91,8 +90,6 @@ function displayProductValues(products) {
         tableBody.appendChild(row);
     });
 }
-
-
 
 function toggleView(view) {
     currentView = view;
@@ -197,6 +194,186 @@ function hideOrderValue() {
     tooltip.style.display = 'none';
 }
 
+function showOrderDetails(event) {
+    event.preventDefault();
+    const orderId = event.currentTarget.dataset.orderId;
+    fetch(`/api/order-details/${orderId}`)
+        .then(response => response.json())
+        .then(data => {
+            displayOrderDetails(data);
+        })
+        .catch(error => {
+            console.error('Error fetching order details:', error);
+            alert('Có lỗi khi tải chi tiết đơn hàng');
+        });
+}
+
+function displayOrderDetails(details) {
+    const modal = document.getElementById('order-details-modal');
+    const modalContent = document.getElementById('order-details-content');
+    modalContent.innerHTML = `
+        <h2>Chi tiết đơn hàng ${details[0].Order_ID}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${details.map(item => `
+                    <tr>
+                        <td>${item.Product_Code}</td>
+                        <td>${item.PriceEach}</td>
+                        <td>${item.Quantity}</td>
+                        <td>${item.PriceEach * item.Quantity}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+    modal.style.display = 'block';
+}
+
+function filterOrdersByDate() {
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
+    
+    if (!startDate || !endDate) {
+        alert('Vui lòng chọn cả ngày bắt đầu và ngày kết thúc');
+        return;
+    }
+
+    fetch(`/api/orders-by-date?start=${startDate}&end=${endDate}`)
+        .then(response => response.json())
+        .then(data => {
+            displayOrders(data);
+        })
+        .catch(error => {
+            console.error('Error fetching filtered orders:', error);
+            alert('Có lỗi khi lọc đơn hàng theo ngày');
+        });
+}
+function calculateTotalRevenue() {
+    const startDate = document.getElementById('revenue-start-date').value;
+    const endDate = document.getElementById('revenue-end-date').value;
+    
+    if (!startDate || !endDate) {
+        alert('Vui lòng chọn cả ngày bắt đầu và ngày kết thúc');
+        return;
+    }
+
+    fetch(`/api/total-revenue?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('total-revenue').textContent = `Tổng doanh thu: ${data.totalRevenue}`;
+        })
+        .catch(error => {
+            console.error('Lỗi khi tính tổng doanh thu:', error);
+            alert('Có lỗi khi tính tổng doanh thu');
+        });
+}
+
+function displayTopCustomers() {
+    fetch('/api/top-customers')
+        .then(response => response.json())
+        .then(customers => {
+            const tableBody = document.getElementById('top-customers-data');
+            tableBody.innerHTML = '';
+            customers.forEach(customer => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${customer.Customer_ID}</td>
+                    <td>${customer.CustomerName}</td>
+                    <td>${customer.TotalValue}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Lỗi khi lấy danh sách khách hàng hàng đầu:', error);
+            alert('Có lỗi khi lấy danh sách khách hàng hàng đầu');
+        });
+}
+
+function toggleSection(buttonId, containerId) {
+    const button = document.getElementById(buttonId);
+    const container = document.getElementById(containerId);
+    
+    if (container.classList.contains('hidden')) {
+        container.classList.remove('hidden');
+        if (containerId === 'top-customers-container') {
+            displayTopCustomers();
+        }
+    } else {
+        container.classList.add('hidden');
+    }
+}
+function calculateTotalPayroll() {
+    fetch('/api/salary/total-payroll')
+        .then(response => response.json())
+        .then(data => {
+            const totalPayrollElement = document.getElementById('total-payroll');
+            totalPayrollElement.textContent = `Tổng lương phải trả: ${data.totalPayroll}`;
+            totalPayrollElement.classList.remove('hidden');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi khi tính tổng lương phải trả');
+        });
+}
+
+function updateDepartmentBonus() {
+    const departmentId = document.getElementById('department-select').value;
+    const bonusAmount = document.getElementById('department-bonus-amount').value;
+
+    if (!departmentId || !bonusAmount) {
+        alert('Vui lòng chọn phòng ban và nhập số tiền bonus');
+        return;
+    }
+
+    fetch('/api/salary/bonus/department', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            departmentId,
+            bonusAmount: parseFloat(bonusAmount)
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            calculateSalary();
+            document.getElementById('department-bonus-amount').value = '';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi khi cập nhật bonus theo phòng ban');
+        });
+}
+
+function populateDepartmentSelect() {
+    // Assuming you have a list of departments available
+    // You might need to fetch this from the server if not already available
+    const departments = [
+        { id: 1, name: 'Phòng ban 1' },
+        { id: 2, name: 'Phòng ban 2' },
+        // ... add more departments as needed
+    ];
+
+    const departmentSelect = document.getElementById('department-select');
+    departments.forEach(dept => {
+        const option = document.createElement('option');
+        option.value = dept.id;
+        option.textContent = dept.name;
+        departmentSelect.appendChild(option);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/orders')
         .then(response => response.json())
@@ -222,6 +399,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('view-shipped').addEventListener('click', () => toggleView('shipped'));
     document.getElementById('view-not-shipped').addEventListener('click', () => toggleView('notShipped'));
     document.getElementById('view-product-values').addEventListener('click', () => toggleView('productValues'));
+    document.getElementById('filter-date').addEventListener('click', filterOrdersByDate);
+    document.getElementById('toggle-revenue-calculator').addEventListener('click', () => toggleSection('toggle-revenue-calculator', 'revenue-calculator'));
+    document.getElementById('toggle-top-customers').addEventListener('click', () => toggleSection('toggle-top-customers', 'top-customers-container'));
+    document.getElementById('calculate-revenue').addEventListener('click', calculateTotalRevenue);
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('order-details-modal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
     updateButtonStates();
 });
