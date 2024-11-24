@@ -48,7 +48,18 @@ const employeeController = {
             }
             res.status(201).json({ ...employeeData, Employee_ID: result.insertId });
         });
+    },
+    deleteEmployee: (req, res) => {
+        const id = req.params.id;
+        Employee.deleteEmployee(id, (err, result) => {
+            if (err) {
+                console.error('Lỗi khi xóa nhân viên:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json({ message: 'Nhân viên đã được xóa thành công' });
+        });
     }
+    
 };
 
 module.exports = employeeController;

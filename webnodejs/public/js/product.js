@@ -6,17 +6,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         window.allProducts = data;
 
-        // Hiển thị dữ liệu ban đầu
         data.forEach(product => {
-            const row = document.createElement('tr');
+        const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${product.Product_ID}</td>
-                <td>${product.Product_Code}</td>
-                <td>${product.OrderCount}</td>
-                <td>${product.SupplierName}</td>`;
-            tableBody.appendChild(row);
-        });
-
+            <td>${product.Product_ID}</td>
+            <td>${product.Product_Code}</td>
+            <td>${product.OrderCount}</td>
+            <td>${product.SupplierName}</td>
+            <td>${product.quantityInStock}</td>`;
+        tableBody.appendChild(row);
+    });
         populateSupplierFilter(data);
     } catch (error) {
         console.error('Lỗi khi lấy dữ liệu sản phẩm:', error);
@@ -72,7 +71,8 @@ function filterBySupplier() {
             <td>${product.Product_ID}</td>
             <td>${product.Product_Code}</td>
             <td>${product.OrderCount}</td>
-            <td>${product.SupplierName}</td>`;
+            <td>${product.SupplierName}</td>
+            <td>${product.quantityInStock}</td>`;
         tableBody.appendChild(row);
     });
 }
@@ -81,10 +81,8 @@ function refreshTable() {
     const tableBody = document.getElementById('product-data');
     const supplierFilter = document.getElementById('supplier-filter');
     
-    // Xóa giá trị chọn lọc nhà cung cấp
     supplierFilter.value = '';
 
-    // Hiển thị lại dữ liệu ban đầu
     tableBody.innerHTML = '';
     window.allProducts.forEach(product => {
         const row = document.createElement('tr');
@@ -92,7 +90,91 @@ function refreshTable() {
             <td>${product.Product_ID}</td>
             <td>${product.Product_Code}</td>
             <td>${product.OrderCount}</td>
-            <td>${product.SupplierName}</td>`;
+            <td>${product.SupplierName}</td>
+            <td>${product.quantityInStock}</td>`;
         tableBody.appendChild(row);
     });
 }
+
+function filterOutOfStock() {
+    const tableBody = document.getElementById('product-data');
+
+    // Lọc các sản phẩm có số lượng trong kho bằng 0
+    const outOfStockProducts = window.allProducts.filter(product => product.quantityInStock === 0);
+
+    // Làm trống bảng trước khi chèn dữ liệu lọc
+    tableBody.innerHTML = '';
+
+    // Lặp qua danh sách sản phẩm và hiển thị trong bảng
+    outOfStockProducts.forEach(product => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${product.Product_ID}</td>
+            <td>${product.Product_Code}</td>
+            <td>${product.OrderCount}</td>
+            <td>${product.SupplierName}</td>
+            <td>${product.quantityInStock}</td> <!-- Hiển thị số lượng trong kho -->
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+document.getElementById('add-product-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const productData = {
+        Product_Code: document.getElementById('product-name').value,
+        Supplier_ID: parseInt(document.getElementById('supplier-id').value),
+        BuyPrice: parseFloat(document.getElementById('buy-price').value),
+        ProductRating: parseInt(document.getElementById('product-rating').value),
+        QuantityInStock: parseInt(document.getElementById('quantity-in-stock').value),
+    };
+
+    try {
+        const response = await fetch('/api/products', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(productData),
+        });
+
+        if (response.ok) {
+            alert('Thêm sản phẩm thành công!');
+            refreshTable();
+        } else {
+            const error = await response.json();
+            alert(`Lỗi: ${error.message}`);
+        }
+    } catch (error) {
+        console.error('Lỗi khi thêm sản phẩm:', error);
+        alert('Đã xảy ra lỗi khi thêm sản phẩm.');
+    }
+});
+
+document.getElementById('add-supplier-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const supplierData = {
+        SupplierName: document.getElementById('supplier-name').value,
+        SupplierEmail: document.getElementById('supplier-email').value,
+        SupplierAddress: document.getElementById('supplier-address').value,
+    };
+
+    try {
+        const response = await fetch('/api/suppliers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(supplierData),
+        });
+        console.log(JSON.stringify(supplierData))
+        if (response.ok) {
+            alert('Thêm nhà cung cấp thành công!');
+            refreshTable();
+        } else {
+            const error = await response.json();
+            alert(`Lỗi: ${error.message}`);
+        }
+    } catch (error) {
+        console.error('Lỗi khi thêm nhà cung cấp:', error);
+        alert('Đã xảy ra lỗi khi thêm nhà cung cấp.');
+    }
+});
