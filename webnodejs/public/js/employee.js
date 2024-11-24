@@ -1,5 +1,5 @@
 let allEmployees = []; // Store all employees
-
+let selectedEmployeeId = null;
 function formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('vi-VN');
@@ -37,6 +37,7 @@ function displayEmployees(employees) {
             <td>${employee.Email || '-'}</td>
             <td>${employee.EmployeeAddress || '-'}</td>
         `;
+        row.addEventListener('contextmenu', (e) => showContextMenu(e, employee.Employee_ID));
         tableBody.appendChild(row);
     });
 }
@@ -54,7 +55,40 @@ function populateDepartmentFilter(employees) {
         departmentFilter.appendChild(option);
     });
 }
+function showContextMenu(e, employeeId) {
+    e.preventDefault();
+    selectedEmployeeId = employeeId;
+    const contextMenu = document.getElementById('context-menu');
+    contextMenu.style.display = 'block';
+    contextMenu.style.left = `${e.pageX}px`;
+    contextMenu.style.top = `${e.pageY}px`;
+}
 
+function hideContextMenu() {
+    const contextMenu = document.getElementById('context-menu');
+    contextMenu.style.display = 'none';
+}
+
+function deleteEmployee() {
+    if (!selectedEmployeeId) return;
+
+    if (confirm('Bạn có chắc muốn xóa nhân viên này?')) {
+        fetch(`/api/employees/${selectedEmployeeId}`, {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                setupEmployeeListPage(); // Refresh the employee list
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Có lỗi khi xóa nhân viên');
+            });
+    }
+
+    hideContextMenu();
+}
 function searchById() {
     const idInput = document.getElementById('id-search').value;
     fetch(`/api/employees/${idInput}`)
@@ -85,6 +119,8 @@ function setupEmployeeListPage() {
     document.getElementById('department-filter').addEventListener('change', filterEmployees);
     document.getElementById('id-search-btn').addEventListener('click', searchById);
     document.getElementById('refresh').addEventListener('click', refresh);
+    document.getElementById('delete-employee').addEventListener('click', deleteEmployee);
+    document.addEventListener('click', hideContextMenu);
 }
 
 function setupAddEmployeePage() {
