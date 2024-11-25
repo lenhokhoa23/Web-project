@@ -9,7 +9,8 @@ class Project {
                cu.CustomerName
             FROM project p
             JOIN contract c ON p.Project_ID = c.Project_ID
-            JOIN customer cu ON c.Customer_ID = cu.Customer_ID
+            JOIN customer cu ON c.Customer_ID = cu.Customer_ID 
+            ORDER BY p.Project_ID ASC
         `;
         
         db.query(query, (err, results) => {

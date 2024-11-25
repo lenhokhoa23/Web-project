@@ -113,6 +113,34 @@ function refreshFeedbackTable() {
     });
 }
 
+function searchFeedbackByRating() {
+    const ratingInput = document.getElementById('rating-search').value;
+    if (!ratingInput) {
+        alert('Vui lòng nhập điểm số!');
+        return;
+    }
+
+    // Gọi API tìm phản hồi theo điểm số
+    fetch(`/api/feedback/rating/${ratingInput}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Không tìm thấy phản hồi với điểm số này');
+            }
+            return response.json();
+        })
+        .then(feedbacks => {
+            if (feedbacks && feedbacks.length > 0) {
+                displayFeedbacks(feedbacks);
+            } else {
+                alert('Không tìm thấy phản hồi với điểm số này');
+                displayFeedbacks([]);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert(error.message);
+        });
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {

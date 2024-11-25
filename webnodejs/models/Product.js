@@ -77,6 +77,7 @@ class Product {
             callback(null, result);
         });
     }
+    
 }
 
 module.exports = Product;
