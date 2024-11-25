@@ -30,7 +30,16 @@ class Feedback {
         });
     }
     
-
+    // Lấy Feedback bằng điểm số (Rating)
+    static getFeedbacksByRating(rating, callback) {
+        const query = 'SELECT * FROM feedback WHERE Rating = ?';
+        db.query(query, [rating], (err, results) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, results);
+        });
+    }
     
 }
 

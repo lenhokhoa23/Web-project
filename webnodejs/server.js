@@ -13,6 +13,7 @@ const app = express();
 const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Cấu hình view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +36,7 @@ app.use('/', orderRoutes);
 app.get('/', (req, res) => {
     res.render('index');
 });
+
 
 // Khởi động server
 app.listen(port, () => {
