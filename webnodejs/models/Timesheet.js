@@ -128,6 +128,41 @@ class Timesheet {
             callback(null, result);
         });
     }
+
+    static updateEmployeeSalary(employeeId, newSalary, callback) {
+        const query = `
+            UPDATE salary
+            SET Salary = ?
+            WHERE Employee_ID = ?
+        `;
+        
+        db.query(query, [newSalary, employeeId], (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, result);
+        });
+    }
+
+    static updateWorkedHours(callback) {
+        const query = `
+            UPDATE timesheet t
+            JOIN (
+                SELECT Employee_ID, SUM(TIMESTAMPDIFF(HOUR, CheckIn, CheckOut)) as TotalHours
+                FROM attendance
+                WHERE CheckOut IS NOT NULL
+                GROUP BY Employee_ID
+            ) a ON t.Employee_ID = a.Employee_ID
+            SET t.WorkedHours = a.TotalHours
+        `;
+        
+        db.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, result);
+        });
+    }
 }
 
 module.exports = Timesheet;
