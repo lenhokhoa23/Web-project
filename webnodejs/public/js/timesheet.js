@@ -4,8 +4,14 @@ let editingEmployeeId = null;
 function searchTimesheet() {
     const input = document.getElementById('search-bar').value.toLowerCase();
     const rows = document.getElementById('timesheet-data').getElementsByTagName('tr');
+    const rows2 = document.getElementById('salary-data').getElementsByTagName('tr');
 
     for (let row of rows) {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(input) ? '' : 'none';
+    }
+
+    for (let row of rows2) {
         const text = row.textContent.toLowerCase();
         row.style.display = text.includes(input) ? '' : 'none';
     }
@@ -56,6 +62,19 @@ function toggleSalaryTable() {
     } else {
         salaryTable.classList.add('hidden');
     }
+}
+
+function updateSalaryBasedOnAttendance() {
+    fetch('/api/timesheet/update-salary', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            calculateSalary(); // Refresh bảng lương
+        })
+        .catch(error => {
+            console.error('Error updating salary based on attendance:', error);
+            alert('Có lỗi khi cập nhật lương dựa trên chấm công');
+        });
 }
 
 function calculateSalary() {
@@ -265,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('calculate-total-payroll').addEventListener('click', calculateTotalPayroll);
     document.getElementById('update-department-bonus').addEventListener('click', updateDepartmentBonus);
     document.getElementById('update-worked-hours').addEventListener('click', updateWorkedHours);
-
+    document.getElementById('update-salary-attendance').addEventListener('click', updateSalaryBasedOnAttendance);
     document.addEventListener('click', function(e) {
         if (e.target && e.target.classList.contains('edit-salary-btn')) {
             openEditSalaryModal(e.target.getAttribute('data-id'));

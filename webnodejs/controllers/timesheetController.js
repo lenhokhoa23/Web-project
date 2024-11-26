@@ -118,6 +118,16 @@ const timesheetController = {
             }
             res.json({ message: 'Đã cập nhật giờ làm việc thành công' });
         });
+    },
+    
+    updateSalaryBasedOnAttendance: (req, res) => {
+        Timesheet.updateSalaryBasedOnAttendance((err, result) => {
+            if (err) {
+                console.error('Lỗi khi cập nhật lương dựa trên chấm công:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json({ message: 'Đã cập nhật lương dựa trên chấm công thành công' });
+        });
     }
 };
 

@@ -13,5 +13,6 @@ router.get('/api/salary/total-payroll', timesheetController.calculateTotalPayrol
 router.post('/api/salary/bonus/department', timesheetController.updateBonusByDepartment);
 router.put('/api/timesheet/salary', timesheetController.updateEmployeeSalary);
 router.post('/api/timesheet/update-hours', timesheetController.updateWorkedHours);
+router.post('/api/timesheet/update-salary', timesheetController.updateSalaryBasedOnAttendance);
 
 module.exports = router;

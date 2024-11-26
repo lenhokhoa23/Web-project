@@ -163,6 +163,28 @@ class Timesheet {
             callback(null, result);
         });
     }
+
+    static updateSalaryBasedOnAttendance(callback) {
+        const query = `
+            UPDATE salary s
+            JOIN (
+                SELECT Employee_ID, 
+                       (DaysOff * 50000 + LateDays * 20000) as DeductionAmount
+                FROM salary
+            ) a ON s.Employee_ID = a.Employee_ID
+            SET s.Salary = s.Salary - a.DeductionAmount,
+                s.DaysOff = 0,
+                s.LateDays = 0
+            WHERE a.DeductionAmount > 0
+        `;
+        
+        db.query(query, (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, result);
+        });
+    }
 }
 
 module.exports = Timesheet;
