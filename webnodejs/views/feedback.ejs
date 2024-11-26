@@ -29,13 +29,13 @@
             <table id="feedback-table">
                 <thead>
                     <tr>    
-                        <th>Feedback ID</th>
-                        <th>Mã KH</th>
-                        <th>Mã Đơn Hàng</th>
-                        <th>Đánh giá</th>
-                        <th>Nội dung</th>
+                        <th data-column="Feedback_ID" onclick="sortTable('Feedback_ID')">Feedback ID</th>
+                        <th data-column="Customer_ID" onclick="sortTable('Customer_ID')">Mã KH</th>
+                        <th data-column="Order_ID" onclick="sortTable('Order_ID')">Mã Đơn Hàng</th>
+                        <th data-column="Rating" onclick="sortTable('Rating')">Đánh giá</th>
+                        <th data-column="Comments" onclick="sortTable('Comments')">Nội dung</th>
                     </tr>
-                </thead>
+                </thead>                
                 <tbody id="feedback-data">
                     <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
                 </tbody>

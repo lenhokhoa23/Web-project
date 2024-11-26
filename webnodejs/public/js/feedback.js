@@ -120,7 +120,6 @@ function searchFeedbackByRating() {
         return;
     }
 
-    // Gọi API tìm phản hồi theo điểm số
     fetch(`/api/feedback/rating/${ratingInput}`)
         .then(response => {
             if (!response.ok) {
@@ -142,6 +141,31 @@ function searchFeedbackByRating() {
         });
 }
 
+let sortState = {};
+
+function sortTable(column) {
+    if (!sortState[column]) {
+        sortState[column] = 'asc';
+    } else if (sortState[column] === 'asc') {
+        sortState[column] = 'desc';
+    } else {
+        sortState[column] = null;
+    }
+
+    let sortedFeedbacks;
+    if (sortState[column] === 'asc') {
+        sortedFeedbacks = [...allFeedbacks].sort((a, b) =>
+            a[column] > b[column] ? 1 : a[column] < b[column] ? -1 : 0
+        );
+    } else if (sortState[column] === 'desc') {
+        sortedFeedbacks = [...allFeedbacks].sort((a, b) =>
+            a[column] < b[column] ? 1 : a[column] > b[column] ? -1 : 0
+        );
+    } else {
+        sortedFeedbacks = [...allFeedbacks];
+    }
+    displayFeedbacks(sortedFeedbacks);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     setupFeedbackListPage();
