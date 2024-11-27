@@ -227,16 +227,6 @@ header {
     background-color: #e0e0e0; /* Màu nền khi hover vào hàng */
 }
 
-/* Tạo kiểu cho thanh tìm kiếm của feedback */
-#search-bar-feedback {
-    width: 1200px; /* Chiều rộng */
-    height: 20px; /* Chiều cao */
-    padding: 15px; /* Khoảng cách bên trong */
-    font-size: 16px; /* Kích thước font chữ */
-    border-radius: 5px; /* Đường viền bo tròn */
-    border: 1px solid #ccc; /* Đường viền */
-    margin-bottom: 15px; /* Khoảng cách dưới thanh tìm kiếm */
-}
 
 /* Kiểu cho chọn phòng ban trong filter */
 #feedback-filter-feedback {
@@ -286,3 +276,30 @@ header {
     background-color: #e57373;
 }
 
+
+.payment-table th,
+.payment-table td {
+    padding: 10px; 
+    text-align: left; 
+    border: 1px solid #ddd; 
+}
+
+.payment-table {
+    width: 100%; /* Đảm bảo bảng chiếm toàn bộ chiều rộng của phần tử cha */
+    table-layout: auto; /* Để tự động điều chỉnh chiều rộng các cột theo nội dung */
+    border-collapse: collapse; /* Làm cho các đường biên của bảng không bị chồng lên nhau */
+}
+
+.payment-table th {
+    background-color: #f2f2f2;
+}
+
+.payment-table tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+.payment-table tr:hover {
+    background-color: #e0e0e0; 
+}
+
+    

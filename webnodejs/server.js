@@ -9,6 +9,7 @@ const feedbackRoutes = require('./routes/FeedbackRoutes');
 const childrenRoutes = require('./routes/childrenRoutes');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/OrderRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 const app = express();
 const port = 3000;
 app.use(express.urlencoded({ extended: true }));
@@ -29,7 +30,7 @@ app.use('/', childrenRoutes);
 app.use('/', feedbackRoutes);
 app.use('/', productRoutes);
 app.use('/', orderRoutes);
-
+app.use('/', paymentRoutes);
 
 // Trang chủ
 app.get('/', (req, res) => {
