@@ -1,6 +1,6 @@
 const Timesheet = require('../models/Timesheet');
 
-const timesheetController = {
+const TimesheetController = {
     showTimesheet: (req, res) => {
         res.render('timesheet');
     },
@@ -96,4 +96,4 @@ const timesheetController = {
     }
 };
 
-module.exports = timesheetController;
+module.exports = TimesheetController;

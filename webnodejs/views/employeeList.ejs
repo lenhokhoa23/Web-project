@@ -14,13 +14,12 @@
             <h2>Thông tin nhân viên</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên...">
             <select id="department-filter">
-                <option value="">All Departments</option>
+                <option value="">Chọn phòng ban</option>
             </select>
-            <input type="text" id="id-search" placeholder="Tìm theo ID">
-            <button id="id-search-btn">Tìm theo ID</button>
-            <a href="/employee/add" class="btn-add-employee">Thêm nhân viên mới</a>
-            <button id ="refresh"> Làm mới </button>
-
+            <input type="text" id="id-search" placeholder="Tìm theo Mã Nhân viên">
+            <button id="id-search-btn">Lọc</button>
+            <button onclick="window.location.href='/employee/add'">Thêm Nhân viên mới</button>  
+            <button id ="refresh">Làm mới</button>
         </header>
         
         <section class="employee-table">
@@ -37,7 +36,6 @@
                     </tr>
                 </thead>
                 <tbody id="employee-data">
-                    <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
                 </tbody>
             </table>
         </section>

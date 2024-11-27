@@ -7,17 +7,16 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Include sidebar -->
     <%- include('partials/sidebar.ejs') %>
 
     <div class="main-content">
         <header>
             <h2>Thông tin dự án</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm dự án...">
-        </header>
-        <button id = 'expire-project'>Tìm những dự án đã đáo hạn.</button>
-        <button id = 'refresh'> Refresh </button>
-        <button onclick="window.location.href='/projects/add'">Thêm Dự Án</button>  
+            <button id = 'expire-project'>Tìm những dự án đã đáo hạn</button>
+            <button onclick="window.location.href='/projects/add'">Thêm Dự Án</button> 
+            <button id = 'refresh'>Làm mới</button>
+        </header> 
         <section class="project-table">
             <table id="project-table">
                 <thead>
@@ -32,9 +31,8 @@
                     </tr>
                 </thead>
                 <tbody id="project-data">
-                    <!-- Dữ liệu dự án sẽ được chèn vào đây bằng JavaScript -->
                     <tr>
-                        <td>1</td> <!-- Mã dự án -->
+                        <td>1</td>
                         <td>Project A</td>
                         <td>Address A</td>
                         <td>2024-01-01</td>

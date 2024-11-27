@@ -1,4 +1,3 @@
-<!-- feedback.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,14 +14,13 @@
             <h2>Danh sách phản hồi</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm phản hồi..." oninput="searchFeedback()">
             <select id="rating-filter">
-                <option value="">Tất cả đánh giá</option>
+                <option value="">Chọn điểm số đánh giá</option>
             </select>
-            <input type="text" id="id-search" placeholder="Nhập Mã KH">
-            <button onclick="searchFeedbackByCustomerId()">Tìm theo Mã KH</button>
-            <button onclick="refreshFeedbackTable()">Làm mới</button>
-            
+            <input type="text" id="id-search" placeholder="Nhập Mã Khách hàng">
+            <button onclick="searchFeedbackByCustomerId()">Lọc theo Mã Khách hàng</button>            
             <input type="text" id="rating-search" placeholder="Nhập điểm số đánh giá">
-            <button onclick="searchFeedbackByRating()">Tìm theo điểm số</button>
+            <button onclick="searchFeedbackByRating()">Lọc theo điểm số</button>
+            <button onclick="refreshFeedbackTable()">Làm mới</button>
         </header>
 
         <section class="feedback-table">
@@ -37,7 +35,6 @@
                     </tr>
                 </thead>                
                 <tbody id="feedback-data">
-                    <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
                 </tbody>
             </table>
         </section>

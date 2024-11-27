@@ -7,14 +7,12 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Include sidebar -->
     <%- include('partials/sidebar.ejs') %>
 
     <div class="main-content">
         <header>
             <h2>Thông tin Con cái Nhân viên</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên..." onkeyup="searchChildren()">
-
             <select id="department-filter">
                 <option value="">Chọn Phòng ban</option>
             </select>
@@ -34,7 +32,6 @@
                     </tr>
                 </thead>
                 <tbody id="children-data">
-                    <!-- Dữ liệu sẽ được chèn vào đây -->
                 </tbody>
             </table>
         </section>

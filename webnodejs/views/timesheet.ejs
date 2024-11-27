@@ -5,20 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng chấm công</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <style>
-        .hidden {
-            display: none;
-        }
-        .salary-controls {
-            margin: 20px 0;
-            padding: 10px;
-            background-color: #f5f5f5;
-            border-radius: 4px;
-        }
-        .bonus-update, .department-bonus-update{
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
     <%- include('partials/sidebar.ejs') %>
@@ -27,28 +13,30 @@
         <header>
             <h2>Bảng chấm công</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên...">
-        </header>
-        <button id = "hardEmployee">Tìm 10 nhân viên làm nhiều nhất</button>
-        <button id="show-all-employees">Refresh</button>
+            <button id = "hardEmployee">Tìm 10 nhân viên làm nhiều nhất</button>
         <button id="perfectScoreBtn">Tìm Nhân viên Điểm 10</button>
+        <button id="show-all-employees">Làm mới</button>
+
         <div class="salary-controls">
-            <button id="toggle-salary-table">Ẩn/Hiện bảng lương</button>
+            <button id="toggle-salary-table">Ẩn / Hiện bảng lương</button>
             <button id="calculate-salary">Tính lương</button>
-            <button id="reset-bonus">Reset bonus</button>
+            <button id="reset-bonus">Làm mới tiền thưởng</button>
             <button id="calculate-total-payroll">Tính tổng lương phải trả</button>
             <div id="total-payroll" class="hidden"></div>
-            <div class="bonus-update">
-                <input type="text" id="bonus-employee-name" placeholder="Tên nhân viên">
-                <input type="number" id="bonus-amount" placeholder="Số tiền bonus">
-                <button id="update-bonus">Cập nhật bonus</button>
-            </div>
-            <div class="department-bonus-update">
-                <select id="department-select">
-                    <option value="">Chọn phòng ban</option>
-                </select>
-                <input type="number" id="department-bonus-amount" placeholder="Số tiền bonus">
-                <button id="update-department-bonus">Cập nhật bonus theo phòng ban</button>
-            </div>
+        </div>
+
+        <div class="bonus-update">
+            <input type="text" id="bonus-employee-name" placeholder="Tên nhân viên">
+            <input type="number" id="bonus-amount" placeholder="Số tiền thưởng">
+            <button id="update-bonus">Cập nhật tiền thưởng</button>
+        </div>
+
+        <div class="department-bonus-update">
+            <select id="department-select">
+                <option value="">Chọn phòng ban</option>
+            </select>
+            <input type="number" id="department-bonus-amount" placeholder="Số tiền thưởng">
+            <button id="update-department-bonus">Cập nhật tiền thưởng theo phòng ban</button>
         </div>
 
         <div id="salary-table" class="hidden">
@@ -67,6 +55,8 @@
                 </tbody>
             </table>
         </div>
+        </header>
+
         <section class="timesheet-table">
             <table id="timesheet-table">
                 <thead>
@@ -79,7 +69,6 @@
                     </tr>
                 </thead>
                 <tbody id="timesheet-data">
-                    <!-- Dữ liệu sẽ được chèn vào đây bằng JavaScript -->
                 </tbody>
             </table>
         </section>

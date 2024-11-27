@@ -1,6 +1,6 @@
 const Employee = require('../models/Employee');
 
-const employeeController = {
+const EmployeeController = {
     showEmployeeList: (req, res) => {
         res.render('employeeList');
     },
@@ -62,4 +62,4 @@ const employeeController = {
     
 };
 
-module.exports = employeeController;
+module.exports = EmployeeController;

@@ -180,8 +180,6 @@ function updateDepartmentBonus() {
 }
 
 function populateDepartmentSelect() {
-    // Assuming you have a list of departments available
-    // You might need to fetch this from the server if not already available
     const departments = [
         { id: 1, name: 'Phòng ban 1' },
         { id: 2, name: 'Phòng ban 2' },
