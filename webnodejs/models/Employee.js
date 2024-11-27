@@ -1,8 +1,6 @@
-// models/Employee.js
 const db = require('../config/db');
 
 class Employee {
-    // Lấy tất cả nhân viên
     static getAllEmployees(callback) {
         const query = `
             SELECT e.Employee_ID, e.EmployeeName, e.StartDate, e.Department_ID,
@@ -19,7 +17,6 @@ class Employee {
         });
     }
 
-    // Tìm nhân viên theo ID
     static getEmployeeById(id, callback) {
         const query = `SELECT e.Employee_ID, e.EmployeeName, e.StartDate, e.Department_ID,
                     c.PhoneNumber, c.Email, c.EmployeeAddress
@@ -34,9 +31,8 @@ class Employee {
         });
     }
 
-    // Thêm nhân viên mới
     static createEmployee(employeeData, callback) {
-        const { Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber } = employeeData; // Loại bỏ ReportTo vì đã cố định
+        const { Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber } = employeeData;
     
         const query = `
             INSERT INTO employee (Department_ID, EmployeeName, ReportTo, StartDate)
@@ -72,8 +68,6 @@ class Employee {
             callback(null, result);
         });
     }
-
-    // Tìm nhân viên điểm 10
     
 }
 

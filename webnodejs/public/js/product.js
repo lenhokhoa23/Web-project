@@ -59,12 +59,10 @@ function filterBySupplier() {
     
     tableBody.innerHTML = '';
 
-    // Lọc dữ liệu theo SupplierName đã chọn
     const filteredProducts = window.allProducts.filter(product => 
         !supplierFilter || product.SupplierName === supplierFilter
     );
 
-    // Hiển thị lại dữ liệu đã lọc
     filteredProducts.forEach(product => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -98,14 +96,10 @@ function refreshTable() {
 
 function filterOutOfStock() {
     const tableBody = document.getElementById('product-data');
-
-    // Lọc các sản phẩm có số lượng trong kho bằng 0
     const outOfStockProducts = window.allProducts.filter(product => product.quantityInStock === 0);
 
-    // Làm trống bảng trước khi chèn dữ liệu lọc
     tableBody.innerHTML = '';
 
-    // Lặp qua danh sách sản phẩm và hiển thị trong bảng
     outOfStockProducts.forEach(product => {
         const row = document.createElement('tr');
         row.innerHTML = `

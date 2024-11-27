@@ -1,15 +1,11 @@
-// routes/productRoutes.js
 const express = require('express');
 const router = express.Router();
-const productController = require('../controllers/productController');
+const ProductController = require('../controllers/ProductController');
 
-// Route hiển thị trang
-router.get('/products', productController.showProductList);
-
-// Route API
-router.get('/api/products', productController.getProducts);
-router.get('/api/products/:id', productController.getProductById);
-router.post('/api/products', productController.addProduct);
-router.post('/api/suppliers', productController.addSupplier);
+router.get('/products', ProductController.showProductList);
+router.get('/api/products', ProductController.getProducts);
+router.get('/api/products/:id', ProductController.getProductById);
+router.post('/api/products', ProductController.addProduct);
+router.post('/api/suppliers', ProductController.addSupplier);
 
 module.exports = router;

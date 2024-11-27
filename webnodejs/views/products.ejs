@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Include sidebar -->
     <%- include('partials/sidebar.ejs') %>
 
     <div class="main-content">
@@ -19,8 +18,8 @@
                 <option value="">Chọn Nhà cung cấp</option>
             </select>
             <button onclick="filterBySupplier()">Lọc</button>
-            <button onclick="refreshTable()">Làm mới</button>
             <button onclick="filterOutOfStock()">Hiển thị hàng hết kho</button>
+            <button onclick="refreshTable()">Làm mới</button>
         </header>
     
         <section class="add-product">
@@ -73,7 +72,6 @@
                     </tr>
                 </thead>
                 <tbody id="product-data">
-                    <!-- Dữ liệu sẽ được chèn vào đây -->
                 </tbody>
             </table>
         </section>

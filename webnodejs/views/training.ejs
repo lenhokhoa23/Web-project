@@ -7,17 +7,15 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Include sidebar -->
     <%- include('partials/sidebar.ejs') %>
 
     <div class="main-content">
         <header>
             <h2>Thông tin Đào tạo</h2>
+            <button onclick="window.location.href='/training/add'">Thêm Đào Tạo</button>  
+            <button id="refresh">Làm mới</button>
         </header>
-        <button id="refresh">Refresh</button>
-        <button onclick="window.location.href='/training/add'">Thêm Đào Tạo</button>  
         <section class="training-info" id="training-data">
-            <!-- Dữ liệu sẽ được chèn vào đây bằng JavaScript -->
         </section>
     </div>
 

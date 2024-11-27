@@ -1,4 +1,3 @@
-<!-- views/addProject.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Include sidebar -->
     <%- include('partials/sidebar.ejs') %>
 
     <div class="main-content">
@@ -17,16 +15,16 @@
         </header>
         <section class="add-training-form">
             <form action="/api/training" method="POST">
-                <label for="TrainingName">Tên đào tạo(*):</label>
+                <label for="TrainingName">Tên đào tạo (*):</label>
                 <input type="text" name="TrainingName" id="TrainingName" required>
 
-                <label for="StartDate">Ngày bắt đầu(*):</label>
+                <label for="StartDate">Ngày bắt đầu (*):</label>
                 <input type="date" name="StartDate" id="StartDate" required>
 
-                <label for="EndDate">Ngày kết thúc(*):</label>
+                <label for="EndDate">Ngày kết thúc (*):</label>
                 <input type="date" name="EndDate" id="EndDate" required>
 
-                <label for="Employee_ID">Mã nhân viên(*):</label>
+                <label for="Employee_ID">Mã nhân viên (*):</label>
                 <input type="number" name="Employee_ID" id="Employee_ID" required>
 
                 <button type="submit">Thêm đào tạo</button>

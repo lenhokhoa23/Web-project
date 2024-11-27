@@ -1,9 +1,9 @@
 const Training = require('../models/Training');
 
-const trainingController = {
+const TrainingController = {
 
     showAddTrainingForm: (req, res) => {
-        res.render('addTraining');  // Render the form for adding a new project
+        res.render('addTraining');
     },
     showTrainingList: (req, res) => {
         res.render('training');
@@ -12,12 +12,10 @@ const trainingController = {
     addTraining: (req, res) => {
         const { TrainingName, StartDate, EndDate, Employee_ID } = req.body;
         console.log('Dữ liệu nhận được từ form:', req.body);
-        // Validate the input data
         if (!TrainingName || !StartDate || !EndDate || !Employee_ID) {
             return res.status(400).json({ error: 'Missing required training data' });
         }
 
-        // Create a new project
         const newTraining = {
             TrainingName, StartDate, EndDate, Employee_ID
         };
@@ -28,7 +26,6 @@ const trainingController = {
                 return res.status(500).json({ error: 'Lỗi server' });
             }
             res.redirect('/training');
-            //res.status(201).json({ ...newProject, Project_ID: result.insertId });
         });
     },
 
@@ -43,4 +40,4 @@ const trainingController = {
     }
 };
 
-module.exports = trainingController;
+module.exports = TrainingController;

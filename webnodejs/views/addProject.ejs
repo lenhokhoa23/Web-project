@@ -1,4 +1,3 @@
-<!-- views/addProject.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Include sidebar -->
     <%- include('partials/sidebar.ejs') %>
 
     <div class="main-content">
@@ -17,19 +15,19 @@
         </header>
         <section class="add-project-form">
             <form action="/api/projects" method="POST">
-                <label for="ProjectName">Tên Dự Án(*):</label>
+                <label for="ProjectName">Tên Dự Án (*):</label>
                 <input type="text" name="ProjectName" id="ProjectName" required>
 
-                <label for="Address">Địa Chỉ(*):</label>
+                <label for="Address">Địa Chỉ (*):</label>
                 <input type="text" name="Address" id="Address" required>
 
-                <label for="ContractDate">Ngày Hợp Đồng(*):</label>
+                <label for="ContractDate">Ngày Hợp Đồng (*):</label>
                 <input type="date" name="ContractDate" id="ContractDate" required>
 
-                <label for="ContractDue">Ngày Đáo Hạn(*):</label>
+                <label for="ContractDue">Ngày Đáo Hạn (*):</label>
                 <input type="date" name="ContractDue" id="ContractDue" required>
 
-                <label for="Customer_ID">Mã Khách Hàng(*):</label>
+                <label for="Customer_ID">Mã Khách Hàng (*):</label>
                 <input type="number" name="Customer_ID" id="Customer_ID" required>
 
                 <button type="submit">Thêm Dự Án</button>

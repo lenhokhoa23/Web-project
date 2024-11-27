@@ -1,7 +1,6 @@
 const db = require('../config/db');
 
 class Product {
-    // Lấy tất cả sản phẩm với số lượng đơn hàng và tên nhà cung cấp
     static getAllProducts(callback) {
         const query = `
             SELECT 
@@ -24,7 +23,6 @@ class Product {
         });
     }    
 
-    // Lấy thông tin sản phẩm theo ID
     static getProductById(productId, callback) {
         const query = `
             SELECT 
@@ -76,8 +74,7 @@ class Product {
             }
             callback(null, result);
         });
-    }
-    
+    }  
 }
 
 module.exports = Product;

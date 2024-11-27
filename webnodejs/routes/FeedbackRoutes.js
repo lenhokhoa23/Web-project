@@ -1,11 +1,10 @@
-// routes/FeedbackRoutes.js
 const express = require('express');
 const router = express.Router();
-const feedbackController = require('../controllers/feedbackController');
+const FeedbackController = require('../controllers/FeedbackController');
 
-router.get('/feedback', feedbackController.showFeedbackList);
-router.get('/api/feedback', feedbackController.getFeedbacks);
-router.get('/api/feedback/customer/:id', feedbackController.getFeedbackByCustomerId);
-router.get('/api/feedback/rating/:rating', feedbackController.getFeedbackByRating);
+router.get('/feedback', FeedbackController.showFeedbackList);
+router.get('/api/feedback', FeedbackController.getFeedbacks);
+router.get('/api/feedback/customer/:id', FeedbackController.getFeedbackByCustomerId);
+router.get('/api/feedback/rating/:rating', FeedbackController.getFeedbackByRating);
 
 module.exports = router;
