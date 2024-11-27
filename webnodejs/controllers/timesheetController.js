@@ -93,6 +93,41 @@ const timesheetController = {
             }
             res.json({ message: 'Đã cập nhật bonus theo phòng ban thành công' });
         });
+    },
+    updateEmployeeSalary: (req, res) => {
+        const { employeeId, newSalary } = req.body;
+        
+        if (!employeeId || !newSalary) {
+            return res.status(400).json({ error: 'Thiếu thông tin cần thiết' });
+        }
+
+        Timesheet.updateEmployeeSalary(employeeId, newSalary, (err, result) => {
+            if (err) {
+                console.error('Lỗi khi cập nhật lương nhân viên:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json({ message: 'Đã cập nhật lương nhân viên thành công' });
+        });
+    },
+
+    updateWorkedHours: (req, res) => {
+        Timesheet.updateWorkedHours((err, result) => {
+            if (err) {
+                console.error('Lỗi khi cập nhật giờ làm việc:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json({ message: 'Đã cập nhật giờ làm việc thành công' });
+        });
+    },
+    
+    updateSalaryBasedOnAttendance: (req, res) => {
+        Timesheet.updateSalaryBasedOnAttendance((err, result) => {
+            if (err) {
+                console.error('Lỗi khi cập nhật lương dựa trên chấm công:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json({ message: 'Đã cập nhật lương dựa trên chấm công thành công' });
+        });
     }
 };
 
