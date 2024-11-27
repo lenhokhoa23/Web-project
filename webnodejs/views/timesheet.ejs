@@ -15,28 +15,27 @@
             <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên...">
             <button id = "hardEmployee">Tìm 10 nhân viên làm nhiều nhất</button>
         <button id="perfectScoreBtn">Tìm Nhân viên Điểm 10</button>
-        <button id="show-all-employees">Làm mới</button>
 
+        <button id="update-worked-hours">Cập nhật giờ làm việc</button>
         <div class="salary-controls">
-            <button id="toggle-salary-table">Ẩn / Hiện bảng lương</button>
-            <button id="calculate-salary">Tính lương</button>
-            <button id="reset-bonus">Làm mới tiền thưởng</button>
+            <button id="toggle-salary-table">Ẩn/Hiện bảng lương</button>
+            <button id="reset-bonus">Reset bonus</button>
             <button id="calculate-total-payroll">Tính tổng lương phải trả</button>
+            <button id="update-salary-attendance">Cập nhật lương theo chấm công</button>
             <div id="total-payroll" class="hidden"></div>
-        </div>
 
-        <div class="bonus-update">
-            <input type="text" id="bonus-employee-name" placeholder="Tên nhân viên">
-            <input type="number" id="bonus-amount" placeholder="Số tiền thưởng">
-            <button id="update-bonus">Cập nhật tiền thưởng</button>
-        </div>
-
-        <div class="department-bonus-update">
-            <select id="department-select">
-                <option value="">Chọn phòng ban</option>
-            </select>
-            <input type="number" id="department-bonus-amount" placeholder="Số tiền thưởng">
-            <button id="update-department-bonus">Cập nhật tiền thưởng theo phòng ban</button>
+            <div class="bonus-update">
+                <input type="text" id="bonus-employee-name" placeholder="Tên nhân viên">
+                <input type="number" id="bonus-amount" placeholder="Số tiền bonus">
+                <button id="update-bonus">Cập nhật bonus</button>
+            </div>
+            <div class="department-bonus-update">
+                <select id="department-select">
+                    <option value="">Chọn phòng ban</option>
+                </select>
+                <input type="number" id="department-bonus-amount" placeholder="Số tiền bonus">
+                <button id="update-department-bonus">Thưởng thêm bonus theo phòng ban</button>
+            </div>
         </div>
 
         <div id="salary-table" class="hidden">
@@ -66,12 +65,22 @@
                         <th>Giờ làm việc</th>
                         <th>Điểm</th>
                         <th>Bình luận</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody id="timesheet-data">
                 </tbody>
             </table>
         </section>
+    </div>
+    <div id="edit-salary-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sửa lương nhân viên</h2>
+            <input type="hidden" id="edit-employee-id">
+            <input type="number" id="edit-salary" placeholder="Nhập lương mới">
+            <button id="save-salary">Lưu</button>
+        </div>
     </div>
 
     <script src="/js/timesheet.js"></script>
