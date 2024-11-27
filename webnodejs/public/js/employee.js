@@ -1,4 +1,4 @@
-let allEmployees = []; // Store all employees
+let allEmployees = [];
 let selectedEmployeeId = null;
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -22,7 +22,7 @@ function filterEmployees() {
 
 function displayEmployees(employees) {
     const tableBody = document.getElementById('employee-data');
-    if (!tableBody) return; // Exit if we're not on the employee list page
+    if (!tableBody) return;
 
     tableBody.innerHTML = '';
 
@@ -44,7 +44,7 @@ function displayEmployees(employees) {
 
 function populateDepartmentFilter(employees) {
     const departmentFilter = document.getElementById('department-filter');
-    if (!departmentFilter) return; // Exit if we're not on the employee list page
+    if (!departmentFilter) return;
 
     const departments = [...new Set(employees.map(emp => emp.Department_ID))];
 
@@ -79,7 +79,7 @@ function deleteEmployee() {
             .then(response => response.json())
             .then(data => {
                 alert(data.message);
-                setupEmployeeListPage(); // Refresh the employee list
+                setupEmployeeListPage();
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -130,14 +130,12 @@ function setupAddEmployeePage() {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        // Get form data and convert to object
         const formData = new FormData(form);
         const employeeData = {};
         formData.forEach((value, key) => {
             employeeData[key] = value;
         });
 
-        // Log the data being sent for debugging
         console.log('Sending data:', employeeData);
 
         fetch('/api/employees', {

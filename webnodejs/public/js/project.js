@@ -73,7 +73,6 @@ function displayProjects(projects) {
 
 
 function showContextMenu(event, projectId) {
-    // Xóa menu cũ (nếu có)
     removeContextMenu();
 
     const contextMenu = document.createElement('div');
@@ -85,27 +84,25 @@ function showContextMenu(event, projectId) {
     deleteButton.textContent = 'Xoá dự án';
     deleteButton.addEventListener('click', () => {
         if (confirm(`Bạn có chắc muốn xoá dự án với ID ${projectId}?`)) {
-            deleteProject(projectId); // Gọi hàm xoá dự án
+            deleteProject(projectId);
         }
-        removeContextMenu(); // Xóa menu sau khi thực hiện hành động
+        removeContextMenu();
     });
 
     contextMenu.appendChild(deleteButton);
     document.body.appendChild(contextMenu);
 
-    // Đóng menu khi nhấp ra ngoài
     document.addEventListener('click', removeContextMenu, { once: true });
 }
 
 function deleteProject(projectId) {
-    console.log('Xoá project ID:', projectId); // Kiểm tra giá trị projectId
+    console.log('Xoá project ID:', projectId);
     fetch(`/projects/${projectId}`, {
         method: 'DELETE',
     })
     .then(response => response.json())
     .then(data => {
         alert('Dự án đã được xoá.');
-        // Cập nhật lại danh sách dự án sau khi xoá
         projects = projects.filter(project => project.Project_ID !== parseInt(projectId));
         displayProjects(projects);
     })
@@ -122,29 +119,28 @@ function removeContextMenu() {
         existingMenu.remove();
     }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Lấy dữ liệu dự án khi trang đã tải xong
     fetch('/api/projects')
         .then(response => response.json())
         .then(data => {
             projects = data;
-            displayProjects(projects); // Hiển thị các dự án lên bảng
+            displayProjects(projects);
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu dự án:', error));
     document.getElementById('refresh').addEventListener('click', refresh);
     document.getElementById('expire-project').addEventListener('click', showExpireProject);
     document.getElementById('search-bar').addEventListener('keyup', searchProjects);
 
-    // Hiển thị context menu khi nhấp chuột phải vào hàng trong bảng
     document.getElementById('project-table').addEventListener('contextmenu', (event) => {
         console.log('Context menu event triggered');
-        event.preventDefault(); // Ngăn menu ngữ cảnh mặc định
+        event.preventDefault();
 
         if (event.target.tagName === 'TD') {
             const row = event.target.closest('tr');
             const projectId = row.querySelector('td').textContent.trim();
-            console.log('Project ID:', projectId); // Lấy `Project_ID`
-            showContextMenu(event, projectId); // Hiển thị context menu
+            console.log('Project ID:', projectId);
+            showContextMenu(event, projectId);
         }
     });
     

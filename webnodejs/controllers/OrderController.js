@@ -1,6 +1,6 @@
 const Order = require('../models/Order');
 
-const orderController = {
+const OrderController = {
     showOrderList: (req, res) => {
         res.render('order');
     },
@@ -109,4 +109,4 @@ const orderController = {
     }
 };
 
-module.exports = orderController;
+module.exports = OrderController;

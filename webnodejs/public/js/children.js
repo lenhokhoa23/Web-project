@@ -59,12 +59,10 @@ function filterByDepartment() {
     
     tableBody.innerHTML = '';
 
-    // Lọc dữ liệu theo Department_ID đã chọn
     const filteredChildren = window.allChildren.filter(child => 
         !departmentFilter || child.Department_ID.toString() === departmentFilter
     );
 
-    // Hiển thị lại dữ liệu đã lọc
     filteredChildren.forEach(child => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -81,10 +79,8 @@ function refreshTable() {
     const tableBody = document.getElementById('children-data');
     const departmentFilter = document.getElementById('department-filter');
     
-    // Xóa giá trị chọn lọc phòng ban
     departmentFilter.value = '';
 
-    // Hiển thị lại dữ liệu ban đầu
     tableBody.innerHTML = '';
     window.allChildren.forEach(child => {
         const row = document.createElement('tr');

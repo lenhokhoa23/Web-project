@@ -1,10 +1,17 @@
 let allEmployeeData = [];
+let editingEmployeeId = null;
 
 function searchTimesheet() {
     const input = document.getElementById('search-bar').value.toLowerCase();
     const rows = document.getElementById('timesheet-data').getElementsByTagName('tr');
+    const rows2 = document.getElementById('salary-data').getElementsByTagName('tr');
 
     for (let row of rows) {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(input) ? '' : 'none';
+    }
+
+    for (let row of rows2) {
         const text = row.textContent.toLowerCase();
         row.style.display = text.includes(input) ? '' : 'none';
     }
@@ -42,7 +49,8 @@ function displayEmployees(employees) {
             <td>${item.EmployeeName}</td>
             <td>${item.WorkedHours}</td>
             <td>${item.score}</td>
-            <td>${item.comment}</td>`;
+            <td>${item.comment}</td>
+            <td><button class="edit-salary-btn" data-id="${item.Employee_ID}">Sửa lương</button></td>`;
         tableBody.appendChild(row);
     });
 }
@@ -54,6 +62,19 @@ function toggleSalaryTable() {
     } else {
         salaryTable.classList.add('hidden');
     }
+}
+
+function updateSalaryBasedOnAttendance() {
+    fetch('/api/timesheet/update-salary', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            calculateSalary(); // Refresh bảng lương
+        })
+        .catch(error => {
+            console.error('Error updating salary based on attendance:', error);
+            alert('Có lỗi khi cập nhật lương dựa trên chấm công');
+        });
 }
 
 function calculateSalary() {
@@ -180,8 +201,6 @@ function updateDepartmentBonus() {
 }
 
 function populateDepartmentSelect() {
-    // Assuming you have a list of departments available
-    // You might need to fetch this from the server if not already available
     const departments = [
         { id: 1, name: 'Phòng ban 1' },
         { id: 2, name: 'Phòng ban 2' },
@@ -197,6 +216,52 @@ function populateDepartmentSelect() {
         option.textContent = dept.name;
         departmentSelect.appendChild(option);
     });
+}
+function updateWorkedHours() {
+    fetch('/api/timesheet/update-hours', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            fetchTimesheetData();
+        })
+        .catch(error => {
+            console.error('Error updating worked hours:', error);
+            alert('Có lỗi khi cập nhật giờ làm việc');
+        });
+}
+
+function openEditSalaryModal(employeeId) {
+    editingEmployeeId = employeeId;
+    document.getElementById('edit-employee-id').value = employeeId;
+    document.getElementById('edit-salary-modal').style.display = 'block';
+}
+
+function closeEditSalaryModal() {
+    document.getElementById('edit-salary-modal').style.display = 'none';
+}
+
+function saveSalary() {
+    const newSalary = document.getElementById('edit-salary').value;
+    if (!newSalary) {
+        alert('Vui lòng nhập lương mới');
+        return;
+    }
+
+    fetch('/api/timesheet/salary', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ employeeId: editingEmployeeId, newSalary: parseFloat(newSalary) })
+    })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            closeEditSalaryModal();
+            fetchTimesheetData();
+        })
+        .catch(error => {
+            console.error('Error updating salary:', error);
+            alert('Có lỗi khi cập nhật lương');
+        });
 }
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/timesheets')
@@ -216,6 +281,34 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('update-bonus').addEventListener('click', updateBonus);
     document.getElementById('calculate-total-payroll').addEventListener('click', calculateTotalPayroll);
     document.getElementById('update-department-bonus').addEventListener('click', updateDepartmentBonus);
+    document.getElementById('update-worked-hours').addEventListener('click', updateWorkedHours);
+    document.getElementById('update-salary-attendance').addEventListener('click', updateSalaryBasedOnAttendance);
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('edit-salary-btn')) {
+            openEditSalaryModal(e.target.getAttribute('data-id'));
+        }
+    });
+
+    document.querySelector('.close').addEventListener('click', closeEditSalaryModal);
+    document.getElementById('save-salary').addEventListener('click', saveSalary);
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('edit-salary-modal')) {
+            closeEditSalaryModal();
+        }
+    }
 
     populateDepartmentSelect();
 });
+
+function fetchTimesheetData() {
+    fetch('/api/timesheets')
+        .then(response => response.json())
+        .then(data => {
+            allEmployeeData = data;
+            displayEmployees(data);
+        })
+        .catch(error => console.error('Error fetching timesheet data:', error));
+}
+
+fetchTimesheetData();

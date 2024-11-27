@@ -1,10 +1,10 @@
-let allFeedbacks = []; // Lưu tất cả phản hồi
+let allFeedbacks = [];
 
 function displayFeedbacks(feedbacks) {
     const tableBody = document.getElementById('feedback-data');
     if (!tableBody) return;
 
-    tableBody.innerHTML = ''; // Clear previous content
+    tableBody.innerHTML = '';
 
     feedbacks.forEach(feedback => {
         const row = document.createElement('tr');
@@ -63,13 +63,12 @@ function setupFeedbackListPage() {
 }
 
 function searchFeedbackByCustomerId() {
-    const customerIdInput = document.getElementById('id-search').value; // Lấy giá trị nhập vào từ ô tìm kiếm
+    const customerIdInput = document.getElementById('id-search').value;
     if (!customerIdInput) {
         alert('Vui lòng nhập Mã KH!');
         return;
     }
 
-    // Gọi API tìm phản hồi theo Customer_ID
     fetch(`/api/feedback/customer/${customerIdInput}`)
         .then(response => {
             if (!response.ok) {
@@ -79,10 +78,10 @@ function searchFeedbackByCustomerId() {
         })
         .then(feedbacks => {
             if (feedbacks && feedbacks.length > 0) {
-                displayFeedbacks(feedbacks); // Hiển thị danh sách phản hồi
+                displayFeedbacks(feedbacks);
             } else {
                 alert('Không tìm thấy phản hồi với Mã KH này');
-                displayFeedbacks([]); // Nếu không có phản hồi, dọn sạch bảng
+                displayFeedbacks([]);
             }
         })
         .catch(error => {
@@ -95,11 +94,9 @@ function refreshFeedbackTable() {
     const tableBody = document.getElementById('feedback-data');
     const ratingFilter = document.getElementById('rating-filter');
     
-    // Xóa giá trị lọc đánh giá
     ratingFilter.value = '';
 
-    // Hiển thị lại tất cả dữ liệu phản hồi
-    tableBody.innerHTML = ''; // Clear previous content
+    tableBody.innerHTML = '';
     allFeedbacks.forEach(feedback => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -113,7 +110,59 @@ function refreshFeedbackTable() {
     });
 }
 
+function searchFeedbackByRating() {
+    const ratingInput = document.getElementById('rating-search').value;
+    if (!ratingInput) {
+        alert('Vui lòng nhập điểm số!');
+        return;
+    }
 
+    fetch(`/api/feedback/rating/${ratingInput}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Không tìm thấy phản hồi với điểm số này');
+            }
+            return response.json();
+        })
+        .then(feedbacks => {
+            if (feedbacks && feedbacks.length > 0) {
+                displayFeedbacks(feedbacks);
+            } else {
+                alert('Không tìm thấy phản hồi với điểm số này');
+                displayFeedbacks([]);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert(error.message);
+        });
+}
+
+let sortState = {};
+
+function sortTable(column) {
+    if (!sortState[column]) {
+        sortState[column] = 'asc';
+    } else if (sortState[column] === 'asc') {
+        sortState[column] = 'desc';
+    } else {
+        sortState[column] = null;
+    }
+
+    let sortedFeedbacks;
+    if (sortState[column] === 'asc') {
+        sortedFeedbacks = [...allFeedbacks].sort((a, b) =>
+            a[column] > b[column] ? 1 : a[column] < b[column] ? -1 : 0
+        );
+    } else if (sortState[column] === 'desc') {
+        sortedFeedbacks = [...allFeedbacks].sort((a, b) =>
+            a[column] < b[column] ? 1 : a[column] > b[column] ? -1 : 0
+        );
+    } else {
+        sortedFeedbacks = [...allFeedbacks];
+    }
+    displayFeedbacks(sortedFeedbacks);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     setupFeedbackListPage();

@@ -4,8 +4,9 @@
 --
 -- Máy chủ: localhost:3307
 -- Thời gian đã tạo: Th10 27, 2024 lúc 07:14 AM
+
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.0.30
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +21,20 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `company_sample`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `Attendance_ID` int(11) NOT NULL,
+  `Employee_ID` int(11) NOT NULL,
+  `CheckIn` datetime NOT NULL,
+  `CheckOut` datetime DEFAULT NULL,
+  `Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1796,6 +1811,13 @@ INSERT INTO `training` (`Training_ID`, `TrainingName`, `StartDate`, `EndDate`, `
 --
 
 --
+-- Chỉ mục cho bảng `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`Attendance_ID`),
+  ADD KEY `Employee_ID` (`Employee_ID`);
+
+--
 -- Chỉ mục cho bảng `children`
 --
 ALTER TABLE `children`
@@ -1920,6 +1942,12 @@ ALTER TABLE `training`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `Attendance_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `department`
 --
 ALTER TABLE `department`
@@ -1966,10 +1994,23 @@ ALTER TABLE `training`
 --
 
 --
+-- Các ràng buộc cho bảng `attendance`
+--
+ALTER TABLE `attendance`
+  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Các ràng buộc cho bảng `children`
 --
 ALTER TABLE `children`
   ADD CONSTRAINT `children_ibfk_1` FOREIGN KEY (`Employee_ID`) REFERENCES `employee` (`Employee_ID`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `contract`
+--
+ALTER TABLE `contract`
+  ADD CONSTRAINT `customer_fk` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `project_fk` FOREIGN KEY (`Project_ID`) REFERENCES `project` (`Project_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `contract`

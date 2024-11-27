@@ -1,4 +1,3 @@
-<!-- feedback.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +14,12 @@
             <h2>Danh sách phản hồi</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm phản hồi..." oninput="searchFeedback()">
             <select id="rating-filter">
-                <option value="">Tất cả đánh giá</option>
+                <option value="">Chọn điểm số đánh giá</option>
             </select>
-            <input type="text" id="id-search" placeholder="Nhập Mã KH">
-            <button onclick="searchFeedbackByCustomerId()">Tìm theo Mã KH</button>
+            <input type="text" id="id-search" placeholder="Nhập Mã Khách hàng">
+            <button onclick="searchFeedbackByCustomerId()">Lọc theo Mã Khách hàng</button>            
+            <input type="text" id="rating-search" placeholder="Nhập điểm số đánh giá">
+            <button onclick="searchFeedbackByRating()">Lọc theo điểm số</button>
             <button onclick="refreshFeedbackTable()">Làm mới</button>
         </header>
 
@@ -26,15 +27,14 @@
             <table id="feedback-table">
                 <thead>
                     <tr>    
-                        <th>Feedback ID</th>
-                        <th>Mã KH</th>
-                        <th>Mã Đơn Hàng</th>
-                        <th>Đánh giá</th>
-                        <th>Nội dung</th>
+                        <th data-column="Feedback_ID" onclick="sortTable('Feedback_ID')">Feedback ID</th>
+                        <th data-column="Customer_ID" onclick="sortTable('Customer_ID')">Mã KH</th>
+                        <th data-column="Order_ID" onclick="sortTable('Order_ID')">Mã Đơn Hàng</th>
+                        <th data-column="Rating" onclick="sortTable('Rating')">Đánh giá</th>
+                        <th data-column="Comments" onclick="sortTable('Comments')">Nội dung</th>
                     </tr>
-                </thead>
+                </thead>                
                 <tbody id="feedback-data">
-                    <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
                 </tbody>
             </table>
         </section>

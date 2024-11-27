@@ -1,13 +1,10 @@
-// controllers/childrenController.js
 const Children = require('../models/Children');
 
-const childrenController = {
-    // Hiển thị trang danh sách trẻ em
+const ChildrenController = {
     showChildrenList: (req, res) => {
         res.render('children');
     },
 
-    // Lấy dữ liệu trẻ em cho API
     getChildren: (req, res) => {
         Children.getAllChildren((err, children) => {
             if (err) {
@@ -18,7 +15,6 @@ const childrenController = {
         });
     },
 
-    // Lấy thông tin một trẻ em
     getChildrenById: (req, res) => {
         const id = req.params.id;
         Employee.getChildrenById(id, (err, children) => {
@@ -33,4 +29,4 @@ const childrenController = {
     }
 };
 
-module.exports = childrenController;
+module.exports = ChildrenController;

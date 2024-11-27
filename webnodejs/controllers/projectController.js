@@ -1,19 +1,14 @@
-// controllers/projectController.js
-
 const Project = require('../models/Project');
 
-const projectController = {
-    // Show project list page
+const ProjectController = {
     showProjectList: (req, res) => {
         res.render('project');
     },
 
-    // Show add project form
     showAddProjectForm: (req, res) => {
-        res.render('addProject');  // Render the form for adding a new project
+        res.render('addProject');
     },
 
-    // Fetch all projects
     getProjects: (req, res) => {
         Project.getAllProjects((err, projects) => {
             if (err) {
@@ -24,7 +19,6 @@ const projectController = {
         });
     },
 
-    // Fetch expired projects
     getExpirePro: (req, res) => {
         Project.getExpireProjects((err, projects) => {
             if (err) {
@@ -35,22 +29,15 @@ const projectController = {
         });
     },
 
-    // Add a new project
     addProject: (req, res) => {
         const { ProjectName, Address, ContractDate, ContractDue, Customer_ID } = req.body;
         console.log('Dữ liệu nhận được từ form:', req.body);
-        // Validate the input data
         if (!ProjectName || !Address || !ContractDate || !ContractDue || !Customer_ID) {
             return res.status(400).json({ error: 'Missing required project data' });
         }
 
-        // Create a new project
         const newProject = {
-            ProjectName,
-            Address,
-            ContractDate,
-            ContractDue,
-            Customer_ID
+            ProjectName, Address, ContractDate, ContractDue, Customer_ID
         };
 
         Project.addNewProject(newProject, (err, result) => {
@@ -59,18 +46,16 @@ const projectController = {
                 return res.status(500).json({ error: 'Lỗi server' });
             }
             res.redirect('/projects');
-            //res.status(201).json({ ...newProject, Project_ID: result.insertId });
         });
     },
 
     deleteProject: (req, res) => {
-        const projectId = req.params.id;  // Lấy Project_ID từ params của URL
+        const projectId = req.params.id;
         console.log('Project ID (after trim):', projectId);
         if (!projectId) {
             return res.status(400).json({ error: 'Project ID is required' });
         }
 
-        // Gọi phương thức xoá dự án từ Model
         Project.deleteProjectById(projectId, (err, result) => {
             if (err) {
                 console.error('Lỗi khi xoá dự án:', err);
@@ -85,4 +70,4 @@ const projectController = {
     }
 };
 
-module.exports = projectController;
+module.exports = ProjectController;

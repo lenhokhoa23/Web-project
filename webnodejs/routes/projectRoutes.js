@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const projectController = require('../controllers/projectController');
+const ProjectController = require('../controllers/ProjectController');
 
+router.get('/projects', ProjectController.showProjectList);
+router.get('/projects/add', ProjectController.showAddProjectForm);
+router.get('/api/projects', ProjectController.getProjects);
+router.get('/api/projects/expire-project', ProjectController.getExpirePro);
+router.post('/api/projects', ProjectController.addProject);
+router.delete('/projects/:id', ProjectController.deleteProject);
 
-router.get('/projects', projectController.showProjectList);
-router.get('/projects/add', projectController.showAddProjectForm);
-router.get('/api/projects', projectController.getProjects);
-router.get('/api/projects/expire-project', projectController.getExpirePro);
-router.post('/api/projects', projectController.addProject);
-router.delete('/projects/:id', projectController.deleteProject);
 module.exports = router;

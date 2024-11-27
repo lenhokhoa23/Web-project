@@ -1,13 +1,9 @@
-// routes/childrenRoutes.js
 const express = require('express');
 const router = express.Router();
-const childrenController = require('../controllers/childrenController');
+const ChildrenController = require('../controllers/ChildrenController');
 
-// Route hiển thị trang
-router.get('/children', childrenController.showChildrenList);
-
-// Route API
-router.get('/api/children', childrenController.getChildren);
-router.get('/api/children/:id', childrenController.getChildrenById);
+router.get('/children', ChildrenController.showChildrenList);
+router.get('/api/children', ChildrenController.getChildren);
+router.get('/api/children/:id', ChildrenController.getChildrenById);
 
 module.exports = router;

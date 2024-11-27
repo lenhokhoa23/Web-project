@@ -1,12 +1,10 @@
 const Product = require('../models/Product');
 
-const productController = {
-    // Hiển thị trang danh sách sản phẩm
+const ProductController = {
     showProductList: (req, res) => {
         res.render('products');
     },
 
-    // Lấy dữ liệu sản phẩm cho API
     getProducts: (req, res) => {
         Product.getAllProducts((err, products) => {
             if (err) {
@@ -17,7 +15,6 @@ const productController = {
         });
     },
 
-    // Lấy thông tin một sản phẩm
     getProductById: (req, res) => {
         const productId = req.params.id;
         Product.getProductById(productId, (err, product) => {
@@ -30,9 +27,8 @@ const productController = {
             }
             res.json(product);
         });
-    }, // Thêm dấu phẩy ở đây
+    },
 
-    // Thêm sản phẩm mới
     addProduct: (req, res) => {
         const { Product_Code, Supplier_ID, BuyPrice, ProductRating, QuantityInStock } = req.body;
 
@@ -55,7 +51,6 @@ const productController = {
         );
     },
 
-    // Thêm nhà cung cấp mới
     addSupplier: (req, res) => {
         const { SupplierName, SupplierEmail, SupplierAddress } = req.body;
 
@@ -77,6 +72,7 @@ const productController = {
             }
         );
     }
+    
 };
 
-module.exports = productController;
+module.exports = ProductController;

@@ -8,7 +8,6 @@ function formatDate(dateString) {
     return date.toLocaleDateString('vi-VN');
 }
 
-
 function searchOrder() {
     const input = document.getElementById('search-bar').value.toLowerCase().trim();
     const rows = document.getElementById('order-data').getElementsByTagName('tr');
@@ -357,12 +356,9 @@ function updateDepartmentBonus() {
 }
 
 function populateDepartmentSelect() {
-    // Assuming you have a list of departments available
-    // You might need to fetch this from the server if not already available
     const departments = [
         { id: 1, name: 'Phòng ban 1' },
         { id: 2, name: 'Phòng ban 2' },
-        // ... add more departments as needed
     ];
 
     const departmentSelect = document.getElementById('department-select');
@@ -403,7 +399,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('toggle-revenue-calculator').addEventListener('click', () => toggleSection('toggle-revenue-calculator', 'revenue-calculator'));
     document.getElementById('toggle-top-customers').addEventListener('click', () => toggleSection('toggle-top-customers', 'top-customers-container'));
     document.getElementById('calculate-revenue').addEventListener('click', calculateTotalRevenue);
-    // Close modal when clicking outside
     window.onclick = function(event) {
         const modal = document.getElementById('order-details-modal');
         if (event.target == modal) {
