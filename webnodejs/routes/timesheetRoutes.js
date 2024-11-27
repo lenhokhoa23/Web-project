@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const TimesheetController = require('../controllers/TimesheetController');
+const TimesheetController = require('../controllers/timesheetController');
 
 router.get('/timesheet', TimesheetController.showTimesheet);
 router.get('/api/timesheets', TimesheetController.getTimesheet);
