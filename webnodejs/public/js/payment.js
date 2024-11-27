@@ -1,4 +1,4 @@
-let allPayments = []; // Lưu tất cả phản hồi
+let allPayments = [];
 
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -9,7 +9,7 @@ function displayPayments(payments) {
     const tableBody = document.getElementById('payment-data');
     if (!tableBody) return;
 
-    tableBody.innerHTML = ''; // Clear previous content
+    tableBody.innerHTML = '';
 
     payments.forEach(payment => {
         const row = document.createElement('tr');
@@ -47,13 +47,12 @@ function setupPaymentListPage() {
 }
 
 function searchPaymentByCustomerId() {
-    const customerIdInput = document.getElementById('id-search').value; // Lấy giá trị nhập vào từ ô tìm kiếm
+    const customerIdInput = document.getElementById('id-search').value;
     if (!customerIdInput) {
         alert('Vui lòng nhập Mã KH!');
         return;
     }
 
-    // Gọi API tìm phản hồi theo Customer_ID
     fetch(`/api/payment/customer/${customerIdInput}`)
         .then(response => {
             if (!response.ok) {
@@ -63,10 +62,10 @@ function searchPaymentByCustomerId() {
         })
         .then(payments => {
             if (payments && payments.length > 0) {
-                displayPayments(payments); // Hiển thị danh sách phản hồi
+                displayPayments(payments);
             } else {
                 alert('Không tìm thấy thanh toán với Mã KH này');
-                displayPayments([]); // Nếu không có phản hồi, dọn sạch bảng
+                displayPayments([]);
             }
         })
         .catch(error => {
@@ -77,8 +76,7 @@ function searchPaymentByCustomerId() {
 
 function refreshPaymentTable() {
     const tableBody = document.getElementById('payment-data');
-    // Hiển thị lại tất cả dữ liệu phản hồi
-    tableBody.innerHTML = ''; // Clear previous content
+    tableBody.innerHTML = '';
     allPayments.forEach(payment => {
         const row = document.createElement('tr');
         row.innerHTML = `

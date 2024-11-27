@@ -344,7 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('toggle-top-customers').addEventListener('click', () => toggleSection('toggle-top-customers', 'top-customers-container'));
     document.getElementById('calculate-revenue').addEventListener('click', calculateTotalRevenue);
 
-    // Close modal when clicking outside
     window.onclick = function(event) {
         const modal = document.getElementById('order-details-modal');
         if (event.target == modal) {

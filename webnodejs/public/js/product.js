@@ -144,6 +144,15 @@ document.getElementById('add-product-form').addEventListener('submit', async (ev
     }
 });
 
+function toggleForm(formContainerId) {
+    const formContainer = document.getElementById(formContainerId);
+    if (formContainer.style.display === 'none' || formContainer.style.display === '') {
+        formContainer.style.display = 'block';
+    } else {
+        formContainer.style.display = 'none';
+    }
+}
+
 document.getElementById('add-supplier-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 

@@ -1,19 +1,17 @@
 const Payment = require('../models/Payment');
 
 const paymentController = {
-    // Hiển thị trang danh sách phản hồi
     showPaymentList: (req, res) => {
         res.render('payment'); 
     },
 
-    // Lấy tất cả phản hồi cho API
     getPayments: (req, res) => {
         Payment.getAllPayments((err, payments) => {
             if (err) {
                 console.error('Lỗi khi lấy danh sách thanh toasn', err);
                 return res.status(500).json({ error: 'Lỗi server' });
             }
-            res.json(payments); // Trả về danh sách phản hồi dưới dạng JSON
+            res.json(payments);
         });
     },
 
@@ -27,7 +25,7 @@ const paymentController = {
             if (!payments || payments.length === 0) {
                 return res.status(404).json({ error: 'Không tìm thấy phản hồi' });
             }
-            res.json(payments); // Trả về danh sách phản hồi theo Customer_ID
+            res.json(payments);
         });
     },
 };
