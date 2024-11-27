@@ -277,7 +277,6 @@ header {
 }
 
 
-<<<<<<< HEAD
 .payment-table th,
 .payment-table td {
     padding: 10px; 
@@ -303,9 +302,6 @@ header {
     background-color: #e0e0e0; 
 }
 
-    
-=======
-/* Đặt kiểu dáng tổng thể cho toàn bộ section */
 .add-product {
     max-width: 400px;
     margin: 20px auto;
@@ -527,4 +523,3 @@ header {
 .context-menu li:hover {
     background-color: #f1f1f1;
 }
->>>>>>> e25e9546b5a1377b368d25d3a0b5e1a48f508694
