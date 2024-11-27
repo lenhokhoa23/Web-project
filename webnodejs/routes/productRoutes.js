@@ -9,5 +9,7 @@ router.get('/products', productController.showProductList);
 // Route API
 router.get('/api/products', productController.getProducts);
 router.get('/api/products/:id', productController.getProductById);
+router.post('/api/products', productController.addProduct);
+router.post('/api/suppliers', productController.addSupplier);
 
 module.exports = router;

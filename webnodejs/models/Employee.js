@@ -51,7 +51,6 @@ class Employee {
             VALUES (@last_id, NULL, 80);
         `;
     
-        // Loại bỏ ReportTo khỏi values vì nó đã cố định là 9 trong câu lệnh SQL
         const values = [Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber];
     
         db.query(query, values, (err, result) => {
@@ -61,7 +60,18 @@ class Employee {
             callback(null, result);
         });
     }
-    
+    static deleteEmployee(id, callback) {
+        const query = `
+            DELETE FROM employee WHERE Employee_ID = ?;
+        `;
+        
+        db.query(query, [id], (err, result) => {
+            if (err) {
+                return callback(err, null);
+            }
+            callback(null, result);
+        });
+    }
 
     // Tìm nhân viên điểm 10
     

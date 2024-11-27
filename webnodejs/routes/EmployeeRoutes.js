@@ -7,5 +7,5 @@ router.get('/employee/add', employeeController.showAddEmployeeForm);
 router.get('/api/employees', employeeController.getEmployees);
 router.get('/api/employees/:id', employeeController.getEmployeeById);
 router.post('/api/employees', employeeController.createEmployee);
-
+router.delete('/api/employees/:id', employeeController.deleteEmployee);
 module.exports = router;

@@ -277,6 +277,7 @@ header {
 }
 
 
+<<<<<<< HEAD
 .payment-table th,
 .payment-table td {
     padding: 10px; 
@@ -303,3 +304,227 @@ header {
 }
 
     
+=======
+/* Đặt kiểu dáng tổng thể cho toàn bộ section */
+.add-product {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Tiêu đề */
+.add-product h3 {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Kiểu cho form */
+#add-product-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Kiểu cho nhãn */
+#add-product-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Kiểu cho input */
+#add-product-form input {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Kiểu cho nút bấm */
+#add-product-form button {
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút bấm */
+#add-product-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 576px) {
+    .add-product {
+        max-width: 100%;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #add-product-form input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    #add-product-form button {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
+/* Đặt kiểu dáng tổng thể cho toàn bộ section */
+.add-supplier {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Tiêu đề */
+.add-supplier h3 {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Kiểu cho form */
+#add-supplier-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Kiểu cho nhãn */
+#add-supplier-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Kiểu cho input */
+#add-supplier-form input {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Kiểu cho nút bấm */
+#add-supplier-form button {
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover cho nút bấm */
+#add-supplier-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 576px) {
+    .add-supplier {
+        max-width: 100%;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    #add-supplier-form input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    #add-supplier-form button {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+.salary-controls {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+
+.bonus-update {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+#salary-table {
+    margin-top: 20px;
+}
+
+#salary-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#salary-table th,
+#salary-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+#salary-table th {
+    background-color: #f4f4f4;
+}
+.context-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 5px 0;
+    z-index: 1000;
+}
+
+.context-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.context-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.context-menu li:hover {
+    background-color: #f1f1f1;
+}
+>>>>>>> e25e9546b5a1377b368d25d3a0b5e1a48f508694
