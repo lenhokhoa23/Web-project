@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách thanh toán</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/sidebar') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Danh sách thanh toán</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm thanh toán..." oninput="searchPayment()">
+            <input type="text" id="id-search" placeholder="Nhập Mã KH">
+            <button onclick="searchPaymentByCustomerId()">Tìm theo Mã KH</button>
+            <button onclick="refreshPaymentTable()">Làm mới</button>
+        </header>
+
+        <section class="payment-table">
+            <table id="payment-table">
+                <thead>
+                    <tr>    
+                        <th>Mã thanh toán</th>
+                        <th>Mã khách hàng</th>
+                        <th>Tên khách hàng</th>
+                        <th>Email</th>
+                        <th>Tiền thanh toán</th>
+                        <th>Ngày thanh toán</th>
+                    </tr>
+                </thead>
+                <tbody id="payment-data">
+                    <!-- Dữ liệu sẽ được thêm vào đây bằng JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="/js/payment.js"></script>
+</body>
+</html>
