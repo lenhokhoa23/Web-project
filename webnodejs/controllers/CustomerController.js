@@ -26,6 +26,15 @@ const CustomerController = {
             }
             res.json(customer);
         });
+    },
+    getCustomerDebts: (req, res) => {
+        Customer.getCustomerDept((err, debts) => {
+            if (err) {
+                console.error('Lỗi khi lấy danh sách nợ:', err);
+                return res.status(500).json({ error: 'Lỗi server' });
+            }
+            res.json(debts);
+        });
     }
 };
 

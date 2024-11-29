@@ -2,23 +2,82 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('/api/customer');
         const data = await response.json();
-        const tableBody = document.getElementById('customer-data');
-
         window.allCustomer = data;
-
-        data.forEach(customer => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${customer.Customer_ID}</td>
-                <td>${customer.CustomerName}</td>
-                <td>${customer.CustomerEmail}</td>
-                <td>${customer.Num_Order}</td>`;
-            tableBody.appendChild(row);
-        });
+        displayCustomers(data);
     } catch (error) {
         console.error('Lỗi khi lấy dữ liệu khách hàng:', error);
     }
+
+    document.getElementById('view-customer-debts').addEventListener('click', getCustomerDebts);
 });
+
+function displayCustomers(customers) {
+    const tableBody = document.getElementById('customer-data');
+    const tableHead = document.querySelector('#customer-table thead tr');
+    
+    tableHead.innerHTML = `
+        <th>Mã Khách hàng</th>
+        <th>Tên Khách hàng</th>
+        <th>Email</th>
+        <th>Số lượng đơn hàng</th>
+    `;
+
+    tableBody.innerHTML = '';
+
+    customers.forEach(customer => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${customer.Customer_ID}</td>
+            <td>${customer.CustomerName}</td>
+            <td>${customer.CustomerEmail}</td>
+            <td>${customer.Num_Order}</td>`;
+        tableBody.appendChild(row);
+    });
+}
+
+async function getCustomerDebts() {
+    try {
+        const response = await fetch('/api/customer-debts');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        
+        displayCustomerDebts(data);
+    } catch (error) {
+        console.error('Lỗi khi lấy danh sách nợ:', error);
+        const tableBody = document.getElementById('customer-data');
+        tableBody.innerHTML = `<tr><td colspan="3" class="text-center">Có lỗi xảy ra khi tải dữ liệu: ${error.message}</td></tr>`;
+    }
+}
+
+function displayCustomerDebts(debts) {
+    const tableBody = document.getElementById('customer-data');
+    const tableHead = document.querySelector('#customer-table thead tr');
+    
+    tableHead.innerHTML = `
+        <th>Mã Khách hàng</th>
+        <th>Tên Khách hàng</th>
+        <th>Tổng nợ</th>
+    `;
+
+    tableBody.innerHTML = '';
+
+    if (!debts || debts.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="3" class="text-center">Không có khách hàng nào đang nợ</td></tr>`;
+        return;
+    }
+
+    debts.forEach(customer => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${customer.Customer_ID}</td>
+            <td>${customer.CustomerName}</td>
+            <td>${customer.totalDept}</td>`;
+        tableBody.appendChild(row);
+    });
+}
 
 function searchCustomer() {
     const input = document.getElementById('search-bar').value.toLowerCase();
@@ -40,18 +99,7 @@ function searchCustomer() {
 }
 
 function refreshTable() {
-    const tableBody = document.getElementById('customer-data');
-    tableBody.innerHTML = '';
-
-    window.allCustomer.forEach(customer => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${customer.Customer_ID}</td>
-            <td>${customer.CustomerName}</td>
-            <td>${customer.CustomerEmail}</td>
-            <td>${customer.Num_Order}</td>`;
-        tableBody.appendChild(row);
-    });
+    displayCustomers(window.allCustomer);
 }
 
 let isDescending = true;
@@ -65,16 +113,5 @@ function sortTable() {
 
     isDescending = !isDescending;
 
-    const tableBody = document.getElementById('customer-data');
-    tableBody.innerHTML = '';
-
-    sortedData.forEach(customer => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${customer.Customer_ID}</td>
-            <td>${customer.CustomerName}</td>
-            <td>${customer.CustomerEmail}</td>
-            <td>${customer.Num_Order}</td>`;
-        tableBody.appendChild(row);
-    });
+    displayCustomers(sortedData);
 }
