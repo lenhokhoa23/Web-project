@@ -1,6 +1,6 @@
 const Payment = require('../models/Payment');
 
-const paymentController = {
+const PaymentController = {
     showPaymentList: (req, res) => {
         res.render('payment'); 
     },
@@ -8,7 +8,7 @@ const paymentController = {
     getPayments: (req, res) => {
         Payment.getAllPayments((err, payments) => {
             if (err) {
-                console.error('Lỗi khi lấy danh sách thanh toasn', err);
+                console.error('Lỗi khi lấy danh sách thanh toán', err);
                 return res.status(500).json({ error: 'Lỗi server' });
             }
             res.json(payments);
@@ -30,4 +30,4 @@ const paymentController = {
     },
 };
 
-module.exports = paymentController;
+module.exports = PaymentController;

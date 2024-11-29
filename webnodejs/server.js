@@ -1,14 +1,16 @@
 const express = require('express');
 const path = require('path');
-const employeeRoutes = require('./routes/EmployeeRoutes');
-const projectRoutes = require('./routes/projectRoutes');
-const trainingRoutes = require('./routes/trainingRoutes');
-const timesheetRoutes = require('./routes/timesheetRoutes');
-const feedbackRoutes = require('./routes/FeedbackRoutes');
-const childrenRoutes = require('./routes/childrenRoutes');
-const productRoutes = require('./routes/productRoutes');
-const orderRoutes = require('./routes/OrderRoutes');
-const paymentRoutes = require('./routes/paymentRoutes');
+const EmployeeRoutes = require('./routes/EmployeeRoutes');
+const ProjectRoutes = require('./routes/ProjectRoutes');
+const TrainingRoutes = require('./routes/TrainingRoutes');
+const TimesheetRoutes = require('./routes/TimesheetRoutes');
+const FeedbackRoutes = require('./routes/FeedbackRoutes');
+const ChildrenRoutes = require('./routes/ChildrenRoutes');
+const ProductRoutes = require('./routes/ProductRoutes');
+const OrderRoutes = require('./routes/OrderRoutes');
+const PaymentRoutes = require('./routes/PaymentRoutes');
+const CustomerRoutes = require('./routes/CustomerRoutes');
+
 const app = express();
 const port = 3000;
 app.use(express.urlencoded({ extended: true }));
@@ -20,15 +22,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', employeeRoutes);
-app.use('/', projectRoutes);
-app.use('/', trainingRoutes);
-app.use('/', timesheetRoutes);
-app.use('/', childrenRoutes);
-app.use('/', feedbackRoutes);
-app.use('/', productRoutes);
-app.use('/', orderRoutes);
-app.use('/', paymentRoutes);
+app.use('/', EmployeeRoutes);
+app.use('/', ProjectRoutes);
+app.use('/', TrainingRoutes);
+app.use('/', TimesheetRoutes);
+app.use('/', ChildrenRoutes);
+app.use('/', FeedbackRoutes);
+app.use('/', ProductRoutes);
+app.use('/', OrderRoutes);
+app.use('/', PaymentRoutes);
+app.use('/', CustomerRoutes);
 
 app.get('/', (req, res) => {
     res.render('index');
