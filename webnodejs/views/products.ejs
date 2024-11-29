@@ -20,9 +20,14 @@
             <button onclick="filterBySupplier()">Lọc</button>
             <button onclick="filterOutOfStock()">Hiển thị hàng hết kho</button>
             <button onclick="refreshTable()">Làm mới</button>
+
+            <section class="controls">
+                <button onclick="toggleForm('add-product-form-container')">Thêm Sản phẩm mới</button>
+                <button onclick="toggleForm('add-supplier-form-container')">Thêm Nhà cung cấp mới</button>
+            </section>
         </header>
-    
-        <section class="add-product">
+        
+        <div id="add-product-form-container" style="display: none;">
             <h3>Thêm Sản phẩm mới</h3>
             <form id="add-product-form">
                 <label for="product-name">Tên sản phẩm:</label>
@@ -42,23 +47,23 @@
                 
                 <button type="submit">Thêm sản phẩm</button>
             </form>
-        </section>
-
-        <section class="add-supplier">
+        </div>
+        
+        <div id="add-supplier-form-container" style="display: none;">
             <h3>Thêm Nhà cung cấp mới</h3>
             <form id="add-supplier-form">
                 <label for="supplier-name">Tên nhà cung cấp:</label>
                 <input type="text" id="supplier-name" name="SupplierName" required>
-
+        
                 <label for="supplier-email">Email nhà cung cấp:</label>
                 <input type="text" id="supplier-email" name="SupplierEmail" required>
-
+        
                 <label for="supplier-address">Địa chỉ nhà cung cấp:</label>
                 <input type="text" id="supplier-address" name="SupplierAddress" required>
                 
                 <button type="submit">Thêm nhà cung cấp</button>
             </form>
-        </section>
+        </div>
         
         <section class="product-table">
             <table id="product-table">

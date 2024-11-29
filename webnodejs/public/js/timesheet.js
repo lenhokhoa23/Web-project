@@ -69,7 +69,7 @@ function updateSalaryBasedOnAttendance() {
         .then(response => response.json())
         .then(data => {
             alert(data.message);
-            calculateSalary(); // Refresh bảng lương
+            calculateSalary();
         })
         .catch(error => {
             console.error('Error updating salary based on attendance:', error);

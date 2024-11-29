@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Con cái Nhân viên</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/sidebar.ejs') %>
+
+    <div class="main-content">
+        <header>
+            <h2>Thông tin Khách hàng</h2>
+            <input type="text" id="search-bar" placeholder="Tìm kiếm khách hàng..." onkeyup="searchCustomer()">
+            <button id="sort-button" onclick="sortTable()">Sắp xếp theo số lượng đơn hàng</button>
+            <button onclick="refreshTable()">Làm mới</button>
+        </header>
+
+        <section class="customer-table">
+            <table id="customer-table">
+                <thead>
+                    <tr>
+                        <th>Mã Khách hàng</th>
+                        <th>Tên Khách hàng</th>
+                        <th>Email</th>
+                        <th>Số lượng đơn hàng</th>
+                    </tr>
+                </thead>
+                <tbody id="customer-data">
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="/js/customer.js"></script>
+</body>
+</html>
