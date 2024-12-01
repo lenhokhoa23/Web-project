@@ -12,7 +12,7 @@ const PaymentRoutes = require('./routes/PaymentRoutes');
 const CustomerRoutes = require('./routes/CustomerRoutes');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -41,3 +41,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server đang chạy tại http://localhost:${port}`);
 });
+
+module.exports = app;
