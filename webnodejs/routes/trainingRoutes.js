@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const TrainingController = require('../controllers/trainingController');
+const TrainingController = require('../controllers/TrainingController');
 
 router.get('/training', TrainingController.showTrainingList);
 router.get('/api/training', TrainingController.getTraining);

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ProjectController = require('../controllers/projectController');
+const ProjectController = require('../controllers/ProjectController');
 
 router.get('/projects', ProjectController.showProjectList);
 router.get('/projects/add', ProjectController.showAddProjectForm);
