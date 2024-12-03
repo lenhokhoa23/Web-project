@@ -57,67 +57,69 @@ class Project {
     static addNewProject(projectData, callback) {
         const { ProjectName, Address, ContractDate, ContractDue, Customer_ID } = projectData;
     
-        const findNextProjectIdQuery = `
-            SELECT t1.Project_ID + 1 AS next_id
-            FROM project t1
-            LEFT JOIN project t2 ON t1.Project_ID + 1 = t2.Project_ID
-            WHERE t2.Project_ID IS NULL
-            ORDER BY t1.Project_ID DESC
-            LIMIT 1;
-        `;
-        
-        db.query(findNextProjectIdQuery, (err, rows) => {
+        db.beginTransaction((err) => {
             if (err) {
-                console.error('Lỗi khi tìm ID tiếp theo cho dự án:', err);
+                console.error('Lỗi khi bắt đầu giao dịch:', err);
                 return callback(err, null);
             }
     
-            let nextProjectId = rows.length > 0 ? rows[0].next_id : 1;
-    
-            const query = `
-                INSERT INTO project (Project_ID, ProjectName, Address) VALUES (?, ?, ?);
+            const findNextProjectIdQuery = `
+                SELECT COALESCE(MAX(Project_ID), 0) + 1 AS next_id FROM project
             `;
             
-            db.query(query, [nextProjectId, ProjectName, Address], (err, result) => {
+            db.query(findNextProjectIdQuery, (err, rows) => {
                 if (err) {
-                    console.error('Lỗi khi thêm dự án vào bảng project:', err);
-                    return callback(err, null);
+                    console.error('Lỗi khi tìm ID tiếp theo cho dự án:', err);
+                    return db.rollback(() => callback(err, null));
                 }
     
-                const projectId = result.insertId;
+                const nextProjectId = rows[0].next_id;
     
-                const findNextContractIdQuery = `
-                    SELECT t1.Contract_ID + 1 AS next_id
-                    FROM contract t1
-                    LEFT JOIN contract t2 ON t1.Contract_ID + 1 = t2.Contract_ID
-                    WHERE t2.Contract_ID IS NULL
-                    ORDER BY t1.Contract_ID DESC
-                    LIMIT 1;
+                const insertProjectQuery = `
+                    INSERT INTO project (Project_ID, ProjectName, Address) VALUES (?, ?, ?);
                 `;
-    
-                db.query(findNextContractIdQuery, (err, rows) => {
+                
+                db.query(insertProjectQuery, [nextProjectId, ProjectName, Address], (err, result) => {
                     if (err) {
-                        console.error('Lỗi khi tìm ID tiếp theo cho hợp đồng:', err);
-                        return callback(err, null);
+                        console.error('Lỗi khi thêm dự án vào bảng project:', err);
+                        return db.rollback(() => callback(err, null));
                     }
     
-                    let nextContractId = rows.length > 0 ? rows[0].next_id : 1;
-                    const contractQuery = `
-                        INSERT INTO contract (Contract_ID, Project_ID, ContractDate, ContractDue, Customer_ID) 
-                        VALUES (?, ?, ?, ?, ?);
+                    const findNextContractIdQuery = `
+                        SELECT COALESCE(MAX(Contract_ID), 0) + 1 AS next_id FROM contract
                     `;
     
-                    db.query(contractQuery, [nextContractId, projectId, ContractDate, ContractDue, Customer_ID], (err, result) => {
+                    db.query(findNextContractIdQuery, (err, rows) => {
                         if (err) {
-                            console.error('Lỗi khi thêm hợp đồng vào bảng contract:', err);
-                            return callback(err, null);
+                            console.error('Lỗi khi tìm ID tiếp theo cho hợp đồng:', err);
+                            return db.rollback(() => callback(err, null));
                         }
-                        callback(null, result);
+    
+                        const nextContractId = rows[0].next_id;
+                        const insertContractQuery = `
+                            INSERT INTO contract (Contract_ID, Project_ID, ContractDate, ContractDue, Customer_ID) 
+                            VALUES (?, ?, ?, ?, ?);
+                        `;
+    
+                        db.query(insertContractQuery, [nextContractId, nextProjectId, ContractDate, ContractDue, Customer_ID], (err, result) => {
+                            if (err) {
+                                console.error('Lỗi khi thêm hợp đồng vào bảng contract:', err);
+                                return db.rollback(() => callback(err, null));
+                            }
+    
+                            db.commit((err) => {
+                                if (err) {
+                                    console.error('Lỗi khi commit giao dịch:', err);
+                                    return db.rollback(() => callback(err, null));
+                                }
+                                callback(null, { projectId: nextProjectId, contractId: nextContractId });
+                            });
+                        });
                     });
                 });
             });
         });
-    } 
+    }
 }
 
 module.exports = Project;
