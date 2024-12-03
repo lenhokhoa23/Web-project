@@ -45,9 +45,12 @@ class Employee {
     
             INSERT INTO employeeperformance (Employee_ID, EmployeeName, Comment, Score)
             VALUES (@last_id, ?, NULL, 80);
+
+            INSERT INTO timesheet (Employee_ID, EmployeeName, WorkedHours)
+            VALUES (@last_id, ?, 0);
         `;
     
-        const values = [Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber, EmployeeName];
+        const values = [Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber, EmployeeName, EmployeeName];
     
         db.query(query, values, (err, result) => {
             if (err) {
