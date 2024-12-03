@@ -43,11 +43,11 @@ class Employee {
             INSERT INTO employeecontact (Employee_ID, Email, EmployeeAddress, PhoneNumber)
             VALUES (@last_id, ?, ?, ?);
     
-            INSERT INTO employeeperformance (Employee_ID, Comment, Score)
-            VALUES (@last_id, NULL, 80);
+            INSERT INTO employeeperformance (Employee_ID, EmployeeName, Comment, Score)
+            VALUES (@last_id, ?, NULL, 80);
         `;
     
-        const values = [Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber];
+        const values = [Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber, EmployeeName];
     
         db.query(query, values, (err, result) => {
             if (err) {
