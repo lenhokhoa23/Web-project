@@ -1,8 +1,5 @@
 require('dotenv').config(); 
 
-
-
-
 const mysql = require('mysql2');
 
 const db = mysql.createConnection({
@@ -10,8 +7,8 @@ const db = mysql.createConnection({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: Number(process.env.DB_PORT), // Chuyển về số
-    multipleStatements: process.env.DB_MULTIPLE_STATEMENTS === 'true' // Chuyển về boolean
+    port: Number(process.env.DB_PORT),
+    multipleStatements: process.env.DB_MULTIPLE_STATEMENTS === 'true'
 });
 
 db.connect((err) => {
