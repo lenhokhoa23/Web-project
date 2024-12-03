@@ -249,13 +249,28 @@ function filterOrdersByDate() {
     fetch(`/api/orders-by-date?start=${startDate}&end=${endDate}`)
         .then(response => response.json())
         .then(data => {
+            currentView = 'filtered';
+            showingOrderValues = false;
+            const headerRow = document.querySelector('#order-table thead tr');
+            headerRow.innerHTML = `
+                <th>Mã đơn hàng</th>
+                <th>Mã khách hàng</th>
+                <th>Tên khách hàng</th>
+                <th>Ngày đặt hàng</th>
+                <th>Ngày yêu cầu</th>
+                <th>Địa chỉ ship</th>
+                <th>Ngày ship hàng</th>
+                <th>Trạng thái</th>
+            `;
             displayOrders(data);
+            updateButtonStates();
         })
         .catch(error => {
             console.error('Error fetching filtered orders:', error);
             alert('Có lỗi khi lọc đơn hàng theo ngày');
         });
 }
+
 function calculateTotalRevenue() {
     const startDate = document.getElementById('revenue-start-date').value;
     const endDate = document.getElementById('revenue-end-date').value;
