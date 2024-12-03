@@ -11,11 +11,11 @@
 
     <div class="main-content">
         <header>
-            <h2>Thông tin dự án</h2>
+            <h2>Thông tin Dự án</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm dự án...">
-            <button id = 'expire-project'>Tìm những dự án đã đáo hạn</button>
+            <button onclick="showExpireProject()" id = 'expire-project'>Tìm những dự án đã đáo hạn</button>
             <button onclick="window.location.href='/projects/add'">Thêm Dự Án</button> 
-            <button id = 'refresh'>Làm mới</button>
+            <button onclick="refreshProjects()" id = 'refresh'>Làm mới</button>
         </header> 
         <section class="project-table">
             <table id="project-table">
