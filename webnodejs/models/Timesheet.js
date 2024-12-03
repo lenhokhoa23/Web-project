@@ -57,7 +57,7 @@ class Timesheet {
                    (s.Salary + COALESCE(s.Bonus, 0)) as TotalSalary
             FROM timesheet t
             JOIN salary s ON t.Employee_ID = s.Employee_ID
-            GROUP BY t.Employee_ID
+            GROUP BY t.Employee_ID, t.EmployeeName
         `;
         
         db.query(query, (err, results) => {
