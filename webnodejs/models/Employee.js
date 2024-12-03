@@ -43,11 +43,17 @@ class Employee {
             INSERT INTO employeecontact (Employee_ID, Email, EmployeeAddress, PhoneNumber)
             VALUES (@last_id, ?, ?, ?);
     
-            INSERT INTO employeeperformance (Employee_ID, Comment, Score)
-            VALUES (@last_id, NULL, 80);
+            INSERT INTO employeeperformance (Employee_ID, EmployeeName, Comment, Score)
+            VALUES (@last_id, ?, 'Tốt', 80);
+
+            INSERT INTO timesheet (Employee_ID, EmployeeName, WorkedHours)
+            VALUES (@last_id, ?, 0);
+
+            INSERT INTO employeehealth (Employee_ID, EmployeeName, Gender, Height, Weight, Status)
+            VALUES (@last_id, ?, 'Ẩn danh', 175, 70, 'Bình thường');
         `;
     
-        const values = [Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber];
+        const values = [Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber, EmployeeName, EmployeeName, EmployeeName];
     
         db.query(query, values, (err, result) => {
             if (err) {
@@ -58,10 +64,14 @@ class Employee {
     }
     static deleteEmployee(id, callback) {
         const query = `
+            DELETE FROM timesheet WHERE Employee_ID = ?;
+            DELETE FROM employeeperformance WHERE Employee_ID = ?;
+            DELETE FROM employeecontact WHERE Employee_ID = ?;
+            DELETE FROM employeehealth WHERE Employee_ID = ?;
             DELETE FROM employee WHERE Employee_ID = ?;
         `;
         
-        db.query(query, [id], (err, result) => {
+        db.query(query, [id, id, id, id, id], (err, result) => {
             if (err) {
                 return callback(err, null);
             }

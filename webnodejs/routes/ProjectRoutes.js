@@ -7,6 +7,6 @@ router.get('/projects/add', ProjectController.showAddProjectForm);
 router.get('/api/projects', ProjectController.getProjects);
 router.get('/api/projects/expire-project', ProjectController.getExpirePro);
 router.post('/api/projects', ProjectController.addProject);
-router.delete('/projects/:id', ProjectController.deleteProject);
+router.delete('/api/projects/:id', ProjectController.deleteProject);
 
 module.exports = router;

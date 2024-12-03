@@ -252,30 +252,6 @@ header {
     background-color: #e0e0e0; /* Màu nền khi hover vào hàng */
 }
 
-.context-menu {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    padding: 8px;
-    border-radius: 4px;
-}
-
-.context-menu button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-}
-
-.context-menu button:hover {
-    background-color: #e57373;
-}
-
 
 .payment-table th,
 .payment-table td {
