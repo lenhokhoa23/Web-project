@@ -65,7 +65,7 @@ class Project {
             ORDER BY t1.Project_ID DESC
             LIMIT 1;
         `;
-        
+    
         db.query(findNextProjectIdQuery, (err, rows) => {
             if (err) {
                 console.error('Lỗi khi tìm ID tiếp theo cho dự án:', err);
@@ -74,17 +74,16 @@ class Project {
     
             let nextProjectId = rows.length > 0 ? rows[0].next_id : 1;
     
-            const query = `
-                INSERT INTO project (Project_ID, ProjectName, Address) VALUES (?, ?, ?);
+            const projectQuery = `
+                INSERT INTO project (Project_ID, ProjectName, Address)
+                VALUES (?, ?, ?);
             `;
-            
-            db.query(query, [nextProjectId, ProjectName, Address], (err, result) => {
+    
+            db.query(projectQuery, [nextProjectId, ProjectName, Address], (err, result) => {
                 if (err) {
                     console.error('Lỗi khi thêm dự án vào bảng project:', err);
                     return callback(err, null);
                 }
-    
-                const projectId = result.insertId;
     
                 const findNextContractIdQuery = `
                     SELECT t1.Contract_ID + 1 AS next_id
@@ -102,22 +101,25 @@ class Project {
                     }
     
                     let nextContractId = rows.length > 0 ? rows[0].next_id : 1;
+    
                     const contractQuery = `
-                        INSERT INTO contract (Contract_ID, Project_ID, ContractDate, ContractDue, Customer_ID) 
+                        INSERT INTO contract (Contract_ID, Project_ID, ContractDate, ContractDue, Customer_ID)
                         VALUES (?, ?, ?, ?, ?);
                     `;
     
-                    db.query(contractQuery, [nextContractId, projectId, ContractDate, ContractDue, Customer_ID], (err, result) => {
+                    db.query(contractQuery, [nextContractId, nextProjectId, ContractDate, ContractDue, Customer_ID], (err, result) => {
                         if (err) {
                             console.error('Lỗi khi thêm hợp đồng vào bảng contract:', err);
                             return callback(err, null);
                         }
+
                         callback(null, result);
                     });
                 });
             });
         });
-    } 
+    }
+     
 }
 
 module.exports = Project;
