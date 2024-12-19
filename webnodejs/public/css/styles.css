@@ -4,7 +4,7 @@ body {
 }
 
 .sidebar {
-    width: 200px;
+    width: 320px;
     background-color: #2d3e50;
     color: white;
     height: 100vh;
@@ -80,7 +80,7 @@ header {
 
 #search-bar {
     width: 1200px; /* Width */
-    height: 20px; /* Height */
+    height: 30px; /* Height */
     padding: 15px; /* Inside space */
     font-size: 16px; /* Font size */
     border-radius: 5px; /* Đường viền bo tròn */
@@ -666,4 +666,98 @@ form button:hover {
 
 .customer-table tr:hover {
     background-color: #e0e0e0; /* Màu nền khi hover vào hàng */
+}
+
+/* Shared Button Style */
+.button {
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1515;
+    background: linear-gradient(90deg, #a1efe9, #9fdfec); /* Light gradient colors */
+    border: none;
+    border-radius: 50px; /* Fully rounded corners */
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.button:hover {
+    transform: scale(1.05); /* Slightly enlarge the button */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+    transform: scale(0.95); /* Slightly shrink the button */
+}
+
+.button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+
+.input-field,
+.filter {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 25px; /* Rounded corners */
+    background: #f9f9f9; /* Light background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease;  
+    outline: none;
+    color: #555; /* Text color */
+    width: 200px; /* Default width */
+    margin-right: 10px; /* Space between fields */
+}
+
+/* Hover and Focus Effects */
+.input-field:hover,
+.filter:hover,
+.input-field:focus,
+.filter:focus {
+    background: #ffffff; /* Slightly brighter background on hover or focus */
+    border-color: #81ecec; /* Light blue border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+/* Dropdown Specific Styling */
+.filter {
+    appearance: none; /* Removes default browser styles for dropdowns */
+    background: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 15px center;
+    background-size: 15px;
+}
+
+/* Responsive Width */
+.input-field,
+.filter {
+    max-width: 100%; /* Ensure it scales on smaller screens */
+    box-sizing: border-box; /* Avoid overflow */
+}
+
+
+.more-field{
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #c2f0f0;
+    background: linear-gradient(90deg, #a1efe9, #9fdfec);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease;  
+    outline: none;
+    color: #080505; /* Text color */
+    width: 200px; /* Default width */
+    margin-right: 10px; /* Space between fields */
+}
+
+.more-field:hover{
+    background: linear-gradient(90deg, #a1efe9, #9fdfec);
+    border-color: #32a9a9; /* Light blue border */
+    transform: scale(1.05); /* Slightly enlarge the button */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+}
+
+.more-field{
+    max-width: 100%; /* Ensure it scales on smaller screens */
+    box-sizing: border-box; /* Avoid overflow */
 }

@@ -13,13 +13,13 @@
         <header>
             <h2>Thông tin nhân viên</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm nhân viên...">
-            <select id="department-filter">
+            <select id="department-filter" class="filter">
                 <option value="">Chọn phòng ban</option>
             </select>
-            <input type="text" id="id-search" placeholder="Tìm theo Mã Nhân viên">
-            <button id="id-search-btn">Lọc</button>
-            <button onclick="window.location.href='/employee/add'">Thêm Nhân viên mới</button>  
-            <button id ="refresh">Làm mới</button>
+            <input type="text" id="id-search"  class="input-field"  placeholder="Tìm theo Mã Nhân viên">
+            <button class="button" id="id-search-btn">Lọc</button>
+            <button class="button" onclick="window.location.href='/employee/add'">Thêm Nhân viên mới</button>  
+            <button class="button" id ="refresh">Làm mới</button>
         </header>
         
         <section class="employee-table">

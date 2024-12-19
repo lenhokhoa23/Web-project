@@ -12,15 +12,15 @@
     <div class="main-content">
         <header>
             <h2>Danh sách phản hồi</h2>
-            <input type="text" id="search-bar" placeholder="Tìm kiếm phản hồi..." oninput="searchFeedback()">
-            <select id="rating-filter">
+            <input class="input-field"  type="text" id="search-bar" placeholder="Tìm kiếm phản hồi..." oninput="searchFeedback()">
+            <select id="rating-filter" class="filter">
                 <option value="">Chọn điểm số đánh giá</option>
             </select>
-            <input type="text" id="id-search" placeholder="Nhập Mã Khách hàng">
-            <button onclick="searchFeedbackByCustomerId()">Lọc theo Mã Khách hàng</button>            
-            <input type="text" id="rating-search" placeholder="Nhập điểm số đánh giá">
-            <button onclick="searchFeedbackByRating()">Lọc theo điểm số</button>
-            <button onclick="refreshFeedbackTable()">Làm mới</button>
+            <input class="input-field"  type="text" id="id-search" placeholder="Nhập Mã Khách hàng">
+            <button class="button" onclick="searchFeedbackByCustomerId()">Lọc theo Mã Khách hàng</button>            
+            <input class="input-field"  type="text" id="rating-search" placeholder="Nhập điểm số đánh giá">
+            <button class="button" onclick="searchFeedbackByRating()">Lọc theo điểm số</button>
+            <button class="button" onclick="refreshFeedbackTable()">Làm mới</button>
         </header>
 
         <section class="feedback-table">
