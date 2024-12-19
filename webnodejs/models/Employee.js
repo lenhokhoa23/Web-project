@@ -48,9 +48,6 @@ class Employee {
 
             INSERT INTO timesheet (Employee_ID, EmployeeName, WorkedHours)
             VALUES (@last_id, ?, 0);
-
-            INSERT INTO employeehealth (Employee_ID, EmployeeName, Gender, Height, Weight, Status)
-            VALUES (@last_id, ?, 'Ẩn danh', 175, 70, 'Bình thường');
         `;
     
         const values = [Department_ID, EmployeeName, StartDate, Email, EmployeeAddress, PhoneNumber, EmployeeName, EmployeeName, EmployeeName];
@@ -67,7 +64,6 @@ class Employee {
             DELETE FROM timesheet WHERE Employee_ID = ?;
             DELETE FROM employeeperformance WHERE Employee_ID = ?;
             DELETE FROM employeecontact WHERE Employee_ID = ?;
-            DELETE FROM employeehealth WHERE Employee_ID = ?;
             DELETE FROM employee WHERE Employee_ID = ?;
         `;
         

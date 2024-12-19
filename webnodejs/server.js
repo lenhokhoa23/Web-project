@@ -1,11 +1,8 @@
 const express = require('express');
 const path = require('path');
 const EmployeeRoutes = require('./routes/EmployeeRoutes');
-const ProjectRoutes = require('./routes/ProjectRoutes');
-const TrainingRoutes = require('./routes/TrainingRoutes');
 const TimesheetRoutes = require('./routes/TimesheetRoutes');
 const FeedbackRoutes = require('./routes/FeedbackRoutes');
-const ChildrenRoutes = require('./routes/ChildrenRoutes');
 const ProductRoutes = require('./routes/ProductRoutes');
 const OrderRoutes = require('./routes/OrderRoutes');
 const PaymentRoutes = require('./routes/PaymentRoutes');
@@ -23,10 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', EmployeeRoutes);
-app.use('/', ProjectRoutes);
-app.use('/', TrainingRoutes);
 app.use('/', TimesheetRoutes);
-app.use('/', ChildrenRoutes);
 app.use('/', FeedbackRoutes);
 app.use('/', ProductRoutes);
 app.use('/', OrderRoutes);
