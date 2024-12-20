@@ -90,17 +90,18 @@ header {
 
 /* Shared Button Style */
 .button {
-    padding: 15px 30px;
-    font-size: 16px;
+    padding: 10px 20px; /* Giảm kích thước padding */
+    font-size: 14px;    /* Giảm kích thước font */
     font-weight: bold;
     color: #1a1515;
     background: linear-gradient(90deg, #a1efe9, #9fdfec); /* Light gradient colors */
     border: none;
-    border-radius: 50px; /* Fully rounded corners */
+    border-radius: 25px; /* Giảm độ bo tròn cho phù hợp với kích thước nhỏ */
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
 }
+
 
 .button:hover {
     transform: scale(1.05); /* Slightly enlarge the button */
