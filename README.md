@@ -116,7 +116,7 @@ FruitHub được xây dựng trên nền tảng **Node.js**, với mục tiêu 
   - Lọc những đơn hàng theo khoảng ngày nhập vào.
   - Tính tổng doanh thu: theo tất cả, theo khoảng ngày.
   - Liệt kê những khách hàng mua nhiều hàng nhất.
-  - Xem chi tiết một đơn hàng bất kì.(Và tổng giá trị đơn hàng đó kèm theo)
+  - Xem chi tiết một đơn hàng bất kì.(Và tổng giá trị đơn hàng đó kèm theo) (Click chuột phải vào 1 đơn hàng bất kì)
 
 - **Quản lý khách hàng**:  
   - Lưu trữ thông tin khách hàng chi tiết (tên, địa chỉ, số điện thoại, lịch sử mua hàng).  
@@ -157,7 +157,7 @@ FruitHub được xây dựng trên nền tảng **Node.js**, với mục tiêu 
   - SQL 
 
 ## 🚀 **Hướng dẫn sử dụng**
-**Link dự án**: https://web-project-production-0e6a.up.railway.app/
-
+- **Link dự án**: https://web-project-production-0e6a.up.railway.app/
+- **Link demo**: https://drive.google.com/drive/folders/1RRAZBHpsoPqo_y6r4sj9OOV0dku7DtQI?fbclid=IwZXh0bgNhZW0CMTAAAR3JArX5Fun84EMDyJDB4UGZSc_KFimfIB20zuGWEmwGJFsED6zkCyXFkZI_aem_lyWD_ms6wunwhcxN36Ziwg
 
 
