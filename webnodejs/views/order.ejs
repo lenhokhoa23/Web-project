@@ -14,29 +14,29 @@
             <h2>Thông tin Đơn hàng</h2>
             <input type="text" id="search-bar" placeholder="Tìm kiếm đơn hàng">
             <div class="button-group">
-                <button id="view-all">Tất cả đơn hàng</button>
-                <button id="view-shipped">Đơn hàng đã giao</button>
-                <button id="view-not-shipped">Đơn hàng chưa giao</button>
-                <button id="toggle-view">Xem giá trị các đơn hàng</button>
-                <button id="view-product-values">Xem giá trị sản phẩm</button>
+                <button class="button" id="view-all">Tất cả đơn hàng</button>
+                <button class="button" id="view-shipped">Đơn hàng đã giao</button>
+                <button class="button" id="view-not-shipped">Đơn hàng chưa giao</button>
+                <button class="button" id="toggle-view">Xem giá trị các đơn hàng</button>
+                <button class="button" id="view-product-values">Xem giá trị sản phẩm</button>
             </div>
-            <div class="date-filter">
-                <input type="date" id="start-date">
-                <input type="date" id="end-date">
-                <button id="filter-date">Lọc theo ngày</button>
+            <div class="date-filter" >
+                <input class="input-field"  type="date" id="start-date">
+                <input class="input-field"  type="date" id="end-date">
+                <button class="button" id="filter-date">Lọc theo ngày</button>
             </div>
             <div class="revenue-section">
-                <button id="toggle-revenue-calculator">Tính tổng doanh thu</button>
+                <button class="more-field" id="toggle-revenue-calculator">Tính tổng doanh thu</button>
                 <div id="revenue-calculator" class="hidden">
                     <h3>Tính tổng doanh thu</h3>
-                    <input type="date" id="revenue-start-date">
-                    <input type="date" id="revenue-end-date">
-                    <button id="calculate-revenue">Tính</button>
+                    <input class="input-field"  type="date" id="revenue-start-date">
+                    <input class="input-field"  type="date" id="revenue-end-date">
+                    <button class="button" id="calculate-revenue">Tính</button>
                     <div id="total-revenue"></div>
                 </div>
             </div>
             <div class="top-customers-section">
-                <button id="toggle-top-customers">Xem khách hàng hàng đầu</button>
+                <button class="button" id="toggle-top-customers">Xem khách hàng hàng đầu</button>
                 <div id="top-customers-container" class="hidden">
                     <h3>5 khách hàng hàng đầu</h3>
                     <table id="top-customers-table">
