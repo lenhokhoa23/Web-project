@@ -1,3 +1,90 @@
+# Nhóm chúng em đã làm 2 website 'độc lập' cho bài tập lớn này: Bao gồm FruitHub và Food Order Website.
+**Với FruitHub nhóm chúng em đã deploy được (ở phía bên dưới), còn với Food Order Website thì chúng em xin phép được thực hiện việc demo. Dưới đây là phần trình bày cho 2 website của nhóm chúng em:**
+# Food Order Website:
+**Do khối lượng file lớn nên các nền tảng cho phép deploy dự án miễn phí không hỗ trợ deploy được cho website này của nhóm chúng em nên em sẽ để link demo ở ngay bên dưới đây:**
+https://drive.google.com/file/d/15KnrYyVvSjqZDYGGQ18DK3rOie4qbiTy/view?usp=sharing
+> Dưới đây là database của website này: 
+![image](https://github.com/user-attachments/assets/a48b38af-e71d-441d-b5d3-faa1d16ad100)
+
+> # Quan hệ giữa các bảng
+
+## 1. Bảng `user`
+- **Quan hệ**:
+  - **1-N**: Một `user` có thể là chủ sở hữu (`ownerId`) của nhiều `restaurant`.
+  - **1-N**: Một `user` có thể đặt nhiều `order`.
+  - **1-1**: Một `user` có một `customer` (với vai trò là khách hàng).
+  - **1-N**: Một `user` có thể có nhiều `address`.
+
+---
+
+## 2. Bảng `restaurant`
+- **Quan hệ**:
+  - **N-1**: Mỗi `restaurant` được sở hữu bởi một `user` (`ownerId`).
+  - **1-N**: Một `restaurant` có thể cung cấp nhiều `menuItem`.
+  - **1-N**: Một `restaurant` có thể liên kết với nhiều `order`.
+
+---
+
+## 3. Bảng `menuItem`
+- **Quan hệ**:
+  - **N-1**: Mỗi `menuItem` thuộc về một `restaurant`.
+  - **1-N**: Một `menuItem` có thể được thêm vào nhiều `orderItem` (khi khách đặt hàng).
+
+---
+
+## 4. Bảng `order`
+- **Quan hệ**:
+  - **N-1**: Mỗi `order` được tạo bởi một `user`.
+  - **N-1**: Mỗi `order` thuộc về một `restaurant`.
+  - **1-N**: Một `order` có thể có nhiều `orderItem`.
+  - **1-1**: Một `order` có thể liên kết với một `payment`.
+  - **1-N**: Một `order` có thể có nhiều `orderHistory` để ghi nhận trạng thái.
+
+---
+
+## 5. Bảng `orderItem`
+- **Quan hệ**:
+  - **N-1**: Mỗi `orderItem` thuộc về một `order`.
+  - **N-1**: Mỗi `orderItem` liên kết với một `menuItem`.
+
+---
+
+## 6. Bảng `customer`
+- **Quan hệ**:
+  - **1-1**: Mỗi `customer` tương ứng với một `user`.
+  - **N-1**: Một `customer` có thể tham chiếu đến một `timeStamp`.
+
+---
+
+## 7. Bảng `payment`
+- **Quan hệ**:
+  - **1-1**: Mỗi `payment` liên kết với một `order`.
+
+---
+
+## 8. Bảng `orderHistory`
+- **Quan hệ**:
+  - **N-1**: Mỗi `orderHistory` liên kết với một `order`.
+
+---
+
+## 9. Bảng `address`
+- **Quan hệ**:
+  - **N-1**: Một `address` thuộc về một `user`.
+  - **N-1**: Mỗi `address` có thể tham chiếu đến một `timeStamp`.
+
+---
+
+## 10. Bảng `timeStamp`
+- **Quan hệ**:
+  - **1-N**: Một `timeStamp` có thể tham chiếu đến:
+    - Nhiều `restaurant`.
+    - Nhiều `menuItem`.
+    - Nhiều `customer`.
+    - Nhiều `address`.
+
+
+
 # 🍇 **FruitHub** - Fruit Company Management System
 
 > **"Một trang web quản lý công ty bán hoa quả toàn diện."**
@@ -10,7 +97,7 @@
 
 FruitHub được xây dựng trên nền tảng **Node.js**, với mục tiêu quản lý công ty một cách toàn diện, thực tế; Dưới đây là mô hình quan hệ và những tính năng mà nhóm chúng em đã triển khai.
 
-![image](https://github.com/user-attachments/assets/71a2fecc-d695-4f46-9bdb-bec74763a5cc)
+![image](https://github.com/user-attachments/assets/aec3c6ba-45e2-46eb-9f4c-a1874a815891)
 
 
 ## 🌟 **Tính năng **
@@ -44,17 +131,7 @@ FruitHub được xây dựng trên nền tảng **Node.js**, với mục tiêu 
   - Tìm kiếm nhân viên (Mã phòng ban, mã NV, tên nhân viên...)
   - Thêm 1 nhân viên mới, xoá một nhân viên cũ.
   - Quản lý sức khoẻ nhân viên, con cái nhân viên.
- 
-- **Quản lý dự án**:
-  - Theo dõi thông tin các dự án của công ty.
-  - Tìm kiếm dự án: Theo tên, theo ngày.
-  - Thêm dự án mới.
-  - Xoá dự án cũ.
-    
-- **Quản lý đào tạo**:
-  - Theo dõi những buổi đào tạo chuyên môn cho nhân viên.
-  - Thêm một đào tạo mới cho nhân viên.
-    
+
 - **Quản lý lương, chấm công**:
   - Tìm kiếm những nhân viên thâm niên, đã gắn bó lâu với công ty.
   - Lọc những nhân viên có thể hiện tốt, đánh giá cao.
