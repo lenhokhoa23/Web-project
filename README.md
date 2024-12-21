@@ -109,7 +109,8 @@ https://drive.google.com/file/d/15KnrYyVvSjqZDYGGQ18DK3rOie4qbiTy/view?usp=shari
 
 FruitHub được xây dựng trên nền tảng **Node.js**, với mục tiêu quản lý công ty một cách toàn diện, thực tế; Dưới đây là mô hình quan hệ và những tính năng mà nhóm chúng em đã triển khai.
 
-![](D:\Downloads\company_sample.png)
+![image](https://github.com/user-attachments/assets/25de59da-0019-4f70-8e0e-bedc6c6b40e7)
+
 
 ## 🌟 **Tính năng **
 
